@@ -1,0 +1,7 @@
+{
+    "basis_gates": "['id', 'sx', 'x', 'rz', 'cz']",
+    "backend_name": "fake_torino",
+    "optimization_level": 3,
+    "bqskit_optimization_level": 1,
+    "bqskit_max_synthesis_size": 2
+}
