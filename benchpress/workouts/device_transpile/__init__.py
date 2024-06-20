@@ -11,3 +11,4 @@
 # that they have been altered from the originals.
 
 from .device_transpile_100Q import WorkoutDeviceTranspile100Q
+from .feynman import WorkoutDeviceFeynman
