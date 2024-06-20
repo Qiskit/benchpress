@@ -40,6 +40,8 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
         circuit = QuantumCircuit.from_qasm_file(
             f"{Config.get_qasm_dir('feynman')}{filename}"
         )
+        if circuit.num_qubits > backend.num_qubits:
+            pytest.skip("Circuit too large for given backend.")
         pm = generate_preset_pass_manager(args["optimization_level"], backend)
 
         @benchmark
