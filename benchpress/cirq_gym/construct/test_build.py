@@ -19,7 +19,7 @@ from benchpress.config import Config
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
-from benchpress.cirq_gym.circuits import cirq_QV, multi_control_circuit, dtc_unitary
+from benchpress.cirq_gym.circuits import cirq_QV, cirq_QFT, multi_control_circuit, dtc_unitary
 
 SEED = 12345
 
@@ -59,6 +59,18 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return circs[-1]
 
         assert True
+
+    def test_QFT_build(self, benchmark):
+        """Measures an SDK's ability to build a 100Q
+        QFT circit from scratch.
+        """
+
+        @benchmark
+        def result():
+            out = cirq_QFT(100)
+            return out
+
+        assert result
 
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit

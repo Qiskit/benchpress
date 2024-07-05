@@ -19,10 +19,17 @@ class WorkoutCircuitConstruction:
     @pytest.mark.skip(reason="Not implimented")
     def test_QV100_build(self, benchmark):
         """Measures an SDKs ability to build a 100Q
-        QV circit from scratch.
+        QV circuit from scratch.
         """
         pass
-
+    
+    @pytest.mark.skip(reason="Not implimented")
+    def test_QFT_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        QFT circuit from scratch.
+        """
+        pass
+    
     @pytest.mark.skip(reason="Not implimented")
     def test_DTC100_set_build(self, benchmark):
         """Measures an SDKs ability to build a set

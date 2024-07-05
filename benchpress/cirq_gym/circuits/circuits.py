@@ -15,6 +15,16 @@
 import numpy as np
 import cirq
 
+def cirq_QFT(num_qubits):
+    qubits = cirq.LineQubit.range(num_qubits)
+    circuit = cirq.Circuit()
+    for i in range(num_qubits):
+        for j in range(i):
+            circuit.append(cirq.CZ(qubits[j], qubits[i]) ** (1/2**(i-j)))
+        circuit.append(cirq.H(qubits[i]))
+    for i in range(num_qubits // 2):
+        circuit.append(cirq.SWAP(qubits[i], qubits[num_qubits-i-1]))
+    return circuit
 
 def cirq_QV(num_qubits, depth, seed=None):
     """Generates a model circuit with the given number of qubits and depth.
