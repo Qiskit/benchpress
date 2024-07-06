@@ -49,6 +49,13 @@ The `pytest-memray` plugin will sometimes raise on building the histrogram inclu
 #writeln(f"\t 📊 Histogram of allocation sizes: |{histogram_txt}|")
 ```
 
+## Open-source packages
+
+Benchpress makes use of files from the following open-source packages under terms of their licenses. License files are included in the corresponding directories.
+
+- [Feynman](https://github.com/meamy/feynman)
+
+
 ## License
 
 [Apache License 2.0](LICENSE.txt)
