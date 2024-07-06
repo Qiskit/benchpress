@@ -51,7 +51,7 @@ The `pytest-memray` plugin will sometimes raise on building the histrogram inclu
 
 ## Open-source packages
 
-Benchpress makes use of files fromn the following open-source packages under terms of their licenses. License files are included in the corresponding directories.
+Benchpress makes use of files from the following open-source packages under terms of their licenses. License files are included in the corresponding directories.
 
 - [Feynman](https://github.com/meamy/feynman)
 
