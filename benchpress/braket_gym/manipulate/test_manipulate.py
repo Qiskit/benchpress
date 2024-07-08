@@ -11,7 +11,6 @@
 # that they have been altered from the originals.
 """Test circuit manipulation"""
 
-from benchpress.config import Config
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 
