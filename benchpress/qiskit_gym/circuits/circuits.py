@@ -3,6 +3,7 @@
 import numpy as np
 from qiskit import QuantumCircuit
 from qiskit.circuit.library.standard_gates import XGate
+from qiskit.quantum_info import random_clifford
 
 
 def dtc_unitary(num_qubits, g=0.95, seed=12345):
@@ -92,4 +93,18 @@ def trivial_bvlike_circuit(N):
     qc.z(N - 2)
     for kk in range(N - 2, -1, -1):
         qc.cx(kk, N - 1)
+    return qc
+
+
+def random_clifford_circuit(num_qubits, seed=12345):
+    """Generate a random clifford circuit
+    Parameters:
+        num_qubits (int): Number of qubits
+        seed (int): Optional. Seed the random number generator, default=12345
+
+    Returns:
+        QuantumCircuit: Clifford circuit
+    """
+    cliff = random_clifford(num_qubits, seed=seed)
+    qc = cliff.to_circuit()
     return qc
