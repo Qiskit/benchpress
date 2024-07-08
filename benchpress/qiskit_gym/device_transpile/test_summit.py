@@ -1,22 +1,19 @@
 """Test summit benchmarks"""
 
-import pytest
-from qiskit import QuantumCircuit, transpile
+from qiskit import QuantumCircuit
 from qiskit.circuit.library import EfficientSU2
 from qiskit.transpiler.passes import StarPreRouting
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.qiskit_gym.circuits import bv_all_ones
-from benchpress.utilities.args import get_args
-from benchpress.utilities.backends import get_backend
 
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.qiskit_gym.circuits import trivial_bvlike_circuit
 
-args = get_args(filename=Config.get_args_file())
-backend = get_backend(backend_name=args["backend_name"], bench_name="qiskit")
+BACKEND = Configuration.backend()
+OPTIMIZATION_LEVEL = Configuration.options['qiskit']["optimization_level"]
 
 
 @benchpress_test_validation
@@ -24,10 +21,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
         circuit = QuantumCircuit.from_qasm_file(
-            Config.get_qasm_dir("qft") + "qft_N100.qasm"
+            Configuration.get_qasm_dir("qft") + "qft_N100.qasm"
         )
 
-        pm = generate_preset_pass_manager(args["optimization_level"], backend)
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
         pm.init.append(StarPreRouting())
 
         @benchmark
@@ -44,14 +41,12 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
         circuit = QuantumCircuit.from_qasm_file(
-            Config.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
         )
-
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
         @benchmark
         def result():
-            trans_qc = transpile(
-                circuit, backend, optimization_level=args["optimization_level"]
-            )
+            trans_qc = pm.run(circuit)
             return trans_qc
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
@@ -63,12 +58,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_circSU2_100_transpile(self, benchmark):
         """Compile 100Q circSU2 circuit against target backend"""
         circuit = EfficientSU2(100, reps=3, entanglement="circular")
-
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
         @benchmark
         def result():
-            trans_qc = transpile(
-                circuit, backend, optimization_level=args["optimization_level"]
-            )
+            trans_qc = pm.run(circuit)
             return trans_qc
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
@@ -80,12 +73,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_BV_100_transpile(self, benchmark):
         """Compile 100Q BV circuit against target backend"""
         circuit = bv_all_ones(100)
-
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
         @benchmark
         def result():
-            trans_qc = transpile(
-                circuit, backend, optimization_level=args["optimization_level"]
-            )
+            trans_qc = pm.run(circuit)
             return trans_qc
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
@@ -97,14 +88,12 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
         circuit = QuantumCircuit.from_qasm_file(
-            Config.get_qasm_dir("square-heisenberg") + "square_heisenberg_N100.qasm"
+            Configuration.get_qasm_dir("square-heisenberg") + "square_heisenberg_N100.qasm"
         )
-
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
         @benchmark
         def result():
-            trans_qc = transpile(
-                circuit, backend, optimization_level=args["optimization_level"]
-            )
+            trans_qc = pm.run(circuit)
             return trans_qc
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
@@ -116,14 +105,12 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
         circuit = QuantumCircuit.from_qasm_file(
-            Config.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
+            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
         )
-
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
         @benchmark
         def result():
-            trans_qc = transpile(
-                circuit, backend, optimization_level=args["optimization_level"]
-            )
+            trans_qc = pm.run(circuit)
             return trans_qc
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
@@ -137,12 +124,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         into a single X and Z gate on a target device
         """
         circuit = trivial_bvlike_circuit(100)
-
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
         @benchmark
         def result():
-            trans_qc = transpile(
-                circuit, backend, optimization_level=args["optimization_level"]
-            )
+            trans_qc = pm.run(circuit)
             return trans_qc
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
