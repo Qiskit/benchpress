@@ -42,7 +42,7 @@ class BenchpressConfig:
         else:
             self.filename = filename
         self.options = {}
-        self.gym_name = None
+        self._gym_name = None
         self.config_parser = configparser.ConfigParser()
         self.qasm_dir = os.path.dirname(os.path.abspath(__file__)) + os.sep + "qasm"
         # read file
@@ -51,6 +51,17 @@ class BenchpressConfig:
             self.options[sec] = {}
             for item in list(self.config_parser.items(sec)):
                 self.options[sec][item[0]] = literal_eval(item[1])
+    
+    @property
+    def gym_name(self):
+        return self._gym_name
+    
+    @gym_name.setter
+    def gym_name(self, name):
+        # This is here to prevent overwriting the gym name when
+        # calling across differnet gyms for getting backend info
+        if self._gym_name is None:
+            self._gym_name = name 
     
     def get_qasm_dir(self, sub_dir=None):
         if sub_dir is None:
@@ -63,9 +74,10 @@ class BenchpressConfig:
         from benchpress.utilities.backends import get_backend
         if self.gym_name is None:
             raise ValueError('gym_name not set')
+
         if self.gym_name in ['qiskit', 'tket', 'bqskit']:
             backend = get_backend(backend_name=self.options['general']['backend_name'],
-                                  bench_name=self.gym_name)
+                                  gym_name=self.gym_name)
             return backend
         else:
             raise ValueError(f'{self.gym_name} does not support backends')
