@@ -8,7 +8,18 @@ Benchmarking for Qiskit
 
 Benchpress itself requires no installation.  However running it requires the tools in `requirements.txt`.  In addition, running each of the frameworks has its own dependencies in the corresponding `*-requirements.txt` file
 
+### [pre-running] Create a skiplist
 
+With the parameter `--timeout-skip-list=<SECs>`, a  *skiplist* (a list of tests to skip, given they take too long) is created.
+For example, the following line runs the tests in `benchpress/tket_gym/construct` with a 1 second timeout:
+
+```bash
+python -m pytest  --timeout-skip-list=1  benchpress/tket_gym/construct
+```
+
+This will create a `skipfile.txt` file.
+The mere existence of this file skips the tests listed there in the following executions.
+No modifier needed.
 
 ## Running the benchmark tests
 
@@ -17,7 +28,7 @@ To run the benchmarks in the default configuration from inside the environment i
 ```bash
 python -m pytest --benchmark-min-rounds=1 benchpress/*_gym
 ```
-where `*` is one of the frameworks that you want to test, and which matches the environment you are in.  Here `--benchmark-min-rounds=1`sets the minimum number of repeated trials to 1, which will save a great deal of time
+where `*` is one of the frameworks that you want to test, and which matches the environment you are in.  Here `--benchmark-min-rounds=1` sets the minimum number of repeated trials to 1, which will save a great deal of time
 
 To run the benchmarks and save to JSON one can do:
 
