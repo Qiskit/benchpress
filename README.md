@@ -11,10 +11,10 @@ Benchpress itself requires no installation.  However running it requires the too
 ### [pre-running] Create a skiplist
 
 With the parameter `--timeout-skip-list=<SECs>`, a  *skiplist* (a list of tests to skip, given they take too long) is created.
-For example, the following line runs the tests in `benchpress/tket_gym/construct` with a 1 second timeout:
+For example, the following line runs the tests in `benchpress/tket_gym/construct` with a 1 hour timeout:
 
 ```bash
-python -m pytest  --timeout-skip-list=1  benchpress/tket_gym/construct
+python -m pytest  --timeout-skip-list=3600  --benchmark-min-rounds=1 benchpress/tket_gym/construct
 ```
 
 This will create a `skipfile.txt` file.
