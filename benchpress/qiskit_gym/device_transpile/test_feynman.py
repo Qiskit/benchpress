@@ -16,18 +16,17 @@ import pytest
 from qiskit import QuantumCircuit
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
-from benchpress.utilities.args import get_args
-from benchpress.utilities.backends import get_backend
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 
-args = get_args(filename=Config.get_args_file())
-backend = get_backend(backend_name=args["backend_name"], bench_name="qiskit")
+
+BACKEND = Configuration.backend()
+OPTIMIZATION_LEVEL = Configuration.options['qiskit']["optimization_level"]
 
 
 def pytest_generate_tests(metafunc):
-    directory = Config.get_qasm_dir("feynman")
+    directory = Configuration.get_qasm_dir("feynman")
     file_list = [x for x in os.listdir(directory) if x.endswith(".qasm")]
     metafunc.parametrize("filename", file_list)
 
@@ -38,11 +37,11 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
     def test_feynman_transpile(self, benchmark, filename):
         """Transpile a feynman benchmark qasm file against a target device"""
         circuit = QuantumCircuit.from_qasm_file(
-            f"{Config.get_qasm_dir('feynman')}{filename}"
+            f"{Configuration.get_qasm_dir('feynman')}{filename}"
         )
-        if circuit.num_qubits > backend.num_qubits:
+        if circuit.num_qubits > BACKEND.num_qubits:
             pytest.skip("Circuit too large for given backend.")
-        pm = generate_preset_pass_manager(args["optimization_level"], backend)
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark
         def result():

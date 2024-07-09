@@ -10,11 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 """Test transpilation against a device"""
-import os
 import pytest
-
-from benchpress.config import Config
-
 
 @pytest.mark.benchmark(group="Transpile - Device")
 class WorkoutDeviceFeynman:

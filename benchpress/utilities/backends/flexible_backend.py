@@ -12,23 +12,16 @@
 
 import math
 import scipy.optimize as opt
-from ast import literal_eval
 import rustworkx as rx
 
 from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit.providers.models.backendconfiguration import QasmBackendConfiguration
-from qiskit.transpiler import Target, CouplingMap
-from qiskit.circuit import Delay
-from qiskit.circuit.library import Measure, Reset
-from qiskit.circuit import Parameter
+from qiskit.transpiler import CouplingMap
 
 from ..graphs import tree_graph, torus_coupling_map
-from benchpress.config import Config
-from benchpress.utilities.args import get_args
+from benchpress.config import Configuration
 
-args = get_args(filename=Config.get_args_file())
-
-BASIS_GATES = literal_eval(args["basis_gates"])
+BASIS_GATES = Configuration.options['general']['basis_gates']
 
 
 class FlexibleBackend(GenericBackendV2):

@@ -11,18 +11,18 @@
 # that they have been altered from the originals.
 
 
-def get_backend(backend_name: str, bench_name: str):
-    if bench_name == "qiskit":
+def get_backend(backend_name: str, gym_name: str):
+    if gym_name == "qiskit":
         from benchpress.qiskit_gym.utils.qiskit_backend_utils import (
             get_qiskit_bench_backend,
         )
 
         return get_qiskit_bench_backend(backend_name)
-    elif bench_name == "tket":
+    elif gym_name == "tket":
         from benchpress.tket_gym.utils.tket_backend_utils import get_tket_bench_backend
 
         return get_tket_bench_backend(backend_name)
-    elif bench_name == "bqskit":
+    elif gym_name == "bqskit":
         from benchpress.bqskit_gym.utils.bqskit_backend_utils import (
             get_bqskit_bench_backend,
         )
@@ -30,5 +30,5 @@ def get_backend(backend_name: str, bench_name: str):
         return get_bqskit_bench_backend(backend_name)
     else:
         raise NotImplementedError(
-            f"Backend support not implemented for {bench_name} bench."
+            f"Backend support not implemented for {gym_name} bench."
         )
