@@ -33,6 +33,8 @@ from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 
+OPTIMIZATION_LEVEL = Configuration.options['bqskit']["optimization_level"]
+
 
 TWIRLING_SETS = {
     "CNOTGate": [
@@ -144,7 +146,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             out = compile(
                 input=circ,
                 model=model,
-                optimization_level=args["bqskit_optimization_level"],
+                optimization_level=OPTIMIZATION_LEVEL,
                 compiler=Compiler(),
                 seed=0,
             )
