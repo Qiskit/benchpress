@@ -29,12 +29,10 @@ from bqskit.ir.gates import (
     XGate,
 )
 
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
-from benchpress.utilities.args import get_args
 
-args = get_args(filename=Config.get_args_file())
 
 TWIRLING_SETS = {
     "CNOTGate": [
@@ -83,7 +81,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         circuit
         """
         circuit = Circuit.from_file(
-            Config.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
+            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
         )
 
         @benchmark
@@ -133,7 +131,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         """Change a QV100 circuit basis from [rx, ry, rz, cx]
         to [sx, x, rz, cz]
         """
-        qasm_file = Config.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+        qasm_file = Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
         circ = Circuit.from_file(qasm_file)
 
         model = MachineModel(
