@@ -15,14 +15,14 @@ Benchpress itself requires no installation.  However running it requires the too
 To run the benchmarks in the default configuration from inside the environment in which you want to perform the tests run:
 
 ```bash
-python -m pytest --benchmark-min-rounds=1 benchpress/*_gym
+python -m pytest benchpress/*_gym
 ```
-where `*` is one of the frameworks that you want to test, and which matches the environment you are in.  Here `--benchmark-min-rounds=1`sets the minimum number of repeated trials to 1, which will save a great deal of time
+where `*` is one of the frameworks that you want to test, and which matches the environment you are in.
 
 To run the benchmarks and save to JSON one can do:
 
 ```bash
-python -m pytest --benchmark-min-rounds=1 --benchmark-save=SAVED_NAME  benchpress/*_gym
+python -m pytest --benchmark-save=SAVED_NAME  benchpress/*_gym
 ```
 which will save the file to the CWD in the `.benchmarks` folder
 
