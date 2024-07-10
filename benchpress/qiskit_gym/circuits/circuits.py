@@ -3,7 +3,6 @@
 import numpy as np
 from qiskit import QuantumCircuit
 from qiskit.circuit.library.standard_gates import XGate
-from qiskit.quantum_info import random_clifford
 
 
 def dtc_unitary(num_qubits, g=0.95, seed=12345):
@@ -105,6 +104,7 @@ def random_clifford_circuit(num_qubits, seed=12345):
     Returns:
         QuantumCircuit: Clifford circuit
     """
-    cliff = random_clifford(num_qubits, seed=seed)
-    qc = cliff.to_circuit()
+    # This code can be replaced by a QASM file
+    from qiskit.circuit.random import random_clifford_circuit
+    qc = random_clifford_circuit(num_qubits, num_gates=10 * num_qubits * num_qubits, seed=seed)
     return qc

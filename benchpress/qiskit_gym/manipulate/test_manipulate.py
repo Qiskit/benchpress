@@ -144,7 +144,9 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         translate = generate_preset_pass_manager(
             1, basis_gates=["rx", "ry", "rz", "cz"]
         ).translation
-        circ = random_clifford_circuit(100)
+        cliff_circ = random_clifford_circuit(20)
+        cliff = Clifford(cliff_circ)
+        circ = cliff.to_circuit()
 
         @benchmark
         def result():
