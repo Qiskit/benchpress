@@ -6,7 +6,7 @@ from qiskit.circuit.library import QuantumVolume
 from qiskit.circuit.library import EfficientSU2
 from qiskit.qasm2 import load
 
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
@@ -101,7 +101,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            out = load(Config.get_qasm_dir("qv") + "qv_N100_12345.qasm")
+            out = load(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
             return out
 
         ops = result.count_ops()

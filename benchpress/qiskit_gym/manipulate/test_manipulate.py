@@ -9,7 +9,7 @@ from qiskit.dagcircuit import DAGCircuit
 from qiskit.passmanager import PropertySet
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.qiskit_gym.circuits import multi_control_circuit
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
@@ -94,7 +94,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         circuit
         """
         circuit = QuantumCircuit.from_qasm_file(
-            Config.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
+            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
         )
         assert benchmark(circuit_twirl, circuit)
 
@@ -124,7 +124,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             1, basis_gates=["sx", "x", "rz", "cz"]
         ).translation
         circ = QuantumCircuit.from_qasm_file(
-            Config.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
         )
 
         @benchmark
@@ -144,7 +144,7 @@ class TestWorkoutDAGManipulate(WorkoutCircuitManipulate):
         circuit
         """
         circuit = QuantumCircuit.from_qasm_file(
-            Config.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
+            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
         )
 
         def setup():
