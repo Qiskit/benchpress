@@ -1,0 +1,17 @@
+# Application: qram_n20
+- Qubit Count : 20
+- Circuit Depth : 24
+- Circuit Width : 20
+- Retention Lifespan : 3.1780538303479458
+- Gate Density : 1.7020833333333334
+- Dual Gate Count : 136
+- Measurement Density : 1.5434465259754842
+- Size Factor : 6.842683282238422
+- Gate Count : 681
+- Entanglement Variance : 0.4274907629116746
+- Communication Supermarq : 0.042105263157894736
+- Measurement Supermarq : 0.0
+- Depth Supermarq : 0.5
+- Entanglement Supermarq : 0.3902439024390244
+- Parallelism Supermarq : 0.41463414634146345
+- Liveness Supermarq : 0.17083333333333334
