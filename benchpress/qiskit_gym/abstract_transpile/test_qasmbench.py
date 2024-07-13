@@ -1,4 +1,4 @@
-"""Test summit benchmarks"""
+"""Test qasmbench against abstract backend topologies"""
 import pytest
 
 from qiskit import QuantumCircuit

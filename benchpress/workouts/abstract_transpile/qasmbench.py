@@ -16,7 +16,7 @@ from benchpress.config import Configuration
 from benchpress.utilities.io import get_qasmbench_circuits
 
 TOPOLOGY_NAMES = Configuration.options['general']['abstract_topologies']
-SKIP_HHL = Configuration.options['qasmbench']['skip_hhl_qasm']
+
 
 def qasmbench_parameters(size):
     qasm_dir = Configuration.get_qasm_dir(f"qasmbench-{size}")
@@ -25,10 +25,9 @@ def qasmbench_parameters(size):
     circs_and_topo = []
     test_ids = []
     for idx, circ in enumerate(circuits):
-        if not 'hhl' in names[idx] or not SKIP_HHL:
-            for topo_name in TOPOLOGY_NAMES:
-                circs_and_topo.append((circ, topo_name))
-                test_ids.append(names[idx]+'-'+topo_name)
+        for topo_name in TOPOLOGY_NAMES:
+            circs_and_topo.append((circ, topo_name))
+            test_ids.append(names[idx]+'-'+topo_name)
     return circs_and_topo, test_ids
 
 SMALL_CIRC_TOPO, SMALL_NAMES = qasmbench_parameters('small')
