@@ -2,7 +2,7 @@
 
 
 # :construction: benchpress :construction:
-Benchmarking for Qiskit
+Quantum software benchmarking
 
 ## Installation
 
