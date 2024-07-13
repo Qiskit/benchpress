@@ -21,7 +21,7 @@ from benchpress.bqskit_gym.circuits import (
     multi_control_circuit,
 )
 
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
@@ -117,7 +117,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            out = Circuit.from_file(Config.get_qasm_dir("qv") + "qv_N100_12345.qasm")
+            out = Circuit.from_file(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
             return out
 
         assert result.gate_counts[RZGate()] == 120000

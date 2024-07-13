@@ -11,12 +11,11 @@
 # that they have been altered from the originals.
 """Test circuit manipulation"""
 import random
-import numpy as np
 
 import cirq
 from cirq.contrib.qasm_import import circuit_from_qasm
 
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 
@@ -62,7 +61,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         """Perform Pauli-twirling on a 100Q QV
         circuit
         """
-        with open(Config.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", "r") as file:
+        with open(Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", "r") as file:
             circ_data = file.read().replace("\n", "")
         circuit = circuit_from_qasm(circ_data)
 

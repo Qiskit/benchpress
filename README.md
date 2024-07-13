@@ -26,14 +26,14 @@ No modifier needed.
 To run the benchmarks in the default configuration from inside the environment in which you want to perform the tests run:
 
 ```bash
-python -m pytest --benchmark-min-rounds=1 benchpress/*_gym
+python -m pytest benchpress/*_gym
 ```
 where `*` is one of the frameworks that you want to test, and which matches the environment you are in.  Here `--benchmark-min-rounds=1` sets the minimum number of repeated trials to 1, which will save a great deal of time
 
 To run the benchmarks and save to JSON one can do:
 
 ```bash
-python -m pytest --benchmark-min-rounds=1 --benchmark-save=SAVED_NAME  benchpress/*_gym
+python -m pytest --benchmark-save=SAVED_NAME  benchpress/*_gym
 ```
 which will save the file to the CWD in the `.benchmarks` folder
 
@@ -59,6 +59,13 @@ The `pytest-memray` plugin will sometimes raise on building the histrogram inclu
 #histogram_txt = cli_hist(sizes, bins=min(len(sizes), N_HISTOGRAM_BINS))
 #writeln(f"\t 📊 Histogram of allocation sizes: |{histogram_txt}|")
 ```
+
+## Open-source packages
+
+Benchpress makes use of files from the following open-source packages under terms of their licenses. License files are included in the corresponding directories.
+
+- [Feynman](https://github.com/meamy/feynman)
+
 
 ## License
 
