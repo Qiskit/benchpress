@@ -55,6 +55,8 @@ Benchpress makes use of files from the following open-source packages under term
 
 - [Feynman](https://github.com/meamy/feynman)
 
+- [QasmBench](https://github.com/pnnl/QASMBench)
+
 
 ## License
 
