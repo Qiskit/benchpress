@@ -117,7 +117,9 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            out = Circuit.from_file(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
+            out = Circuit.from_file(
+                Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+            )
             return out
 
         assert result.gate_counts[RZGate()] == 120000

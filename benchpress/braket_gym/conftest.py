@@ -13,14 +13,12 @@ import braket._sdk as braket_sdk
 
 
 def pytest_report_header(config):
-    """Add some info about packages and backend to the pytest CLI header
-    """
+    """Add some info about packages and backend to the pytest CLI header"""
     return [
-            f"braket: {braket_sdk.__version__}",
-           ]
+        f"braket: {braket_sdk.__version__}",
+    ]
 
 
 def pytest_benchmark_update_json(config, benchmarks, output_json):
-    """Adds custom sections to the pytest-benchmark report
-    """
-    output_json['braket_info'] = {'braket': str(braket_sdk.__version__)}
+    """Adds custom sections to the pytest-benchmark report"""
+    output_json["braket_info"] = {"braket": str(braket_sdk.__version__)}

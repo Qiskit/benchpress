@@ -10,7 +10,7 @@ from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 
 BACKEND = Configuration.backend()
-OPTIMIZATION_LEVEL = Configuration.options['tket']["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options["tket"]["optimization_level"]
 
 
 def pytest_generate_tests(metafunc):
@@ -23,10 +23,13 @@ def pytest_generate_tests(metafunc):
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceFeynman):
     def test_feynman_transpile(self, benchmark, filename):
         """Compile a feynman benchmark qasm file against a target device"""
-        circuit = circuit_from_qasm(f"{Configuration.get_qasm_dir('feynman')}{filename}")
+        circuit = circuit_from_qasm(
+            f"{Configuration.get_qasm_dir('feynman')}{filename}"
+        )
         if circuit.n_qubits > BACKEND.backend_info.n_nodes:
             pytest.skip("Circuit too large for given backend.")
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
+
         @benchmark
         def result():
             # Need to make a copy as the compilation is done in-place

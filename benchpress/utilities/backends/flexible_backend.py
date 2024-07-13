@@ -21,7 +21,7 @@ from qiskit.transpiler import CouplingMap
 from ..graphs import tree_graph, torus_coupling_map
 from benchpress.config import Configuration
 
-BASIS_GATES = Configuration.options['general']['basis_gates']
+BASIS_GATES = Configuration.options["general"]["basis_gates"]
 
 
 class FlexibleBackend(GenericBackendV2):
