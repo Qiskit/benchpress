@@ -34,7 +34,7 @@ class FlexibleBackend(GenericBackendV2):
         Parameters:
             min_qubits (int): Minimum desired number of qubits
             layout (str): Target qubit topology.  Options are
-                          'heavy-hex', 'line', 'square', 'torus',
+                          'heavy-hex', 'linear', 'square', 'torus',
                           or 'tree'
             basis_gates (list): Supported basis gates.  If none
                                 supplied, defaults to the global
