@@ -10,7 +10,7 @@ from qiskit.passmanager import PropertySet
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
-from benchpress.qiskit_gym.circuits import multi_control_circuit, random_clifford_circuit
+from benchpress.qiskit_gym.circuits import multi_control_circuit
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 
@@ -144,7 +144,9 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         translate = generate_preset_pass_manager(
             1, basis_gates=["rx", "ry", "rz", "cz"]
         ).translation
-        cliff_circ = random_clifford_circuit(20)
+        cliff_circ = QuantumCircuit.from_qasm_file(
+            Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm"
+        )
         cliff = Clifford(cliff_circ)
         circ = cliff.to_circuit()
 
