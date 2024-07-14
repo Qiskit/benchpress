@@ -23,14 +23,13 @@ from benchpress.bqskit_gym.circuits import (
 )
 from benchpress.bqskit_gym.utils.bqskit_backend_utils import ECRGate
 
-from benchpress.config import Config
-from benchpress.utilities.args import get_args
-from benchpress.utilities.backends import get_backend
+from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 
-args = get_args(filename=Config.get_args_file())
-model = get_backend(backend_name=args["backend_name"], bench_name="bqskit")
+
+BACKEND = Configuration.backend()
+OPTIMIZATION_LEVEL = Configuration.options['bqskit']["optimization_level"]
 compiler = Compiler()
 
 
@@ -38,14 +37,14 @@ compiler = Compiler()
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
-        circuit = Circuit.from_file(Config.get_qasm_dir("qft") + "qft_N100.qasm")
+        circuit = Circuit.from_file(Configuration.get_qasm_dir("qft") + "qft_N100.qasm")
 
         @benchmark
         def result():
             new_circ = compile(
                 circuit,
-                model=model,
-                optimization_level=args["bqskit_optimization_level"],
+                model=BACKEND,
+                optimization_level=OPTIMIZATION_LEVEL,
                 compiler=compiler,
             )
             return new_circ
@@ -56,12 +55,12 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = Circuit.from_file(Config.get_qasm_dir("qv") + "qv_N100_12345.qasm")
+        circuit = Circuit.from_file(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
 
         @benchmark
         def result():
             new_circ = compile(
-                circuit, model=model, optimization_level=1, compiler=compiler
+                circuit, model=BACKEND, optimization_level=OPTIMIZATION_LEVEL, compiler=compiler
             )
             return new_circ
 
@@ -77,8 +76,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         def result():
             new_circ = compile(
                 circuit,
-                model=model,
-                optimization_level=args["bqskit_optimization_level"],
+                model=BACKEND,
+                optimization_level=OPTIMIZATION_LEVEL,
                 compiler=compiler,
             )
             return new_circ
@@ -95,8 +94,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         def result():
             new_circ = compile(
                 circuit,
-                model=model,
-                optimization_level=args["bqskit_optimization_level"],
+                model=BACKEND,
+                optimization_level=OPTIMIZATION_LEVEL,
                 compiler=compiler,
             )
             return new_circ
@@ -108,15 +107,15 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
         circuit = Circuit.from_file(
-            Config.get_qasm_dir("square-heisenberg") + "square_heisenberg_N100.qasm"
+            Configuration.get_qasm_dir("square-heisenberg") + "square_heisenberg_N100.qasm"
         )
 
         @benchmark
         def result():
             new_circ = compile(
                 circuit,
-                model=model,
-                optimization_level=args["bqskit_optimization_level"],
+                model=BACKEND,
+                optimization_level=OPTIMIZATION_LEVEL,
                 compiler=compiler,
             )
             return new_circ
@@ -128,15 +127,15 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
         circuit = Circuit.from_file(
-            Config.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
+            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
         )
 
         @benchmark
         def result():
             new_circ = compile(
                 circuit,
-                model=model,
-                optimization_level=args["bqskit_optimization_level"],
+                model=BACKEND,
+                optimization_level=OPTIMIZATION_LEVEL,
                 compiler=compiler,
                 seed=0,
             )
@@ -156,8 +155,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         def result():
             new_circ = compile(
                 circuit,
-                model=model,
-                optimization_level=args["bqskit_optimization_level"],
+                model=BACKEND,
+                optimization_level=OPTIMIZATION_LEVEL,
                 compiler=compiler,
                 seed=0,
             )

@@ -15,7 +15,7 @@ import numpy as np
 import cirq
 from cirq.contrib.qasm_import import circuit_from_qasm
 
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
@@ -78,7 +78,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            with open(Config.get_qasm_dir("qv") + "qv_N100_12345.qasm", "r") as file:
+            with open(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", "r") as file:
                 data = file.read()
             out = circuit_from_qasm(data)
             return out

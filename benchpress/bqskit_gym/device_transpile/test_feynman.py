@@ -12,9 +12,10 @@
 """Test transpilation against a device"""
 import os
 import pytest
-
-from qiskit import QuantumCircuit
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from bqskit import Circuit, compile
+from bqskit.compiler import Compiler
+from bqskit.ir.gates import CNOTGate, CXGate, CZGate
+from benchpress.bqskit_gym.utils.bqskit_backend_utils import ECRGate
 
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
@@ -22,7 +23,8 @@ from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 
 
 BACKEND = Configuration.backend()
-OPTIMIZATION_LEVEL = Configuration.options['qiskit']["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options['bqskit']["optimization_level"]
+compiler = Compiler()
 
 
 def pytest_generate_tests(metafunc):
@@ -36,20 +38,20 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
     def test_feynman_transpile(self, benchmark, filename):
         """Transpile a feynman benchmark qasm file against a target device"""
-        circuit = QuantumCircuit.from_qasm_file(
-            f"{Configuration.get_qasm_dir('feynman')}{filename}"
-        )
-        if circuit.num_qubits > BACKEND.num_qubits:
+        circuit = Circuit.from_file(f"{Configuration.get_qasm_dir('feynman')}{filename}")
+        if circuit.num_qudits > BACKEND.num_qudits:
             pytest.skip("Circuit too large for given backend.")
-        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark
         def result():
-            trans_qc = pm.run(circuit)
-            return trans_qc
+            new_circ = compile(
+                circuit,
+                model=BACKEND,
+                optimization_level=OPTIMIZATION_LEVEL,
+                compiler=compiler,
+            )
+            return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
-        )
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
