@@ -14,7 +14,7 @@ With the parameter `--timeout-skip-list=<SECs>`, a  *skiplist* (a list of tests 
 For example, the following line runs the tests in `benchpress/tket_gym/construct` with a 1 hour timeout:
 
 ```bash
-python -m pytest  --timeout-skip-list=3600  --benchmark-min-rounds=1 benchpress/tket_gym/construct
+python -m pytest  --timeout-skip-list=3600 benchpress/tket_gym/construct
 ```
 
 This will create a `skipfile.txt` file.
