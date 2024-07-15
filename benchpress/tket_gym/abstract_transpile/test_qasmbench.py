@@ -27,7 +27,7 @@ OPTIMIZATION_LEVEL = Configuration.options["tket"]["optimization_level"]
 
 
 @benchpress_test_validation
-class TestWorkoutAbstractOpenQasmSmall(WorkoutAbstractQasmBenchSmall):
+class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     @pytest.mark.parametrize("circ_and_topo", SMALL_CIRC_TOPO, ids=SMALL_NAMES)
     def test_QASMBench_small(self, benchmark, circ_and_topo):
         circuit = circuit_from_qasm(circ_and_topo[0])
@@ -47,7 +47,7 @@ class TestWorkoutAbstractOpenQasmSmall(WorkoutAbstractQasmBenchSmall):
 
 
 @benchpress_test_validation
-class TestWorkoutAbstractOpenQasmMedium(WorkoutAbstractQasmBenchMedium):
+class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     @pytest.mark.parametrize("circ_and_topo", MEDIUM_CIRC_TOPO, ids=MEDIUM_NAMES)
     def test_QASMBench_medium(self, benchmark, circ_and_topo):
         circuit = circuit_from_qasm(circ_and_topo[0])
@@ -67,7 +67,7 @@ class TestWorkoutAbstractOpenQasmMedium(WorkoutAbstractQasmBenchMedium):
 
 
 @benchpress_test_validation
-class TestWorkoutAbstractOpenQasmLarge(WorkoutAbstractQasmBenchLarge):
+class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     @pytest.mark.parametrize("circ_and_topo", LARGE_CIRC_TOPO, ids=LARGE_NAMES)
     def test_QASMBench_large(self, benchmark, circ_and_topo):
         circuit = circuit_from_qasm(circ_and_topo[0])
