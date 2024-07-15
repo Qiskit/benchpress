@@ -28,7 +28,7 @@ To run the benchmarks in the default configuration from inside the environment i
 ```bash
 python -m pytest benchpress/*_gym
 ```
-where `*` is one of the frameworks that you want to test, and which matches the environment you are in.  Here `--benchmark-min-rounds=1` sets the minimum number of repeated trials to 1, which will save a great deal of time
+where `*` is one of the frameworks that you want to test, and which matches the environment you are in.
 
 To run the benchmarks and save to JSON one can do:
 
