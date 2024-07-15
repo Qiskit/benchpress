@@ -23,7 +23,7 @@ from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 
 
 BACKEND = Configuration.backend()
-OPTIMIZATION_LEVEL = Configuration.options['bqskit']["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
 compiler = Compiler()
 
 
@@ -38,7 +38,9 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
     def test_feynman_transpile(self, benchmark, filename):
         """Transpile a feynman benchmark qasm file against a target device"""
-        circuit = Circuit.from_file(f"{Configuration.get_qasm_dir('feynman')}{filename}")
+        circuit = Circuit.from_file(
+            f"{Configuration.get_qasm_dir('feynman')}{filename}"
+        )
         if circuit.num_qudits > BACKEND.num_qudits:
             pytest.skip("Circuit too large for given backend.")
 

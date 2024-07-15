@@ -15,7 +15,7 @@ import pytket
 import qiskit
 import qiskit_ibm_runtime
 
-PYTKET_QISKIT_VERSION = importlib.metadata.version('pytket-qiskit')
+PYTKET_QISKIT_VERSION = importlib.metadata.version("pytket-qiskit")
 
 
 def pytest_report_header(config):
@@ -31,11 +31,12 @@ def pytest_report_header(config):
         ret.append(f"timeout_skip_list: {config.known_args_namespace.timeout_skip_list}")
     return ret
 
+
 def pytest_benchmark_update_json(config, benchmarks, output_json):
-    """Adds custom sections to the pytest-benchmark report
-    """
-    output_json['pytket_info'] = {'pytket': str(pytket.__version__),
-                                  'pytket_qiskit': PYTKET_QISKIT_VERSION,
-                                  "qiskit": str(qiskit.__version__),
-                                  "qiskit_ibm_runtime": str(qiskit_ibm_runtime.__version__)
-                                  }
+    """Adds custom sections to the pytest-benchmark report"""
+    output_json["pytket_info"] = {
+        "pytket": str(pytket.__version__),
+        "pytket_qiskit": PYTKET_QISKIT_VERSION,
+        "qiskit": str(qiskit.__version__),
+        "qiskit_ibm_runtime": str(qiskit_ibm_runtime.__version__),
+    }

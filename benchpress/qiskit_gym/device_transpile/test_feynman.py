@@ -22,7 +22,7 @@ from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 
 
 BACKEND = Configuration.backend()
-OPTIMIZATION_LEVEL = Configuration.options['qiskit']["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 
 def pytest_generate_tests(metafunc):

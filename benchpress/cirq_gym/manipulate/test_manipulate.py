@@ -61,7 +61,9 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         """Perform Pauli-twirling on a 100Q QV
         circuit
         """
-        with open(Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", "r") as file:
+        with open(
+            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", "r"
+        ) as file:
             circ_data = file.read().replace("\n", "")
         circuit = circuit_from_qasm(circ_data)
 
