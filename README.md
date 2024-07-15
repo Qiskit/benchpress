@@ -14,7 +14,7 @@ With the parameter `--timeout-skip-list=<SECs>`, a  *skiplist* (a list of tests 
 For example, the following line runs the tests in `benchpress/tket_gym/construct` with a 1 hour timeout:
 
 ```bash
-python -m pytest  --timeout-skip-list=3600  --benchmark-min-rounds=1 benchpress/tket_gym/construct
+python -m pytest  --timeout-skip-list=3600 benchpress/tket_gym/construct
 ```
 
 This will create a `skipfile.txt` file.
@@ -28,7 +28,7 @@ To run the benchmarks in the default configuration from inside the environment i
 ```bash
 python -m pytest benchpress/*_gym
 ```
-where `*` is one of the frameworks that you want to test, and which matches the environment you are in.  Here `--benchmark-min-rounds=1` sets the minimum number of repeated trials to 1, which will save a great deal of time
+where `*` is one of the frameworks that you want to test, and which matches the environment you are in.
 
 To run the benchmarks and save to JSON one can do:
 

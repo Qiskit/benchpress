@@ -14,9 +14,12 @@ import cirq
 
 def pytest_report_header(config):
     """Add some info about packages and backend to the pytest CLI header"""
-    return [
+    ret = [
         f"cirq: {cirq.__version__}",
     ]
+    if hasattr(config.known_args_namespace, 'timeout_skip_list'):
+        ret.append(f"timeout_skip_list: {config.known_args_namespace.timeout_skip_list}")
+    return ret
 
 
 def pytest_benchmark_update_json(config, benchmarks, output_json):
