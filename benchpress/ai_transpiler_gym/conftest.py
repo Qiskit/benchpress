@@ -9,8 +9,12 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
+from importlib.metadata import version
+
 import qiskit
 import qiskit_ibm_runtime
+
+AI_SERVICE_VERSION = version('qiskit_transpiler_service')
 
 
 def pytest_report_header(config):
@@ -18,6 +22,7 @@ def pytest_report_header(config):
     return [
         f"qiskit: {qiskit.__version__}",
         f"qiskit_ibm_runtime: {qiskit_ibm_runtime.__version__}",
+        f"qiskit_transpiler_service: {AI_SERVICE_VERSION}",
     ]
 
 
@@ -26,4 +31,5 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
     output_json["qiskit_info"] = {
         "qiskit": str(qiskit.__version__),
         "qiskit_ibm_runtime": str(qiskit_ibm_runtime.__version__),
+        "qiskit_transpiler_service": AI_SERVICE_VERSION,
     }
