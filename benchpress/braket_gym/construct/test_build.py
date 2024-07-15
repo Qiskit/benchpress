@@ -120,7 +120,9 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            with open(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", "r") as file:
+            with open(
+                Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", "r"
+            ) as file:
                 data = file.read()
             out = Circuit.from_ir(data)
             return out

@@ -14,16 +14,16 @@ import qiskit_ibm_runtime
 
 
 def pytest_report_header(config):
-    """Add some info about packages and backend to the pytest CLI header
-    """
+    """Add some info about packages and backend to the pytest CLI header"""
     return [
-            f"qiskit: {qiskit.__version__}",
-            f"qiskit_ibm_runtime: {qiskit_ibm_runtime.__version__}"
-           ]
+        f"qiskit: {qiskit.__version__}",
+        f"qiskit_ibm_runtime: {qiskit_ibm_runtime.__version__}",
+    ]
 
 
 def pytest_benchmark_update_json(config, benchmarks, output_json):
-    """Adds custom sections to the pytest-benchmark report
-    """
-    output_json['qiskit_info'] = {'qiskit': str(qiskit.__version__),
-                                  'qiskit_ibm_runtime': str(qiskit_ibm_runtime.__version__)}
+    """Adds custom sections to the pytest-benchmark report"""
+    output_json["qiskit_info"] = {
+        "qiskit": str(qiskit.__version__),
+        "qiskit_ibm_runtime": str(qiskit_ibm_runtime.__version__),
+    }

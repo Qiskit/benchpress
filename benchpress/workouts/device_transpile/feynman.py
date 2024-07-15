@@ -12,6 +12,7 @@
 """Test transpilation against a device"""
 import pytest
 
+
 @pytest.mark.benchmark(group="Transpile - Device")
 class WorkoutDeviceFeynman:
 

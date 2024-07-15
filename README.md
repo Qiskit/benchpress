@@ -2,7 +2,7 @@
 
 
 # :construction: benchpress :construction:
-Benchmarking for Qiskit
+Quantum software benchmarking
 
 ## Installation
 
@@ -54,6 +54,8 @@ The `pytest-memray` plugin will sometimes raise on building the histrogram inclu
 Benchpress makes use of files from the following open-source packages under terms of their licenses. License files are included in the corresponding directories.
 
 - [Feynman](https://github.com/meamy/feynman)
+
+- [QasmBench](https://github.com/pnnl/QASMBench)
 
 
 ## License

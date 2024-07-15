@@ -13,14 +13,12 @@ import bqskit
 
 
 def pytest_report_header(config):
-    """Add some info about packages and backend to the pytest CLI header
-    """
+    """Add some info about packages and backend to the pytest CLI header"""
     return [
-            f"bqskit: {bqskit.__version__}",
-           ]
+        f"bqskit: {bqskit.__version__}",
+    ]
 
 
 def pytest_benchmark_update_json(config, benchmarks, output_json):
-    """Adds custom sections to the pytest-benchmark report
-    """
-    output_json['bqskit_info'] = {'bqskit': str(bqskit.__version__)}
+    """Adds custom sections to the pytest-benchmark report"""
+    output_json["bqskit_info"] = {"bqskit": str(bqskit.__version__)}
