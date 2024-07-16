@@ -94,3 +94,26 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             return cu.circuit
 
         assert result
+
+    def test_random_clifford_decompose(self, benchmark):
+        """Decompose a random clifford into
+        basis [rz, sx, x, cz]
+        """
+        seqpass = SequencePass(
+            [
+                DecomposeBoxes(),
+                DecomposeMultiQubitsCX(),
+                auto_rebase_pass({OpType.SX, OpType.X, OpType.Rz, OpType.CZ}),
+            ]
+        )
+        circ = circuit_from_qasm(Config.get_qasm_dir("clifford") + "clifford_20_12345.qasm")
+
+        @benchmark
+        def result():
+            cu = CompilationUnit(
+                circ.copy()
+            )  # Copy is needed because modifications are in-place
+            seqpass.apply(cu)
+            return cu.circuit
+
+        assert result
