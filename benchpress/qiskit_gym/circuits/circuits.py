@@ -104,7 +104,7 @@ def random_clifford_circuit(num_qubits, seed=12345):
     Returns:
         QuantumCircuit: Clifford circuit
     """
-    # This code can be replaced by a QASM file
+    # This code is used to generate the QASM file
     from qiskit.circuit.random import random_clifford_circuit
     qc = random_clifford_circuit(num_qubits, num_gates=10 * num_qubits * num_qubits, seed=seed)
     return qc
