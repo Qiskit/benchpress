@@ -139,10 +139,10 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
 
     def test_random_clifford_decompose(self, benchmark):
         """Decompose a random clifford into
-        basis [rx, ry, rz, cz]
+        basis [rz, sx, x, cz]
         """
         translate = generate_preset_pass_manager(
-            1, basis_gates=["rx", "ry", "rz", "cz"]
+            1, basis_gates=["rz", "sx", "x", "cz"]
         ).translation
         cliff_circ = QuantumCircuit.from_qasm_file(
             Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm"
