@@ -15,23 +15,30 @@ import pytest
 
 @pytest.mark.benchmark(group="Circuit manipulation")
 class WorkoutCircuitManipulate:
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_DTC100_twirling(self, benchmark):
         """Perform Pauli-twirling on a 100Q QV
         circuit
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_multi_control_decompose(self, benchmark):
         """Decompose a multi-control gate into the
         basis [rx, ry, rz, cz]
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_QV100_basis_change(self, benchmark):
         """Change a QV100 circuit basis from [rx, ry, rz, cx]
         to [sx, x, rz, cz]
+        """
+        pass
+
+    @pytest.mark.skip(reason="Not implemented")
+    def test_random_clifford_decompose(self, benchmark):
+        """Decompose a random clifford into
+        basis [rz, sx, x, cz]
         """
         pass
