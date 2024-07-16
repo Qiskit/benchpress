@@ -147,6 +147,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         cliff_circ = QuantumCircuit.from_qasm_file(
             Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm"
         )
+        from qiskit.quantum_info import Clifford
         cliff = Clifford(cliff_circ)
         circ = cliff.to_circuit()
 
