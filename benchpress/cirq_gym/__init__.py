@@ -11,4 +11,5 @@
 # that they have been altered from the originals.
 
 from benchpress.config import Configuration
-Configuration.gym_name = 'cirq'
+
+Configuration.gym_name = "cirq"

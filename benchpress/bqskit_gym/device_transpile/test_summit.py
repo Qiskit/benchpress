@@ -29,7 +29,7 @@ from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 
 
 BACKEND = Configuration.backend()
-OPTIMIZATION_LEVEL = Configuration.options['bqskit']["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
 compiler = Compiler()
 
 
@@ -55,12 +55,17 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = Circuit.from_file(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
+        circuit = Circuit.from_file(
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+        )
 
         @benchmark
         def result():
             new_circ = compile(
-                circuit, model=BACKEND, optimization_level=OPTIMIZATION_LEVEL, compiler=compiler
+                circuit,
+                model=BACKEND,
+                optimization_level=OPTIMIZATION_LEVEL,
+                compiler=compiler,
             )
             return new_circ
 
@@ -107,7 +112,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
         circuit = Circuit.from_file(
-            Configuration.get_qasm_dir("square-heisenberg") + "square_heisenberg_N100.qasm"
+            Configuration.get_qasm_dir("square-heisenberg")
+            + "square_heisenberg_N100.qasm"
         )
 
         @benchmark

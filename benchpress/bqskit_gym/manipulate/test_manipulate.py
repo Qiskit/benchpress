@@ -33,7 +33,7 @@ from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 
-OPTIMIZATION_LEVEL = Configuration.options['bqskit']["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
 
 
 TWIRLING_SETS = {
