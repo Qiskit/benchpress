@@ -106,7 +106,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
                 auto_rebase_pass({OpType.SX, OpType.X, OpType.Rz, OpType.CZ}),
             ]
         )
-        circ = circuit_from_qasm(Config.get_qasm_dir("clifford") + "clifford_20_12345.qasm")
+        circ = circuit_from_qasm(Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm")
 
         @benchmark
         def result():
