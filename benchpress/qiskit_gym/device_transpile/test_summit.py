@@ -13,7 +13,7 @@ from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.qiskit_gym.circuits import trivial_bvlike_circuit
 
 BACKEND = Configuration.backend()
-OPTIMIZATION_LEVEL = Configuration.options['qiskit']["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 
 @benchpress_test_validation
@@ -44,6 +44,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
         )
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
+
         @benchmark
         def result():
             trans_qc = pm.run(circuit)
@@ -59,6 +60,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 100Q circSU2 circuit against target backend"""
         circuit = EfficientSU2(100, reps=3, entanglement="circular")
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
+
         @benchmark
         def result():
             trans_qc = pm.run(circuit)
@@ -74,6 +76,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 100Q BV circuit against target backend"""
         circuit = bv_all_ones(100)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
+
         @benchmark
         def result():
             trans_qc = pm.run(circuit)
@@ -88,9 +91,11 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
         circuit = QuantumCircuit.from_qasm_file(
-            Configuration.get_qasm_dir("square-heisenberg") + "square_heisenberg_N100.qasm"
+            Configuration.get_qasm_dir("square-heisenberg")
+            + "square_heisenberg_N100.qasm"
         )
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
+
         @benchmark
         def result():
             trans_qc = pm.run(circuit)
@@ -108,6 +113,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
         )
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
+
         @benchmark
         def result():
             trans_qc = pm.run(circuit)
@@ -125,6 +131,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """
         circuit = trivial_bvlike_circuit(100)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
+
         @benchmark
         def result():
             trans_qc = pm.run(circuit)

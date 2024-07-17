@@ -18,6 +18,7 @@ from bqskit.ir.gates.constantgate import ConstantGate
 from bqskit.ir.gates.qubitgate import QubitGate
 from bqskit.qis.unitary.unitarymatrix import UnitaryMatrix
 
+from benchpress.utilities.backends.flexible_backend import FlexibleBackend
 from benchpress.qiskit_gym.utils.qiskit_backend_utils import (
     STR_TO_IBM_FAKE_BACKEND,
     extend_ibm_fake_backend,
@@ -54,6 +55,18 @@ class ECRGate(ConstantGate, QubitGate):
             ]
         ),
     )
+
+
+def BqskitFlexibleBackend(min_qubits, layout="square", basis_gates=None):
+    """Returns a MachineModel for a FlexibleBackend that is compatible with Bqskit
+    min_qubits (int): Minimum desired number of qubits
+    layout (str): Target qubit topology.  Options are 'heavy-hex', 'linear',
+                  'square', 'torus', or 'tree'
+    basis_gates (list): Supported basis gates.  If none supplied, defaults to the global
+                        default set
+    """
+    flex_backend = FlexibleBackend(min_qubits, layout=layout, basis_gates=basis_gates)
+    return _get_bqskit_machine_model(flex_backend)
 
 
 def _get_bqskit_machine_model(backend):

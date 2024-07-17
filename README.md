@@ -2,13 +2,24 @@
 
 
 # :construction: benchpress :construction:
-Benchmarking for Qiskit
+Quantum software benchmarking
 
 ## Installation
 
 Benchpress itself requires no installation.  However running it requires the tools in `requirements.txt`.  In addition, running each of the frameworks has its own dependencies in the corresponding `*-requirements.txt` file
 
+### [pre-running] Create a skiplist
 
+With the parameter `--timeout-skip-list=<SECs>`, a  *skiplist* (a list of tests to skip, given they take too long) is created.
+For example, the following line runs the tests in `benchpress/tket_gym/construct` with a 1 hour timeout:
+
+```bash
+python -m pytest  --timeout-skip-list=3600 benchpress/tket_gym/construct
+```
+
+This will create a `skipfile.txt` file.
+The mere existence of this file skips the tests listed there in the following executions.
+No modifier needed.
 
 ## Running the benchmark tests
 
@@ -54,6 +65,8 @@ The `pytest-memray` plugin will sometimes raise on building the histrogram inclu
 Benchpress makes use of files from the following open-source packages under terms of their licenses. License files are included in the corresponding directories.
 
 - [Feynman](https://github.com/meamy/feynman)
+
+- [QasmBench](https://github.com/pnnl/QASMBench)
 
 
 ## License

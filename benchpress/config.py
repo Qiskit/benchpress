@@ -17,8 +17,9 @@ import configparser
 import os
 from ast import literal_eval
 
-DEFAULT_FILENAME = os.path.abspath(os.path.join(os.path.dirname( __file__ ),
-                                                '..', 'default.conf'))
+DEFAULT_FILENAME = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "default.conf")
+)
 
 
 class BenchpressConfig:
@@ -30,6 +31,7 @@ class BenchpressConfig:
     backend = ibm_torino
 
     """
+
     def __init__(self, filename=None):
         """Create a BenchpressConfig
 
@@ -51,18 +53,18 @@ class BenchpressConfig:
             self.options[sec] = {}
             for item in list(self.config_parser.items(sec)):
                 self.options[sec][item[0]] = literal_eval(item[1])
-    
+
     @property
     def gym_name(self):
         return self._gym_name
-    
+
     @gym_name.setter
     def gym_name(self, name):
         # This is here to prevent overwriting the gym name when
         # calling across differnet gyms for getting backend info
         if self._gym_name is None:
-            self._gym_name = name 
-    
+            self._gym_name = name
+
     def get_qasm_dir(self, sub_dir=None):
         if sub_dir is None:
             return self.qasm_dir
@@ -72,15 +74,18 @@ class BenchpressConfig:
 
     def backend(self):
         from benchpress.utilities.backends import get_backend
-        if self.gym_name is None:
-            raise ValueError('gym_name not set')
 
-        if self.gym_name in ['qiskit', 'tket', 'bqskit', 'staq']:
-            backend = get_backend(backend_name=self.options['general']['backend_name'],
-                                  gym_name=self.gym_name)
+        if self.gym_name is None:
+            raise ValueError("gym_name not set")
+
+        if self.gym_name in ["qiskit", "tket", "bqskit", "staq"]:
+            backend = get_backend(
+                backend_name=self.options["general"]["backend_name"],
+                gym_name=self.gym_name,
+            )
             return backend
         else:
-            raise ValueError(f'{self.gym_name} does not support backends')
+            raise ValueError(f"{self.gym_name} does not support backends")
 
 
 Configuration = BenchpressConfig()
