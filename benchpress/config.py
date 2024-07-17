@@ -75,7 +75,7 @@ class BenchpressConfig:
         if self.gym_name is None:
             raise ValueError('gym_name not set')
 
-        if self.gym_name in ['qiskit', 'tket', 'bqskit']:
+        if self.gym_name in ['qiskit', 'tket', 'bqskit', 'staq']:
             backend = get_backend(backend_name=self.options['general']['backend_name'],
                                   gym_name=self.gym_name)
             return backend
