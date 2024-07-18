@@ -71,7 +71,7 @@ In Benchpress each test status has a well defined meaning:
 
 - **SKIPPED** - The SDK does not have the required functionality to execute the test.  This is the default for all tests defined in the workouts.
 
-- **FAILED** - The SDK has the necessary functionality, but the test failed or the test did not completed within the set time-limit.
+- **FAILED** - The SDK has the necessary functionality, but the test failed or the test did not complete within the set time-limit.
 
 - **XFAIL** - The test fails in an irrecoverable manner, and is therefore tagged as failed rather than being executed. E.g. the test tries to use more memory than is available.
 
