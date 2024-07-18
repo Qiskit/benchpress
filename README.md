@@ -59,6 +59,22 @@ The `pytest-memray` plugin will sometimes raise on building the histrogram inclu
 #histogram_txt = cli_hist(sizes, bins=min(len(sizes), N_HISTOGRAM_BINS))
 #writeln(f"\t 📊 Histogram of allocation sizes: |{histogram_txt}|")
 ```
+## Testing details
+
+We have designed Benchpress in a manor to allow all tests to be executed on each SDK, regardless of whether that functionality is supported or not.  This is facilitated by the use of "workouts" that define abstract base classes that define each set of tests.  This design choice has the advantage of explicitly measuring the breadth of SDK functionality
+
+### Test status description
+
+In Benchpress each test status has a well defined meaning:
+
+- PASSED - Indicates that the SDK has the functionality required to run the test, and doing so completed without error, and within the desired time-limit.
+
+- SKIPPED - The SDK does not have the required functionality to execute the test.  This is the default for all tests defined in the workouts.
+
+- FAILED - The SDK has the necessary functionality, but the test failed or the test did not completed within the set time-limit.
+
+- XFAIL - The test fails in an irrecoverable manner. E.g. the test tries to use more memory than is available.
+
 
 ## Open-source packages
 
