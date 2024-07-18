@@ -10,6 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 """Test transpilation against a device"""
+import json
 import os
 import subprocess
 
@@ -17,11 +18,9 @@ import pytest
 from qiskit import QuantumCircuit
 
 from benchpress.config import Configuration
-from benchpress.staq_gym.utils.staq_backend_utils import get_staq_device_file
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 from benchpress.workouts.validation import benchpress_test_validation
 
-# staq-gym uses Qiskit backend to create a compatible device JSON file.
 BACKEND = Configuration.backend()
 LAYOUT = Configuration.options["staq"]["layout"]
 MAPPING = Configuration.options["staq"]["mapping"]
@@ -31,6 +30,7 @@ RUN_ARGS_COMMON = [
     "staq",
     "-S",
     f"-O{OPTIMIZATION_LEVEL}",
+    "-c",
     "-l",
     LAYOUT,
     "-M",
@@ -48,11 +48,14 @@ def pytest_generate_tests(metafunc):
 
 @pytest.fixture(scope="session")
 def staq_device(tmp_path_factory):
-    dev_file = get_staq_device_file(
-        target=BACKEND.target, tmp_path_factory=tmp_path_factory
-    )
+    def _staq_device(backend):
+        device_file = tmp_path_factory.getbasetemp() / "device.json"
+        with open(device_file, "w") as f:
+            f.write(str(backend))
 
-    return dev_file
+        return device_file
+
+    return _staq_device
 
 
 @benchpress_test_validation
@@ -60,16 +63,22 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
     def test_feynman_transpile(self, benchmark, filename, staq_device):
         """Transpile a feynman benchmark qasm file against a target device"""
+        device = staq_device(backend=BACKEND)
+        # Pystaq Device does not have an attribute for number of qubits in the device
+        # Therefore, we have to load the device json file and get the length of "qubits"
+        with open(device, "r") as jf:
+            dev = json.load(jf)
+        num_qubits = len(dev["qubits"])
         input_qasm_file = f"{Configuration.get_qasm_dir('feynman')}{filename}"
 
         circuit = QuantumCircuit.from_qasm_file(input_qasm_file)
-        if circuit.num_qubits > BACKEND.num_qubits:
+        if circuit.num_qubits > num_qubits:
             pytest.skip("Circuit too large for given backend.")
 
         @benchmark
         def result():
             out = subprocess.run(
-                RUN_ARGS_COMMON + ["-m", "--device", staq_device, input_qasm_file],
+                RUN_ARGS_COMMON + ["-m", "--device", device, input_qasm_file],
                 capture_output=True,
                 text=True,
             )
