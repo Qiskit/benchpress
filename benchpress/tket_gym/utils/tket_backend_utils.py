@@ -20,8 +20,12 @@ from pytket.extensions.qiskit.qiskit_convert import _tk_gate_set
 from qiskit.providers.models.backendconfiguration import QasmBackendConfiguration
 from qiskit.providers.models.backendproperties import BackendProperties
 
+from benchpress.config import POSSIBLE_2Q_GATES
 from benchpress.utilities.backends import FlexibleBackend
 from benchpress.qiskit_gym.utils.qiskit_backend_utils import STR_TO_IBM_FAKE_BACKEND
+
+
+POSSIBLE_TKET_GATES = [getattr(OpType, gate_str.upper()) for gate_str in POSSIBLE_2Q_GATES]
 
 
 def _extend_ibm_fake_backend(fake_backend) -> "IBMFakeBackend":
@@ -157,8 +161,15 @@ def get_tket_bench_backend(backend_name: str):
     if "fake" in backend_name:
         ibm_fake_backend = STR_TO_IBM_FAKE_BACKEND[backend_name]()
         extended_ibm_fake_backend = _extend_ibm_fake_backend(ibm_fake_backend)
-        return TketFakeIBMQBackend(extended_ibm_fake_backend)
+        backend = TketFakeIBMQBackend(extended_ibm_fake_backend)
     elif "ibm" in backend_name:
-        return IBMQBackend(backend_name)
+        backend =  IBMQBackend(backend_name)
     else:
         raise ValueError(f"Backend name {backend_name} not recognized.")
+    twoq_gates = list(backend.backend_info.gate_set.intersection(POSSIBLE_TKET_GATES))
+    if len(twoq_gates) > 1:
+        raise Exception('Only one 2Q gate type is currently supported')
+    elif len(twoq_gates) == 0:
+        raise Exception(f'No gate in {POSSIBLE_TKET_GATES} found!')
+    setattr(backend, "two_q_gate_type", twoq_gates[0])
+    return backend

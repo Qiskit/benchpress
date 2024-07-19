@@ -21,6 +21,7 @@ DEFAULT_FILENAME = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "default.conf")
 )
 
+POSSIBLE_2Q_GATES = set(['cx', 'cz', 'ecr', 'iswap'])
 
 class BenchpressConfig:
     """Class representing a user config file

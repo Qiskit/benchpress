@@ -11,6 +11,7 @@ from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.tket_gym.circuits import trivial_bvlike_circuit
 
 BACKEND = Configuration.backend()
+TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["tket"]["optimization_level"]
 
 
@@ -28,8 +29,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_QV_100_transpile(self, benchmark):
@@ -46,8 +47,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_circSU2_100_transpile(self, benchmark):
@@ -62,8 +63,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_BV_100_transpile(self, benchmark):
@@ -78,8 +79,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_square_heisenberg_100_transpile(self, benchmark):
@@ -97,8 +98,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_QAOA_100_transpile(self, benchmark):
@@ -115,8 +116,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_BVlike_simplification_transpile(self, benchmark):
@@ -132,6 +133,6 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
