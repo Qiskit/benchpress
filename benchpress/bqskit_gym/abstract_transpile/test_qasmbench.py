@@ -24,7 +24,7 @@ from benchpress.workouts.abstract_transpile.qasmbench import (
     LARGE_NAMES,
 )
 #BACKEND = Configuration.backend()
-OPTIMIZATION_LEVEL = Configuration.options["tket"]["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
 
 
 @benchpress_test_validation

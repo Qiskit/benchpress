@@ -35,7 +35,7 @@ class FlexibleBackend(GenericBackendV2):
             min_qubits (int): Minimum desired number of qubits
             layout (str): Target qubit topology.  Options are
                           'heavy-hex', 'linear', 'square', 'torus',
-                          or 'tree'
+                          'tree', or 'all-to-all'
             basis_gates (list): Supported basis gates.  If none
                                 supplied, defaults to the global
                                 default set
@@ -78,18 +78,23 @@ class FlexibleBackend(GenericBackendV2):
             cmap = CouplingMap(torus_coupling_map(min_qubits))
             num_qubits = cmap.size()
 
+        elif layout == 'all-to-all':
+            cmap = None
+            num_qubits = min_qubits
+
         else:
             raise ValueError(f"Invalid layout ({layout})")
 
         self._layout = layout
-        cmap.make_symmetric()
+        if cmap:
+            cmap.make_symmetric()
 
         self._configuration = QasmBackendConfiguration(
             backend_name=f"FlexibleBackend-{layout}",
             backend_version="1.0.0",
             basis_gates=self._basis_gates,
             conditional=False,
-            coupling_map=list(cmap),
+            coupling_map=list(cmap) if cmap else cmap,
             gates=None,
             local=True,
             max_shots=int(1e5),
