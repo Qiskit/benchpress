@@ -33,6 +33,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     def test_QASMBench_small(self, benchmark, circ_and_topo):
         circuit = Circuit.from_file(circ_and_topo[0])
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
+        TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
         @benchmark
         def result():
@@ -44,7 +45,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 
@@ -55,6 +56,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     def test_QASMBench_medium(self, benchmark, circ_and_topo):
         circuit = Circuit.from_file(circ_and_topo[0])
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
+        TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
         @benchmark
         def result():
@@ -66,7 +68,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 
@@ -77,6 +79,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     def test_QASMBench_large(self, benchmark, circ_and_topo):
         circuit = Circuit.from_file(circ_and_topo[0])
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
+        TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
         @benchmark
         def result():
@@ -88,7 +91,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 

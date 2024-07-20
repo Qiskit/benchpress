@@ -18,6 +18,7 @@ from bqskit.ir.gates.constantgate import ConstantGate
 from bqskit.ir.gates.qubitgate import QubitGate
 from bqskit.qis.unitary.unitarymatrix import UnitaryMatrix
 
+from benchpress.config import POSSIBLE_2Q_GATES
 from benchpress.utilities.backends.flexible_backend import FlexibleBackend
 from benchpress.qiskit_gym.utils.qiskit_backend_utils import (
     STR_TO_IBM_FAKE_BACKEND,
@@ -27,14 +28,13 @@ from benchpress.qiskit_gym.utils.qiskit_backend_utils import (
 
 
 class ECRGate(ConstantGate, QubitGate):
-    """
-    The Echoed Cross Resonance gate.
+    """The Echoed Cross Resonance gate.
 
     The ECR gate is given by the following unitary:
 
     .. math::
 
-        \sqrt(2)\\begin{pmatrix}
+        \\sqrt(2)\\begin{pmatrix}
         0 & 0 & 1 & i \\\\
         0 & 0 & i & 1 \\\\
         1 & -i & 0 & 0 \\\\
@@ -69,7 +69,15 @@ def BqskitFlexibleBackend(min_qubits, layout="square", basis_gates=None):
         MachineModel: Mode representing flexible backend in Bqskit
     """
     flex_backend = FlexibleBackend(min_qubits, layout=layout, basis_gates=basis_gates)
-    return _get_bqskit_machine_model(flex_backend)
+    model = _get_bqskit_machine_model(flex_backend)
+    possible_gates = _basis_gate_str_to_bqskit_gate(POSSIBLE_2Q_GATES)
+    twoq_gates = list(model.gate_set.intersection(possible_gates))
+    if len(twoq_gates) > 1:
+        raise Exception('Only one 2Q gate type is currently supported')
+    elif len(twoq_gates) == 0:
+        raise Exception(f'No gate in {possible_gates} found!')
+    setattr(model, "two_q_gate_type", twoq_gates[0])
+    return model
 
 
 def _get_bqskit_machine_model(backend):
@@ -84,7 +92,15 @@ def _get_bqskit_machine_model(backend):
         coupling_map = list({tuple(sorted(e)) for e in config.coupling_map})
     else:
         coupling_map = None
-    return MachineModel(num_qudits, coupling_map, gate_set)  # type: ignore
+    model = MachineModel(num_qudits, coupling_map, gate_set)  # type: ignore
+    possible_gates = _basis_gate_str_to_bqskit_gate(POSSIBLE_2Q_GATES)
+    twoq_gates = list(model.gate_set.intersection(possible_gates))
+    if len(twoq_gates) > 1:
+        raise Exception('Only one 2Q gate type is currently supported')
+    elif len(twoq_gates) == 0:
+        raise Exception(f'No gate in {possible_gates} found!')
+    setattr(model, "two_q_gate_type", twoq_gates[0])
+    return model
 
 
 def get_bqskit_bench_backend(backend_name: str):
