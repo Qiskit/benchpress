@@ -120,11 +120,12 @@ class TketFlexibleBackend(IBMQBackend):
         gate_set = _tk_gate_set(self._backend.configuration())
         self._primitive_gates = _get_primitive_gates(gate_set)
         self._supports_rz = OpType.Rz in self._primitive_gates
-
+        self.two_q_gate_type = getattr(OpType,
+                                       self._backend.two_q_gate_type.upper())
     def __repr__(self):
         out = f"<TketFlexibleBackend(num_qubits={self._backend.num_qubits}, "
         out += f"layout='{self._backend._layout}', "
-        out += f"basis_gates={self._backend._basis_gates}>"
+        out += f"basis_gates={self._primitive_gates}>"
         return out
 
     def available_devices(self):
