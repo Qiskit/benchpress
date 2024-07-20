@@ -23,9 +23,6 @@ from benchpress.workouts.abstract_transpile.qasmbench import (
     LARGE_NAMES,
 )
 
-
-BACKEND = Configuration.backend()
-TWO_Q_GATE = BACKEND .two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 
@@ -35,6 +32,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     def test_QASMBench_small(self, benchmark, circ_and_topo):
         circuit = QuantumCircuit.from_qasm_file(circ_and_topo[0])
         backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )
@@ -57,6 +55,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     def test_QASMBench_medium(self, benchmark, circ_and_topo):
         circuit = QuantumCircuit.from_qasm_file(circ_and_topo[0])
         backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )
@@ -79,6 +78,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     def test_QASMBench_large(self, benchmark, circ_and_topo):
         circuit = QuantumCircuit.from_qasm_file(circ_and_topo[0])
         backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )
