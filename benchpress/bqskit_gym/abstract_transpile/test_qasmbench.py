@@ -23,7 +23,7 @@ from benchpress.workouts.abstract_transpile.qasmbench import (
     LARGE_CIRC_TOPO,
     LARGE_NAMES,
 )
-#BACKEND = Configuration.backend()
+
 OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
 
 
