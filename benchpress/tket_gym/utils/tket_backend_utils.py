@@ -26,7 +26,6 @@ from benchpress.qiskit_gym.utils.qiskit_backend_utils import STR_TO_IBM_FAKE_BAC
 
 
 POSSIBLE_TKET_GATES = [getattr(OpType, gate_str.upper()) for gate_str in POSSIBLE_2Q_GATES]
-TWO_Q_GATE = BACKEND .two_q_gate_type
 
 
 def _extend_ibm_fake_backend(fake_backend) -> "IBMFakeBackend":
