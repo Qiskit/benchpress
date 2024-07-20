@@ -11,18 +11,14 @@
 # that they have been altered from the originals.
 """Test summit benchmarks"""
 
-import pytest
 from bqskit import Circuit, compile
 from bqskit.compiler import Compiler
-from bqskit.ir.gates import CNOTGate, CXGate, CZGate
 
 from benchpress.bqskit_gym.circuits import (
     bqskit_bv_all_ones,
     bqskit_circSU2,
     trivial_bvlike_circuit,
 )
-from benchpress.bqskit_gym.utils.bqskit_backend_utils import ECRGate
-
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q

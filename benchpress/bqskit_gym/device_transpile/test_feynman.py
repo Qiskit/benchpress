@@ -14,8 +14,6 @@ import os
 import pytest
 from bqskit import Circuit, compile
 from bqskit.compiler import Compiler
-from bqskit.ir.gates import CNOTGate, CXGate, CZGate
-from benchpress.bqskit_gym.utils.bqskit_backend_utils import ECRGate
 
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation

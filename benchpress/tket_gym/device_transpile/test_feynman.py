@@ -2,7 +2,6 @@
 
 import os
 import pytest
-from pytket.circuit import OpType
 from pytket.qasm import circuit_from_qasm
 
 from benchpress.config import Configuration

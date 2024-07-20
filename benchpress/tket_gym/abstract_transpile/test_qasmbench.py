@@ -1,8 +1,6 @@
 """Test qasmbench against abstract backend topologies"""
-
 import pytest
 
-from pytket.circuit import OpType
 from pytket.qasm import circuit_from_qasm
 
 from benchpress.workouts.validation import benchpress_test_validation
