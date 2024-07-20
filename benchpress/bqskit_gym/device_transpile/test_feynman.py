@@ -23,6 +23,7 @@ from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 
 
 BACKEND = Configuration.backend()
+TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
 compiler = Compiler()
 
@@ -54,6 +55,6 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
