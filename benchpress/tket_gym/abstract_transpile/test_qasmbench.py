@@ -1,8 +1,6 @@
 """Test qasmbench against abstract backend topologies"""
-
 import pytest
 
-from pytket.circuit import OpType
 from pytket.qasm import circuit_from_qasm
 
 from benchpress.workouts.validation import benchpress_test_validation
@@ -32,6 +30,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     def test_QASMBench_small(self, benchmark, circ_and_topo):
         circuit = circuit_from_qasm(circ_and_topo[0])
         backend = TketFlexibleBackend(circuit.n_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = backend.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -41,8 +40,8 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
 
@@ -52,6 +51,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     def test_QASMBench_medium(self, benchmark, circ_and_topo):
         circuit = circuit_from_qasm(circ_and_topo[0])
         backend = TketFlexibleBackend(circuit.n_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = backend.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -61,8 +61,8 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
 
@@ -72,6 +72,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     def test_QASMBench_large(self, benchmark, circ_and_topo):
         circuit = circuit_from_qasm(circ_and_topo[0])
         backend = TketFlexibleBackend(circuit.n_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = backend.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -81,6 +82,6 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result

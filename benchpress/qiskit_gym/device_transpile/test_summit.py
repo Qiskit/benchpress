@@ -13,6 +13,7 @@ from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.qiskit_gym.circuits import trivial_bvlike_circuit
 
 BACKEND = Configuration.backend()
+TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 
@@ -32,9 +33,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -50,9 +51,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -68,7 +69,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -82,9 +83,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -101,9 +102,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -119,9 +120,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -137,8 +138,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
