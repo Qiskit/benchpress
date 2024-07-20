@@ -23,8 +23,6 @@ from benchpress.workouts.abstract_transpile.qasmbench import (
     LARGE_NAMES,
 )
 
-
-BACKEND = Configuration.backend()
 OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 
@@ -34,6 +32,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     def test_QASMBench_small(self, benchmark, circ_and_topo):
         circuit = QuantumCircuit.from_qasm_file(circ_and_topo[0])
         backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )
@@ -43,9 +42,9 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -56,6 +55,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     def test_QASMBench_medium(self, benchmark, circ_and_topo):
         circuit = QuantumCircuit.from_qasm_file(circ_and_topo[0])
         backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )
@@ -65,9 +65,9 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -78,6 +78,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     def test_QASMBench_large(self, benchmark, circ_and_topo):
         circuit = QuantumCircuit.from_qasm_file(circ_and_topo[0])
         backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        TWO_Q_GATE = backend.two_q_gate_type
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )
@@ -87,8 +88,8 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result

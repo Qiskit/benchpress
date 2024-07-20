@@ -10,6 +10,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit.providers.models.backendconfiguration import QasmBackendConfiguration
 from qiskit.providers.models.backendproperties import BackendProperties
 
+from benchpress.config import POSSIBLE_2Q_GATES
 
 STR_TO_IBM_FAKE_BACKEND = {
     # BackendV2 Backends
@@ -60,62 +61,25 @@ STR_TO_IBM_FAKE_BACKEND = {
     "fake_vigo_v2": fake_backends.FakeVigoV2,
     "fake_washington_v2": fake_backends.FakeWashingtonV2,
     "fake_yorktown_v2": fake_backends.FakeYorktownV2,
-    # BackendV1 Backends
-    "fake_almaden": fake_backends.FakeAlmaden,
-    "fake_armonk": fake_backends.FakeArmonk,
-    "fake_athens": fake_backends.FakeAthens,
-    "fake_belem": fake_backends.FakeBelem,
-    "fake_boeblingen": fake_backends.FakeBoeblingen,
-    "fake_bogota": fake_backends.FakeBogota,
-    "fake_brooklyn": fake_backends.FakeBrooklyn,
-    "fake_burlington": fake_backends.FakeBurlington,
-    "fake_cairo": fake_backends.FakeCairo,
-    "fake_cambridge": fake_backends.FakeCambridge,
-    "fake_cambridge_alternative_basis": fake_backends.FakeCambridgeAlternativeBasis,
-    "fake_casablanca": fake_backends.FakeCasablanca,
-    "fake_essex": fake_backends.FakeEssex,
-    "fake_guadalupe": fake_backends.FakeGuadalupe,
-    "fake_hanoi": fake_backends.FakeHanoi,
-    "fake_jakarta": fake_backends.FakeJakarta,
-    "fake_johannesburg": fake_backends.FakeJohannesburg,
-    "fake_kolkata": fake_backends.FakeKolkata,
-    "fake_lagos": fake_backends.FakeLagos,
-    "fake_lima": fake_backends.FakeLima,
-    "fake_london": fake_backends.FakeLondon,
-    "fake_manhattan": fake_backends.FakeManhattan,
-    "fake_manila": fake_backends.FakeManila,
-    "fake_melbourne": fake_backends.FakeMelbourne,
-    "fake_montreal": fake_backends.FakeMontreal,
-    "fake_mumbai": fake_backends.FakeMumbai,
-    "fake_nairobi": fake_backends.FakeNairobi,
-    "fake_ouresne": fake_backends.FakeOurense,
-    "fake_paris": fake_backends.FakeParis,
-    "fake_poughkeepsie": fake_backends.FakePoughkeepsie,
-    "fake_quito": fake_backends.FakeQuito,
-    "fake_rochester": fake_backends.FakeRochester,
-    "fake_rome": fake_backends.FakeRome,
-    "fake_rueschlikon": fake_backends.FakeRueschlikon,
-    "fake_santiago": fake_backends.FakeSantiago,
-    "fake_singapore": fake_backends.FakeSingapore,
-    "fake_sydney": fake_backends.FakeSydney,
-    "fake_tenerife": fake_backends.FakeTenerife,
-    "fake_tokyo": fake_backends.FakeTokyo,
-    "fake_toronto": fake_backends.FakeToronto,
-    "fake_valencia": fake_backends.FakeValencia,
-    "fake_vigo": fake_backends.FakeVigo,
-    "fake_washington": fake_backends.FakeWashington,
-    "fake_yorktown": fake_backends.FakeYorktown,
 }
-
 
 def get_qiskit_bench_backend(backend_name):
     if "fake" in backend_name:
-        return STR_TO_IBM_FAKE_BACKEND[backend_name]()
+        backend = STR_TO_IBM_FAKE_BACKEND[backend_name]()
     elif "ibm" in backend_name:
         service = QiskitRuntimeService()
-        return service.get_backend(backend_name)
+        backend = service.get_backend(backend_name)
     else:
         raise ValueError(f"Backend name {backend_name} not recognized.")
+   
+    op_names = backend.operation_names
+    twoq_gates = list(set(op_names).intersection(POSSIBLE_2Q_GATES))
+    if len(twoq_gates) > 1:
+        raise Exception('Only one 2Q gate type is currently supported')
+    elif len(twoq_gates) == 0:
+        raise Exception(f'No gate in {POSSIBLE_2Q_GATES} found!')
+    setattr(backend, "two_q_gate_type", twoq_gates[0])
+    return backend
 
 
 def extend_ibm_fake_backend(fake_backend):
