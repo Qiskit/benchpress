@@ -19,9 +19,11 @@ from qiskit.providers.models.backendconfiguration import QasmBackendConfiguratio
 from qiskit.transpiler import CouplingMap
 
 from ..graphs import tree_graph, torus_coupling_map
-from benchpress.config import Configuration
+from benchpress.config import Configuration, POSSIBLE_2Q_GATES
 
 BASIS_GATES = Configuration.options["general"]["basis_gates"]
+
+
 
 
 class FlexibleBackend(GenericBackendV2):
@@ -116,6 +118,16 @@ class FlexibleBackend(GenericBackendV2):
     def target(self):
         """Return backend target"""
         return self._target
+    
+    @property
+    def two_q_gate_type(self):
+        """Return two qubit gate type"""
+        twoq_gates = list(set(self._basis_gates).intersection(POSSIBLE_2Q_GATES))
+        if len(twoq_gates) > 1:
+            raise Exception('Only one 2Q gate type is currently supported')
+        elif len(twoq_gates) == 0:
+            raise Exception(f'No gate in {POSSIBLE_2Q_GATES} found!')
+        return twoq_gates[0]
 
     def configuration(self):
         """Return backend configuration"""
