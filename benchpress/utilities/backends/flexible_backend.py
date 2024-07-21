@@ -24,8 +24,6 @@ from benchpress.config import Configuration, POSSIBLE_2Q_GATES
 BASIS_GATES = Configuration.options["general"]["basis_gates"]
 
 
-
-
 class FlexibleBackend(GenericBackendV2):
     """A flexible size backend"""
 
@@ -80,7 +78,7 @@ class FlexibleBackend(GenericBackendV2):
             cmap = CouplingMap(torus_coupling_map(min_qubits))
             num_qubits = cmap.size()
 
-        elif layout == 'all-to-all':
+        elif layout == "all-to-all":
             cmap = None
             num_qubits = min_qubits
 
@@ -118,15 +116,15 @@ class FlexibleBackend(GenericBackendV2):
     def target(self):
         """Return backend target"""
         return self._target
-    
+
     @property
     def two_q_gate_type(self):
         """Return two qubit gate type"""
         twoq_gates = list(set(self._basis_gates).intersection(POSSIBLE_2Q_GATES))
         if len(twoq_gates) > 1:
-            raise Exception('Only one 2Q gate type is currently supported')
+            raise Exception("Only one 2Q gate type is currently supported")
         elif len(twoq_gates) == 0:
-            raise Exception(f'No gate in {POSSIBLE_2Q_GATES} found!')
+            raise Exception(f"No gate in {POSSIBLE_2Q_GATES} found!")
         return twoq_gates[0]
 
     def configuration(self):

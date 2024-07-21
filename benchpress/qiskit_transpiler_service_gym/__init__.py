@@ -12,4 +12,4 @@
 
 from benchpress.config import Configuration
 
-Configuration.gym_name = "qiskit"
+Configuration.gym_name = "qiskit-transpiler-service"

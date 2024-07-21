@@ -10,10 +10,10 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 """Test summit benchmarks"""
-from pytket.qasm import circuit_from_qasm
 
 from benchpress.config import Configuration
 from benchpress.tket_gym.circuits import tket_bv_all_ones, tket_circSU2
+from benchpress.utilities.io import qasm_circuit_loader
 
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
@@ -28,7 +28,9 @@ OPTIMIZATION_LEVEL = Configuration.options["tket"]["optimization_level"]
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
-        circuit = circuit_from_qasm(Configuration.get_qasm_dir("qft") + "qft_N100.qasm")
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qft") + "qft_N100.qasm", benchmark
+        )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -44,8 +46,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = circuit_from_qasm(
-            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
         )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
@@ -94,9 +96,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
-        circuit = circuit_from_qasm(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("square-heisenberg")
-            + "square_heisenberg_N100.qasm"
+            + "square_heisenberg_N100.qasm",
+            benchmark,
         )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
@@ -113,8 +116,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
-        circuit = circuit_from_qasm(
-            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm",
+            benchmark,
         )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 

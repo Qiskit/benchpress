@@ -21,7 +21,8 @@ DEFAULT_FILENAME = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "default.conf")
 )
 
-POSSIBLE_2Q_GATES = set(['cx', 'cz', 'ecr'])
+POSSIBLE_2Q_GATES = set(["cx", "cz", "ecr"])
+
 
 class BenchpressConfig:
     """Class representing a user config file
@@ -79,7 +80,7 @@ class BenchpressConfig:
         if self.gym_name is None:
             raise ValueError("gym_name not set")
 
-        if self.gym_name in ["qiskit", "tket", "bqskit"]:
+        if self.gym_name in ["qiskit", "tket", "bqskit", "qiskit-transpiler-service"]:
             backend = get_backend(
                 backend_name=self.options["general"]["backend_name"],
                 gym_name=self.gym_name,

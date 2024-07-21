@@ -25,6 +25,7 @@ from pytket.passes import SequencePass, auto_rebase_pass
 
 
 from benchpress.tket_gym.circuits import multi_control_circuit
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
@@ -36,8 +37,8 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         """Perform Pauli-twirling on a 100Q QV
         circuit
         """
-        circuit = circuit_from_qasm(
-            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", benchmark
         )
         PauliTwirling = PauliFrameRandomisation()
 
@@ -83,7 +84,9 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
                 auto_rebase_pass({OpType.SX, OpType.X, OpType.Rz, OpType.CZ}),
             ]
         )
-        circ = circuit_from_qasm(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
+        circ = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
+        )
 
         @benchmark
         def result():

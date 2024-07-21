@@ -9,12 +9,13 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
-"""Test circuit generation"""
-
-from benchpress.workouts.validation import benchpress_test_validation
-from benchpress.workouts.build import WorkoutCircuitConstruction
+from time import perf_counter
+from qiskit import QuantumCircuit
 
 
-@benchpress_test_validation
-class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
-    pass
+def qiskit_qasm_loader(qasm_file, benchmark):
+    start = perf_counter()
+    circuit = QuantumCircuit.from_qasm_file(qasm_file)
+    stop = perf_counter()
+    benchmark.extra_info["qasm_load_time"] = stop - start
+    return circuit
