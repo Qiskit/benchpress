@@ -1,14 +1,16 @@
 """Test circuit manipulation"""
 
-import os
+import subprocess
 
 import pytest
 from qiskit import QuantumCircuit, qasm2
 
-from benchpress.config import Config
+from benchpress.config import Configuration
 from benchpress.qiskit_gym.circuits import multi_control_circuit
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 from benchpress.workouts.validation import benchpress_test_validation
+
+OPTIMIZATION_LEVEL = Configuration.options["staq"]["optimization_level"]
 
 
 @benchpress_test_validation
@@ -24,22 +26,22 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         reason="staq QASM parser does not undersatnd p and c3sqrtx gates."
     )
     def test_multi_control_decompose(self, benchmark, tmp_path_factory):
-        """Decompose a multi-control gate into the
-        basis [U3, CX]
-        """
+        """Decompose a multi-control gate into the basis [U3, CX]"""
         circ = multi_control_circuit(16)
         base_temp_dir = tmp_path_factory.getbasetemp()
-        qasm_file = "multi_controlled_not_16.qasm"
-        qasm2.dump(circ, base_temp_dir / qasm_file)
+        input_qasm_file = "multi_controlled_not_16.qasm"
+        qasm2.dump(circ, base_temp_dir / input_qasm_file)
 
         @benchmark
         def result():
-            out_file = base_temp_dir / f"temp_{qasm_file}"
-            os.system(f"staq -S -O2 -o {out_file} -f qasm {base_temp_dir / qasm_file}")
+            out = subprocess.run(
+                ["staq", "-S", f"-O{OPTIMIZATION_LEVEL}", "-c", input_qasm_file],
+                capture_output=True,
+                text=True,
+            )
 
-            return out_file
+            return QuantumCircuit.from_qasm_str(out.stdout)
 
-        result = QuantumCircuit.from_qasm_file(result)
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
         assert result
 
