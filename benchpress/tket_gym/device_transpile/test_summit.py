@@ -10,7 +10,6 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 """Test summit benchmarks"""
-from pytket.qasm import circuit_from_qasm
 
 from benchpress.config import Configuration
 from benchpress.tket_gym.circuits import tket_bv_all_ones, tket_circSU2

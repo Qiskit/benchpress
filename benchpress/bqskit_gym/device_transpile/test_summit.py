@@ -11,7 +11,7 @@
 # that they have been altered from the originals.
 """Test summit benchmarks"""
 
-from bqskit import Circuit, compile
+from bqskit import compile
 from bqskit.compiler import Compiler
 
 from benchpress.bqskit_gym.circuits import (
@@ -20,6 +20,7 @@ from benchpress.bqskit_gym.circuits import (
     trivial_bvlike_circuit,
 )
 from benchpress.config import Configuration
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 
@@ -34,7 +35,7 @@ compiler = Compiler()
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
-        circuit = Circuit.from_file(Configuration.get_qasm_dir("qft") + "qft_N100.qasm")
+        circuit = qasm_circuit_loader(Configuration.get_qasm_dir("qft") + "qft_N100.qasm", benchmark)
 
         @benchmark
         def result():
@@ -52,7 +53,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = Circuit.from_file(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
         )
 
@@ -108,9 +109,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
-        circuit = Circuit.from_file(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("square-heisenberg")
-            + "square_heisenberg_N100.qasm"
+            + "square_heisenberg_N100.qasm", benchmark
         )
 
         @benchmark
@@ -129,8 +130,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
-        circuit = Circuit.from_file(
-            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm", benchmark
         )
 
         @benchmark

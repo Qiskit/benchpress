@@ -12,9 +12,10 @@
 """Test transpilation against a device"""
 import os
 import pytest
-from bqskit import Circuit, compile
+from bqskit import compile
 from bqskit.compiler import Compiler
 
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
@@ -37,8 +38,8 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
     def test_feynman_transpile(self, benchmark, filename):
         """Transpile a feynman benchmark qasm file against a target device"""
-        circuit = Circuit.from_file(
-            f"{Configuration.get_qasm_dir('feynman')}{filename}"
+        circuit = qasm_circuit_loader(
+            f"{Configuration.get_qasm_dir('feynman')}{filename}", benchmark
         )
         if circuit.num_qudits > BACKEND.num_qudits:
             pytest.skip("Circuit too large for given backend.")

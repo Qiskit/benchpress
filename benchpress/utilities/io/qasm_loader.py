@@ -33,4 +33,9 @@ def qasm_circuit_loader(qasm_file, benchmark):
 
         circuit = tket_qasm_loader(qasm_file, benchmark)
 
+    elif gym_name == 'bqskit':
+        from benchpress.bqskit_gym.utils.io import bqskit_qasm_loader
+
+        circuit = bqskit_qasm_loader(qasm_file, benchmark)
+
     return circuit
