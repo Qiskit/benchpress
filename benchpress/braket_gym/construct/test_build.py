@@ -11,10 +11,10 @@
 # that they have been altered from the originals.
 """Test circuit generation"""
 
-import pytest
 import numpy as np
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
@@ -111,20 +111,14 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         assert result.parameters == set()
 
-    @pytest.mark.xfail(
-        reason="Gate definitions are not included, including them raises missing CX gate",
-        strict=True,
-    )
     def test_QV100_qasm2_import(self, benchmark):
         """QASM import of QV100 circuit"""
 
         @benchmark
         def result():
-            with open(
-                Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", "r"
-            ) as file:
-                data = file.read()
-            out = Circuit.from_ir(data)
-            return out
+            circuit = qasm_circuit_loader(
+                Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
+            )
+            return circuit
 
-        assert True
+        assert result
