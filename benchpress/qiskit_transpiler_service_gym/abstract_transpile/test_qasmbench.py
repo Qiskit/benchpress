@@ -38,8 +38,6 @@ from benchpress.workouts.abstract_transpile.qasmbench import (
 OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 
-
-
 @benchpress_test_validation
 class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     @pytest.mark.parametrize("circ_and_topo", SMALL_CIRC_TOPO, ids=SMALL_NAMES)
@@ -49,9 +47,10 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
         TWO_Q_GATE = BACKEND.two_q_gate_type
         TRANS_SERVICE = TranspilerService(
             coupling_map=list(BACKEND.coupling_map.get_edges()),
-            qiskit_transpile_options = {'basis_gates': BACKEND.operation_names},
+            qiskit_transpile_options={"basis_gates": BACKEND.operation_names},
             ai=True,
-            optimization_level=OPTIMIZATION_LEVEL)
+            optimization_level=OPTIMIZATION_LEVEL,
+        )
 
         @benchmark
         def result():
@@ -74,9 +73,10 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
         TWO_Q_GATE = BACKEND.two_q_gate_type
         TRANS_SERVICE = TranspilerService(
             coupling_map=list(BACKEND.coupling_map.get_edges()),
-            qiskit_transpile_options = {'basis_gates': BACKEND.operation_names},
+            qiskit_transpile_options={"basis_gates": BACKEND.operation_names},
             ai=True,
-            optimization_level=OPTIMIZATION_LEVEL)
+            optimization_level=OPTIMIZATION_LEVEL,
+        )
 
         @benchmark
         def result():
@@ -99,9 +99,10 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
         TWO_Q_GATE = BACKEND.two_q_gate_type
         TRANS_SERVICE = TranspilerService(
             coupling_map=list(BACKEND.coupling_map.get_edges()),
-            qiskit_transpile_options = {'basis_gates': BACKEND.operation_names},
+            qiskit_transpile_options={"basis_gates": BACKEND.operation_names},
             ai=True,
-            optimization_level=OPTIMIZATION_LEVEL)
+            optimization_level=OPTIMIZATION_LEVEL,
+        )
 
         @benchmark
         def result():

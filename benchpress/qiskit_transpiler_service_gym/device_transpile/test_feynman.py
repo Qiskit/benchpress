@@ -27,10 +27,11 @@ OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 TRANS_SERVICE = TranspilerService(
     coupling_map=list(BACKEND.coupling_map.get_edges()),
-    qiskit_transpile_options = {'basis_gates': BACKEND.operation_names},
+    qiskit_transpile_options={"basis_gates": BACKEND.operation_names},
     ai=True,
     optimization_level=OPTIMIZATION_LEVEL,
 )
+
 
 def pytest_generate_tests(metafunc):
     directory = Configuration.get_qasm_dir("feynman")

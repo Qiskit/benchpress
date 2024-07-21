@@ -19,8 +19,10 @@ def pytest_report_header(config):
         f"qiskit: {qiskit.__version__}",
         f"qiskit_ibm_runtime: {qiskit_ibm_runtime.__version__}",
     ]
-    if hasattr(config.known_args_namespace, 'timeout_skip_list'):
-        ret.append(f"timeout_skip_list: {config.known_args_namespace.timeout_skip_list}")
+    if hasattr(config.known_args_namespace, "timeout_skip_list"):
+        ret.append(
+            f"timeout_skip_list: {config.known_args_namespace.timeout_skip_list}"
+        )
     return ret
 
 

@@ -29,7 +29,7 @@ OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 TRANS_SERVICE = TranspilerService(
     coupling_map=list(BACKEND.coupling_map.get_edges()),
-    qiskit_transpile_options = {'basis_gates': BACKEND.operation_names},
+    qiskit_transpile_options={"basis_gates": BACKEND.operation_names},
     ai=True,
     optimization_level=OPTIMIZATION_LEVEL,
 )
@@ -42,6 +42,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         circuit = QuantumCircuit.from_qasm_file(
             Configuration.get_qasm_dir("qft") + "qft_N100.qasm"
         )
+
         @benchmark
         def result():
             trans_qc = TRANS_SERVICE.run(circuit)

@@ -36,8 +36,9 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
     def test_feynman_transpile(self, benchmark, filename):
         """Transpile a feynman benchmark qasm file against a target device"""
-        circuit = qasm_circuit_loader(f"{Configuration.get_qasm_dir('feynman')}{filename}",
-                                      benchmark)
+        circuit = qasm_circuit_loader(
+            f"{Configuration.get_qasm_dir('feynman')}{filename}", benchmark
+        )
         if circuit.num_qubits > BACKEND.num_qubits:
             pytest.skip("Circuit too large for given backend.")
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)

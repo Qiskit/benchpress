@@ -19,13 +19,14 @@ def qasm_circuit_loader(qasm_file, benchmark):
     of QASMbench files and record load time to benchmark
 
     qasm_file (str): Input top-level dir
-    benchmark (Benchmark): Benchmark class to record info to 
+    benchmark (Benchmark): Benchmark class to record info to
 
     Returns:
         tuple: list of QASM file src strings and list of names
     """
     gym_name = Configuration.gym_name
-    if gym_name in ['qiskit', "qiskit-transpiler-service"]:
+    if gym_name in ["qiskit", "qiskit-transpiler-service"]:
         from benchpress.qiskit_gym.utils.io import qiskit_qasm_loader
+
         circuit = qiskit_qasm_loader(qasm_file, benchmark)
     return circuit

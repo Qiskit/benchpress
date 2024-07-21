@@ -44,6 +44,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
         TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
+
         @benchmark
         def result():
             new_circ = compile(
@@ -67,6 +68,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
         TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
+
         @benchmark
         def result():
             new_circ = compile(
@@ -90,6 +92,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
         TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
+
         @benchmark
         def result():
             new_circ = compile(
@@ -103,8 +106,3 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
         benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
-
-
-
-
-
