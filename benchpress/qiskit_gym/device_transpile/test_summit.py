@@ -6,6 +6,7 @@ from qiskit.transpiler.passes import StarPreRouting
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.qiskit_gym.circuits import bv_all_ones
 
 from benchpress.workouts.validation import benchpress_test_validation
@@ -21,9 +22,10 @@ OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
-        circuit = QuantumCircuit.from_qasm_file(
+        
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("qft") + "qft_N100.qasm"
-        )
+        , benchmark)
 
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
         pm.init.append(StarPreRouting())
@@ -41,9 +43,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = QuantumCircuit.from_qasm_file(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
-        )
+        , benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark
@@ -91,10 +93,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
-        circuit = QuantumCircuit.from_qasm_file(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("square-heisenberg")
             + "square_heisenberg_N100.qasm"
-        )
+        , benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark
@@ -110,9 +112,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
-        circuit = QuantumCircuit.from_qasm_file(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
-        )
+        , benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark

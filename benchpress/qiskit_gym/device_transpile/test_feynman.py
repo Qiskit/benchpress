@@ -13,7 +13,6 @@
 import os
 import pytest
 
-from qiskit import QuantumCircuit
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
