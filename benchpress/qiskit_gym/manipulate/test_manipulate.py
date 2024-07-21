@@ -138,7 +138,6 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         assert result
 
 
-
 def circuit_twirl(qc, twirled_gate="cx", seed=None):
     rng = np.random.default_rng(seed)
     twirl_set = TWIRLING_SETS.get(twirled_gate, [])

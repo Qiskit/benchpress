@@ -28,17 +28,17 @@ def qasm_circuit_loader(qasm_file, benchmark):
         from benchpress.qiskit_gym.utils.io import qiskit_qasm_loader
 
         circuit = qiskit_qasm_loader(qasm_file, benchmark)
-    elif gym_name == 'tket':
+    elif gym_name == "tket":
         from benchpress.tket_gym.utils.io import tket_qasm_loader
 
         circuit = tket_qasm_loader(qasm_file, benchmark)
 
-    elif gym_name == 'bqskit':
+    elif gym_name == "bqskit":
         from benchpress.bqskit_gym.utils.io import bqskit_qasm_loader
 
         circuit = bqskit_qasm_loader(qasm_file, benchmark)
-    
-    elif gym_name == 'cirq':
+
+    elif gym_name == "cirq":
         from benchpress.cirq_gym.utils.io import cirq_qasm_loader
 
         circuit = cirq_qasm_loader(qasm_file, benchmark)

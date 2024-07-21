@@ -12,7 +12,7 @@
 
 
 def get_backend(backend_name: str, gym_name: str):
-    if gym_name in  ["qiskit", "qiskit-transpiler-service"]:
+    if gym_name in ["qiskit", "qiskit-transpiler-service"]:
         from benchpress.qiskit_gym.utils.qiskit_backend_utils import (
             get_qiskit_bench_backend,
         )

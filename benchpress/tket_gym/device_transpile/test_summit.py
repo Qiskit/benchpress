@@ -28,7 +28,9 @@ OPTIMIZATION_LEVEL = Configuration.options["tket"]["optimization_level"]
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
-        circuit = qasm_circuit_loader(Configuration.get_qasm_dir("qft") + "qft_N100.qasm", benchmark)
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qft") + "qft_N100.qasm", benchmark
+        )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -45,8 +47,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
         circuit = qasm_circuit_loader(
-            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm",
-            benchmark)
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
+        )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -96,7 +98,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 100Q square-Heisenberg circuit against target backend"""
         circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("square-heisenberg")
-            + "square_heisenberg_N100.qasm", benchmark
+            + "square_heisenberg_N100.qasm",
+            benchmark,
         )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
@@ -114,7 +117,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
         circuit = qasm_circuit_loader(
-            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm", benchmark
+            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm",
+            benchmark,
         )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 

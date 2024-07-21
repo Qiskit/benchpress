@@ -19,7 +19,7 @@ def cirq_qasm_loader(qasm_file, benchmark):
     Parameters:
         qasm_file (str): The QASM file
         benchmark (Benchmark): The class holding the benchmark instance
-    
+
     Returns:
         Circuit: A Cirq circuit instance
     """
