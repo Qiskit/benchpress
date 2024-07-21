@@ -9,11 +9,3 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
-"""Test summit benchmarks"""
-from benchpress.workouts.validation import benchpress_test_validation
-from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
-
-
-@benchpress_test_validation
-class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
-    pass

@@ -12,8 +12,7 @@
 
 
 def get_backend(backend_name: str, gym_name: str):
-    # `staq_gym` uses `qiskit` backends to create compatible `device`
-    if gym_name == "qiskit":
+    if gym_name in ["qiskit", "qiskit-transpiler-service"]:
         from benchpress.qiskit_gym.utils.qiskit_backend_utils import (
             get_qiskit_bench_backend,
         )

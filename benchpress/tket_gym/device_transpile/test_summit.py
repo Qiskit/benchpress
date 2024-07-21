@@ -1,16 +1,26 @@
+# This code is part of Qiskit.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE.txt file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
 """Test summit benchmarks"""
-
-from pytket.circuit import OpType
-from pytket.qasm import circuit_from_qasm
 
 from benchpress.config import Configuration
 from benchpress.tket_gym.circuits import tket_bv_all_ones, tket_circSU2
+from benchpress.utilities.io import qasm_circuit_loader
 
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.tket_gym.circuits import trivial_bvlike_circuit
 
 BACKEND = Configuration.backend()
+TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["tket"]["optimization_level"]
 
 
@@ -18,24 +28,8 @@ OPTIMIZATION_LEVEL = Configuration.options["tket"]["optimization_level"]
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
-        circuit = circuit_from_qasm(Configuration.get_qasm_dir("qft") + "qft_N100.qasm")
-        pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
-
-        @benchmark
-        def result():
-            # Need to make a copy as the compilation is done in-place
-            new_circ = circuit.copy()
-            pm.apply(new_circ)
-            return new_circ
-
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
-        assert result
-
-    def test_QV_100_transpile(self, benchmark):
-        """Compile 10Q QV circuit against target backend"""
-        circuit = circuit_from_qasm(
-            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qft") + "qft_N100.qasm", benchmark
         )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
@@ -46,8 +40,26 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
+        assert result
+
+    def test_QV_100_transpile(self, benchmark):
+        """Compile 10Q QV circuit against target backend"""
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
+        )
+        pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
+
+        @benchmark
+        def result():
+            # Need to make a copy as the compilation is done in-place
+            new_circ = circuit.copy()
+            pm.apply(new_circ)
+            return new_circ
+
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_circSU2_100_transpile(self, benchmark):
@@ -62,8 +74,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_BV_100_transpile(self, benchmark):
@@ -78,15 +90,16 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
-        circuit = circuit_from_qasm(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("square-heisenberg")
-            + "square_heisenberg_N100.qasm"
+            + "square_heisenberg_N100.qasm",
+            benchmark,
         )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
@@ -97,14 +110,15 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
-        circuit = circuit_from_qasm(
-            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm",
+            benchmark,
         )
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
@@ -115,8 +129,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result
 
     def test_BVlike_simplification_transpile(self, benchmark):
@@ -132,6 +146,6 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pm.apply(new_circ)
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
         assert result

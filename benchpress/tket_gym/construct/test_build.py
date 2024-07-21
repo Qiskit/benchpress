@@ -119,7 +119,9 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            out = circuit_from_qasm(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
+            out = circuit_from_qasm(
+                Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+            )
             return out
 
         assert result.n_gates_of_type(OpType.Rz) == 120000

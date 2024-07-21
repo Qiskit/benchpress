@@ -1,23 +1,34 @@
+# This code is part of Qiskit.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE.txt file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
 """Test summit benchmarks"""
 
-from qiskit import QuantumCircuit
 from qiskit.circuit.library import EfficientSU2
 
 from qiskit_transpiler_service.transpiler_service import TranspilerService
 
 from benchpress.config import Configuration
 from benchpress.qiskit_gym.circuits import bv_all_ones
-
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.qiskit_gym.circuits import trivial_bvlike_circuit
 
 BACKEND = Configuration.backend()
+TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 TRANS_SERVICE = TranspilerService(
     coupling_map=list(BACKEND.coupling_map.get_edges()),
-    qiskit_transpile_options = {'basis_gates': BACKEND.operation_names},
+    qiskit_transpile_options={"basis_gates": BACKEND.operation_names},
     ai=True,
     optimization_level=OPTIMIZATION_LEVEL,
 )
@@ -27,24 +38,25 @@ TRANS_SERVICE = TranspilerService(
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
-        circuit = QuantumCircuit.from_qasm_file(
-            Configuration.get_qasm_dir("qft") + "qft_N100.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qft") + "qft_N100.qasm", benchmark
         )
+
         @benchmark
         def result():
             trans_qc = TRANS_SERVICE.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = QuantumCircuit.from_qasm_file(
-            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
         )
 
         @benchmark
@@ -52,9 +64,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = TRANS_SERVICE.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -67,9 +79,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = TRANS_SERVICE.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -82,17 +94,18 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = TRANS_SERVICE.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
-        circuit = QuantumCircuit.from_qasm_file(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("square-heisenberg")
-            + "square_heisenberg_N100.qasm"
+            + "square_heisenberg_N100.qasm",
+            benchmark,
         )
 
         @benchmark
@@ -100,16 +113,17 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = TRANS_SERVICE.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
-        circuit = QuantumCircuit.from_qasm_file(
-            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm",
+            benchmark,
         )
 
         @benchmark
@@ -117,9 +131,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = TRANS_SERVICE.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
 
@@ -134,8 +148,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             trans_qc = TRANS_SERVICE.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result

@@ -9,11 +9,12 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
-"""Test summit benchmarks"""
+"""Test circuit generation"""
+
 from benchpress.workouts.validation import benchpress_test_validation
-from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
+from benchpress.workouts.build import WorkoutCircuitConstruction
 
 
 @benchpress_test_validation
-class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
+class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
     pass

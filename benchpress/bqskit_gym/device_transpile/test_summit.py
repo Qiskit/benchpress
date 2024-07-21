@@ -11,24 +11,22 @@
 # that they have been altered from the originals.
 """Test summit benchmarks"""
 
-import pytest
-from bqskit import Circuit, compile
+from bqskit import compile
 from bqskit.compiler import Compiler
-from bqskit.ir.gates import CNOTGate, CXGate, CZGate
 
 from benchpress.bqskit_gym.circuits import (
     bqskit_bv_all_ones,
     bqskit_circSU2,
     trivial_bvlike_circuit,
 )
-from benchpress.bqskit_gym.utils.bqskit_backend_utils import ECRGate
-
 from benchpress.config import Configuration
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 
 
 BACKEND = Configuration.backend()
+TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
 compiler = Compiler()
 
@@ -37,7 +35,9 @@ compiler = Compiler()
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
-        circuit = Circuit.from_file(Configuration.get_qasm_dir("qft") + "qft_N100.qasm")
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qft") + "qft_N100.qasm", benchmark
+        )
 
         @benchmark
         def result():
@@ -49,13 +49,13 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = Circuit.from_file(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
         )
 
@@ -69,7 +69,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 
@@ -87,7 +87,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 
@@ -105,15 +105,16 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Compile 100Q square-Heisenberg circuit against target backend"""
-        circuit = Circuit.from_file(
+        circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("square-heisenberg")
-            + "square_heisenberg_N100.qasm"
+            + "square_heisenberg_N100.qasm",
+            benchmark,
         )
 
         @benchmark
@@ -126,14 +127,15 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 
     def test_QAOA_100_transpile(self, benchmark):
         """Compile 100Q QAOA circuit against target backend"""
-        circuit = Circuit.from_file(
-            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm",
+            benchmark,
         )
 
         @benchmark
@@ -147,7 +149,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result
 
@@ -168,6 +170,6 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
         assert result

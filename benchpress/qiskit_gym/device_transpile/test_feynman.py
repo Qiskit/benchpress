@@ -13,15 +13,15 @@
 import os
 import pytest
 
-from qiskit import QuantumCircuit
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
-
+from benchpress.utilities.io import qasm_circuit_loader
 
 BACKEND = Configuration.backend()
+TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 
@@ -36,8 +36,8 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
     def test_feynman_transpile(self, benchmark, filename):
         """Transpile a feynman benchmark qasm file against a target device"""
-        circuit = QuantumCircuit.from_qasm_file(
-            f"{Configuration.get_qasm_dir('feynman')}{filename}"
+        circuit = qasm_circuit_loader(
+            f"{Configuration.get_qasm_dir('feynman')}{filename}", benchmark
         )
         if circuit.num_qubits > BACKEND.num_qubits:
             pytest.skip("Circuit too large for given backend.")
@@ -48,8 +48,8 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cz"
+            filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
         assert result
