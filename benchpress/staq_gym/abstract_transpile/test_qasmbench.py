@@ -40,7 +40,7 @@ RUN_ARGS_COMMON = [
 ]
 
 # `cc` and `qft` circuits throw 'stoi: out of range' error.
-# So, those tests will be marked as `xfail`
+# So, those tests will be marked as `skip`
 mark_large_tests = ("cc", "qft")
 reason = (
     "libc++abi: terminating due to uncaught exception of type "
@@ -49,7 +49,7 @@ reason = (
 
 LARGE_CIRC_TOPO_MARKED = [
     (
-        pytest.param(circ_and_topo, marks=pytest.mark.xfail(reason=reason), id=name)
+        pytest.param(circ_and_topo, marks=pytest.mark.skip(reason=reason), id=name)
         if name.startswith(mark_large_tests)
         else circ_and_topo
     )

@@ -8,7 +8,7 @@ def dtc_unitary(num_qubits, g=0.95, seed=12345):
         g (float): Optional. Parameter controlling amount of x-rotation, default=0.95
         seed (int): Optional. Seed the random number generator, default=12345
     """
-    raise NotImplementedError("staq does not support circuit creation.")
+    raise NotImplementedError("staq does not support circuit building.")
 
 
 def multi_control_circuit(num_qubits):
@@ -17,7 +17,7 @@ def multi_control_circuit(num_qubits):
     Parameters:
         N (int): Number of qubits
     """
-    raise NotImplementedError("staq does not support circuit creation.")
+    raise NotImplementedError("staq does not support circuit building.")
 
 
 def bv_all_ones(N):
@@ -27,7 +27,7 @@ def bv_all_ones(N):
     Parameters:
         N (int): Number of qubits
     """
-    raise NotImplementedError("staq does not support circuit creation.")
+    raise NotImplementedError("staq does not support circuit building.")
 
 
 def trivial_bvlike_circuit(N):
@@ -37,4 +37,4 @@ def trivial_bvlike_circuit(N):
     Parameters:
         N (int): Number of qubits
     """
-    raise NotImplementedError("staq does not support circuit creation.")
+    raise NotImplementedError("staq does not support circuit building.")

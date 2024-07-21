@@ -55,10 +55,9 @@ def staq_device(tmp_path_factory):
 
 @benchpress_test_validation
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
-    @pytest.mark.xfail(
+    @pytest.mark.skip(
         reason="Error: libc++abi: terminating due to uncaught exception of type "
         "std::out_of_range: stoi: out of range",
-        run=False,
     )
     def test_QFT_100_transpile(self, benchmark, staq_device):
         """Compile 100Q QFT circuit against target backend"""

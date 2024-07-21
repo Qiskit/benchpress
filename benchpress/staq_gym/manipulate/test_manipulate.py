@@ -13,17 +13,15 @@ from benchpress.workouts.validation import benchpress_test_validation
 
 @benchpress_test_validation
 class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
-    @pytest.mark.xfail(
-        reason="No circuit building and manipulation in staq.", run=False
-    )
+    @pytest.mark.skip(reason="No circuit building and manipulation in staq.")
     def test_DTC100_twirling(self, benchmark):
         """Perform Pauli-twirling on a 100Q QV
         circuit
         """
         pass
 
-    @pytest.mark.xfail(
-        reason="staq QASM parser does not undersatnd p and c3sqrtx gates.", run=False
+    @pytest.mark.skip(
+        reason="staq QASM parser does not undersatnd p and c3sqrtx gates."
     )
     def test_multi_control_decompose(self, benchmark, tmp_path_factory):
         """Decompose a multi-control gate into the
@@ -45,9 +43,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
         assert result
 
-    @pytest.mark.xfail(
-        reason="No transformation to arbitrary basis in staq.", run=False
-    )
+    @pytest.mark.skip(reason="No transformation to arbitrary basis in staq.")
     def test_QV100_basis_change(self, benchmark):
         """Change a QV100 circuit basis from [rx, ry, rz, cx]
         to [sx, x, rz, cz]
@@ -57,9 +53,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
 
 @benchpress_test_validation
 class TestWorkoutDAGManipulate(WorkoutCircuitManipulate):
-    @pytest.mark.xfail(
-        reason="No circuit building and manipulation in staq.", run=False
-    )
+    @pytest.mark.skip(reason="No circuit building and manipulation in staq.")
     def test_DTC100_twirling(self, benchmark):
         """Perform Pauli-twirling on a 100Q QV
         circuit
