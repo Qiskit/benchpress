@@ -13,10 +13,10 @@
 import os
 import pytest
 
-from qiskit import QuantumCircuit
 from qiskit_transpiler_service.transpiler_service import TranspilerService
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 
@@ -44,8 +44,8 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
     def test_feynman_transpile(self, benchmark, filename):
         """Transpile a feynman benchmark qasm file against a target device"""
-        circuit = QuantumCircuit.from_qasm_file(
-            f"{Configuration.get_qasm_dir('feynman')}{filename}"
+        circuit = qasm_circuit_loader(
+            f"{Configuration.get_qasm_dir('feynman')}{filename}", benchmark
         )
         if circuit.num_qubits > BACKEND.num_qubits:
             pytest.skip("Circuit too large for given backend.")
