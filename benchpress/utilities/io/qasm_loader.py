@@ -37,5 +37,9 @@ def qasm_circuit_loader(qasm_file, benchmark):
         from benchpress.bqskit_gym.utils.io import bqskit_qasm_loader
 
         circuit = bqskit_qasm_loader(qasm_file, benchmark)
+    
+    elif gym_name == 'cirq':
+        from benchpress.cirq_gym.utils.io import cirq_qasm_loader
 
+        circuit = cirq_qasm_loader(qasm_file, benchmark)
     return circuit

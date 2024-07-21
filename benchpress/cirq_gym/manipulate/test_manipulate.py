@@ -13,8 +13,8 @@
 import random
 
 import cirq
-from cirq.contrib.qasm_import import circuit_from_qasm
 
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
@@ -65,7 +65,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", "r"
         ) as file:
             circ_data = file.read().replace("\n", "")
-        circuit = circuit_from_qasm(circ_data)
+        circuit = qasm_circuit_loader(circ_data, benchmark)
 
         @benchmark
         def result():
