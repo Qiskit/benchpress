@@ -15,18 +15,22 @@ from benchpress.config import Configuration
 
 
 def qasm_circuit_loader(qasm_file, benchmark):
-    """Get the file dirs and names from a dir
-    of QASMbench files and record load time to benchmark
+    """Load the requested QASM circuit and record the import time
 
     qasm_file (str): Input top-level dir
     benchmark (Benchmark): Benchmark class to record info to
 
     Returns:
-        tuple: list of QASM file src strings and list of names
+        The circuit instance for the corresponding SDK
     """
     gym_name = Configuration.gym_name
     if gym_name in ["qiskit", "qiskit-transpiler-service"]:
         from benchpress.qiskit_gym.utils.io import qiskit_qasm_loader
 
         circuit = qiskit_qasm_loader(qasm_file, benchmark)
+    elif gym_name == 'tket':
+        from benchpress.tket_gym.utils.io import tket_qasm_loader
+
+        circuit = tket_qasm_loader(qasm_file, benchmark)
+
     return circuit
