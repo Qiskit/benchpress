@@ -106,5 +106,6 @@ def random_clifford_circuit(num_qubits, seed=12345):
     """
     # This code is used to generate the QASM file
     from qiskit.circuit.random import random_clifford_circuit
-    qc = random_clifford_circuit(num_qubits, num_gates=10 * num_qubits * num_qubits, seed=seed)
+    gates = ["cx", "cz", "cy", "swap", "x", "y", "z", "s", "sdg", "h"]
+    qc = random_clifford_circuit(num_qubits, gates=gates, num_gates=10 * num_qubits * num_qubits, seed=seed)
     return qc
