@@ -9,7 +9,13 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
+from time import perf_counter
+from qiskit import QuantumCircuit
 
-from benchpress.config import Configuration
 
-Configuration.gym_name = "qiskit-transpiler-service"
+def qiskit_qasm_loader(qasm_file, benchmark):
+    start = perf_counter()
+    circuit = QuantumCircuit.from_qasm_file(qasm_file)
+    stop = perf_counter()
+    benchmark.extra_info["qasm_load_time"] = stop - start
+    return circuit
