@@ -177,6 +177,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             )
             return out
 
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
         assert result
 
 
