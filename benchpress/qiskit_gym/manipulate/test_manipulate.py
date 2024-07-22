@@ -137,7 +137,6 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
         assert result
 
-
     def test_random_clifford_decompose(self, benchmark):
         """Decompose a random clifford into
         basis [rz, sx, x, cz]
@@ -149,6 +148,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm"
         )
         from qiskit.quantum_info import Clifford
+
         cliff = Clifford(cliff_circ)
         circ = cliff.to_circuit()
 

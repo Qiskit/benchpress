@@ -19,10 +19,14 @@ from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
-from benchpress.cirq_gym.circuits import (cirq_QV, multi_control_circuit,
-                                          dtc_unitary, cirq_circSU2)
+from benchpress.cirq_gym.circuits import (
+    cirq_QV,
+    multi_control_circuit,
+    dtc_unitary,
+    cirq_circSU2,
+)
 
-SEED = 12345 
+SEED = 12345
 
 
 @benchpress_test_validation
@@ -92,7 +96,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             len(list(result.findall_operations_with_gate_type(cirq.CNotPowGate)))
             == 15000
         )
-    
+
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
         parameterized efficient SU2 circuit with circular entanglement
@@ -107,7 +111,6 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         assert len(cirq.parameter_names(result)) == 1000
-
 
     def test_param_circSU2_100_bind(self, benchmark):
         """Measures an SDKs ability to bind 1000 parameters

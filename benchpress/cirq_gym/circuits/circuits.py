@@ -137,19 +137,19 @@ def cirq_circSU2(width, num_reps=3):
     num_params = 2 * width * (num_reps + 1)
     params = [sympy.Symbol(f"x_{kk}") for kk in range(num_params)]
 
-    qreg= cirq.LineQubit.range(width)
+    qreg = cirq.LineQubit.range(width)
     out = cirq.Circuit()
-    
+
     counter = 0
     ops0 = []
     ops1 = []
     for i in range(0, width):
         ops0.append(cirq.Ry(rads=params[counter]).on(qreg[i]))
-        ops1.append(cirq.Rz(rads=params[counter+width]).on(qreg[i]))
+        ops1.append(cirq.Rz(rads=params[counter + width]).on(qreg[i]))
         counter += 1
     counter += width
 
-    out.append([cirq.Moment(ops0),cirq.Moment(ops1)])
+    out.append([cirq.Moment(ops0), cirq.Moment(ops1)])
 
     for _ in range(num_reps):
         ops = []
@@ -164,8 +164,8 @@ def cirq_circSU2(width, num_reps=3):
         ops1 = []
         for i in range(width):
             ops0.append(cirq.Ry(rads=params[counter]).on(qreg[i]))
-            ops1.append(cirq.Rz(rads=params[counter+width]).on(qreg[i]))
+            ops1.append(cirq.Rz(rads=params[counter + width]).on(qreg[i]))
             counter += 1
         counter += width
-        out.append([cirq.Moment(ops0),cirq.Moment(ops1)])
+        out.append([cirq.Moment(ops0), cirq.Moment(ops1)])
     return out
