@@ -49,9 +49,8 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
             trans_qc = pm.run(circuit)
             return trans_qc
 
-        circuit_validator(result, BACKEND)
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
             filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
-        assert result
+        assert circuit_validator(result, BACKEND)

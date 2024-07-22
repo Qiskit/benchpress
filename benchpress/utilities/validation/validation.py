@@ -27,7 +27,10 @@ def circuit_validator(circuit, backend):
         from benchpress.qiskit_gym.utils.validation import qiskit_circuit_validation
 
         qiskit_circuit_validation(circuit, backend)
+    if gym_name in ["tket"]:
+        from benchpress.tket_gym.utils.validation import tket_circuit_validation
 
+        tket_circuit_validation(circuit, backend)
     else:
         raise ValueError(f"Unknown gym name {gym_name}")
     return circuit
