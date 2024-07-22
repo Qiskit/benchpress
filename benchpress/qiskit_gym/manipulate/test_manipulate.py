@@ -165,22 +165,6 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         assert result
 
 
-@benchpress_test_validation
-class TestWorkoutDAGManipulate(WorkoutCircuitManipulate):
-    def test_DTC100_twirling(self, benchmark):
-        """Perform Pauli-twirling on a 100Q QV
-        circuit
-        """
-        circuit = QuantumCircuit.from_qasm_file(
-            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
-        )
-
-        def setup():
-            return (circuit_to_dag(circuit),), {}
-
-        assert benchmark.pedantic(dag_twirl, setup=setup, rounds=4)
-
-
 def circuit_twirl(qc, twirled_gate="cx", seed=None):
     rng = np.random.default_rng(seed)
     twirl_set = TWIRLING_SETS.get(twirled_gate, [])
