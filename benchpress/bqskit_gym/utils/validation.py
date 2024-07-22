@@ -10,8 +10,6 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 """Basic circuit validation"""
-from bqskit.ir.gates import BarrierPlaceholder
-from bqskit.ir.gates.measure import MeasurementPlaceholder
 
 def bqskit_circuit_validation(circuit, backend):
     """Validate that input circuit matches gate set
