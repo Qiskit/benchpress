@@ -8,13 +8,13 @@ Quantum software benchmarking
 
 Benchpress currently supports the following SDKs:
 
-- BQSKit (https://github.com/BQSKit/bqskit)
-- Braket (https://github.com/amazon-braket/amazon-braket-sdk-python)
-- Cirq (https://github.com/quantumlib/Cirq)
-- Qiskit (https://github.com/Qiskit/qiskit)
-- Qiskit-Transpiler-Service (https://github.com/Qiskit/qiskit-transpiler-service)
-- Staq (https://github.com/softwareQinc/staq)
-- Tket (https://github.com/CQCL/tket)
+- **BQSKit** (https://github.com/BQSKit/bqskit)
+- **Braket** (https://github.com/amazon-braket/amazon-braket-sdk-python)
+- **Cirq** (https://github.com/quantumlib/Cirq)
+- **Qiskit** (https://github.com/Qiskit/qiskit)
+- **Qiskit-Transpiler-Service** (https://github.com/Qiskit/qiskit-transpiler-service)
+- **Staq** (https://github.com/softwareQinc/staq)
+- **Tket** (https://github.com/CQCL/tket)
 
 ## Testing resource requirements
 
