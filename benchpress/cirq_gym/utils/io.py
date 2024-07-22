@@ -10,6 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 from time import perf_counter
+import cirq
 from cirq.contrib.qasm_import import circuit_from_qasm
 
 
@@ -27,4 +28,5 @@ def cirq_qasm_loader(qasm_file, benchmark):
     circuit = circuit_from_qasm(qasm_file)
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
+    benchmark.extra_info["input_num_qubits"] = cirq.num_qubits(circuit)
     return circuit

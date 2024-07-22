@@ -27,4 +27,5 @@ def bqskit_qasm_loader(qasm_file, benchmark):
     circuit = Circuit.from_file(qasm_file)
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
+    benchmark.extra_info["input_num_qubits"] = circuit.num_qudits
     return circuit
