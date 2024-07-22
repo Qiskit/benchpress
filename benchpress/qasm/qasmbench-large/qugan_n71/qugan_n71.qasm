@@ -1,6 +1,13 @@
 OPENQASM 2.0;
 include "qelib1.inc";
-gate ryy(param0) q0,q1 
+gate cry(lambda) a,b
+{
+  ry(lambda/2) b;
+  cx a,b;
+  ry(-lambda/2) b;
+  cx a,b;
+}
+gate ryy(param0) q0,q1
 {
  rx(pi/2) q0;
  rx(pi/2) q1;

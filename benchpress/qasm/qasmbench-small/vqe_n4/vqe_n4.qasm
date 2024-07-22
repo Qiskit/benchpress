@@ -2,6 +2,9 @@ OPENQASM 2.0;
 include "qelib1.inc";
 qreg q[4];
 creg meas[4];
+
+gate sx a { sdg a; h a; sdg a; }
+
 sx q[0];
 rz(5.0300511584448) q[0];
 sx q[0];

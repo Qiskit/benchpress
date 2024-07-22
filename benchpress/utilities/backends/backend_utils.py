@@ -28,6 +28,12 @@ def get_backend(backend_name: str, gym_name: str):
         )
 
         return get_bqskit_bench_backend(backend_name)
+    elif gym_name == "staq":
+        from benchpress.staq_gym.utils.staq_backend_utils import (
+            get_staq_bench_backend,
+        )
+
+        return get_staq_bench_backend(backend_name)
     else:
         raise NotImplementedError(
             f"Backend support not implemented for {gym_name} bench."

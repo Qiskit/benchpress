@@ -1,8 +1,12 @@
 // Term: YYIIIIIIIIXX
 OPENQASM 2.0;
 include "qelib1.inc";
+
+gate sx a { sdg a; h a; sdg a; }
+
 qreg q[13];
 creg c[1];
+
 rz(pi/2) q[0];
 sx q[0];
 rz(3*pi/4) q[0];
