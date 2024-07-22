@@ -19,6 +19,7 @@ from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.config import Configuration
 from benchpress.utilities.backends import FlexibleBackend
 from benchpress.utilities.io import qasm_circuit_loader
+from benchpress.utilities.validation import circuit_validator
 
 from benchpress.workouts.abstract_transpile import (
     WorkoutAbstractQasmBenchSmall,
@@ -53,6 +54,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
             trans_qc = pm.run(circuit)
             return trans_qc
 
+        circuit_validator(result, backend)
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
             filter_function=lambda x: x.operation.name == TWO_Q_GATE
@@ -76,6 +78,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
             trans_qc = pm.run(circuit)
             return trans_qc
 
+        circuit_validator(result, backend)
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
             filter_function=lambda x: x.operation.name == TWO_Q_GATE
@@ -99,6 +102,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
             trans_qc = pm.run(circuit)
             return trans_qc
 
+        circuit_validator(result, backend)
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
         benchmark.extra_info["depth_2q"] = result.depth(
             filter_function=lambda x: x.operation.name == TWO_Q_GATE
