@@ -155,6 +155,34 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
 
         assert result
 
+    def test_random_clifford_decompose(self, benchmark):
+        """Decompose a random clifford into
+        basis [rz, sx, x, cz]
+        """
+        qasm_file = Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm"
+        circ = Circuit.from_file(qasm_file)
+
+        model = MachineModel(
+            num_qudits=circ.num_qudits,
+            gate_set={SqrtXGate(), XGate(), RZGate(), CZGate()},
+        )
+
+        @benchmark
+        def result():
+            out = compile(
+                input=circ,
+                model=model,
+                optimization_level=OPTIMIZATION_LEVEL,
+                compiler=Compiler(),
+                seed=0,
+            )
+            return out
+
+        benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+
+        assert result
+
 
 def direct_twirl(input_circ, twirled_gate="CNOTGate", seed=None):
     new_circ = Circuit(input_circ.num_qudits)

@@ -138,6 +138,33 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         assert result
 
 
+    def test_random_clifford_decompose(self, benchmark):
+        """Decompose a random clifford into
+        basis [rz, sx, x, cz]
+        """
+        translate = generate_preset_pass_manager(
+            1, basis_gates=["rz", "sx", "x", "cz"]
+        ).translation
+        cliff_circ = QuantumCircuit.from_qasm_file(
+            Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm"
+        )
+        from qiskit.quantum_info import Clifford
+        cliff = Clifford(cliff_circ)
+        circ = cliff.to_circuit()
+
+        @benchmark
+        def result():
+            translate.property_set = PropertySet()
+            out = translate.run(circ)
+            return out
+
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["depth_2q"] = result.depth(
+            filter_function=lambda x: x.operation.name == "cz"
+        )
+        assert result
+
+
 def circuit_twirl(qc, twirled_gate="cx", seed=None):
     rng = np.random.default_rng(seed)
     twirl_set = TWIRLING_SETS.get(twirled_gate, [])

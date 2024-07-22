@@ -93,3 +93,19 @@ def trivial_bvlike_circuit(N):
     for kk in range(N - 2, -1, -1):
         qc.cx(kk, N - 1)
     return qc
+
+
+def random_clifford_circuit(num_qubits, seed=12345):
+    """Generate a random clifford circuit
+    Parameters:
+        num_qubits (int): Number of qubits
+        seed (int): Optional. Seed the random number generator, default=12345
+
+    Returns:
+        QuantumCircuit: Clifford circuit
+    """
+    # This code is used to generate the QASM file
+    from qiskit.circuit.random import random_clifford_circuit
+    gates = ["cx", "cz", "cy", "swap", "x", "y", "z", "s", "sdg", "h"]
+    qc = random_clifford_circuit(num_qubits, gates=gates, num_gates=10 * num_qubits * num_qubits, seed=seed)
+    return qc
