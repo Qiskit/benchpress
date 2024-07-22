@@ -4,6 +4,22 @@
 # :construction: benchpress :construction:
 Quantum software benchmarking
 
+## Supported SDKs
+
+Benchpress currently supports the following SDKs:
+
+- BQSKit
+- Braket
+- Cirq
+- Qiskit
+- Qiskit-Transpiler-Service
+- Staq
+- Tket
+
+## Testing resource requirements
+
+Running Benchpress is resource intensive.  Although the exact requirements depend on the SDK in question,a full execution of all the SDKs requires a system with 96+Gb of memory and, in some cases, will consume as many CPU resources as are available / assigned.  In addition, each suite of tests takes a non-negligible about of time, typically taking several hours or more to complete depending on the machine and timeout specified.
+
 ## Installation
 
 Benchpress itself requires no installation.  However running it requires the tools in `requirements.txt`.  In addition, running each of the frameworks has its own dependencies in the corresponding `*-requirements.txt` file
