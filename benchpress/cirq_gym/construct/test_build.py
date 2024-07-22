@@ -19,9 +19,10 @@ from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
-from benchpress.cirq_gym.circuits import cirq_QV, multi_control_circuit, dtc_unitary
+from benchpress.cirq_gym.circuits import (cirq_QV, multi_control_circuit,
+                                          dtc_unitary, cirq_circSU2)
 
-SEED = 12345
+SEED = 12345 
 
 
 @benchpress_test_validation
@@ -91,3 +92,40 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             len(list(result.findall_operations_with_gate_type(cirq.CNotPowGate)))
             == 15000
         )
+    
+    def test_param_circSU2_100_build(self, benchmark):
+        """Measures an SDKs ability to build a
+        parameterized efficient SU2 circuit with circular entanglement
+        over 100Q utilizing 4 repetitions.  This will yield a
+        circuit with 1000 parameters
+        """
+        N = 100
+
+        @benchmark
+        def result():
+            out = cirq_circSU2(N, 4)
+            return out
+
+        assert len(cirq.parameter_names(result)) == 1000
+
+
+    def test_param_circSU2_100_bind(self, benchmark):
+        """Measures an SDKs ability to bind 1000 parameters
+        to efficient SU2 circuit over 100Q with circular
+        entanglement and 4 repetitions.
+        """
+        N = 100
+        qc = cirq_circSU2(N, 4)
+        assert len(cirq.parameter_names(qc)) == 1000
+
+        @benchmark
+        def result():
+            # Here we put parameter dict building in the timing as it is
+            # a required step for binding
+            param_names = cirq.parameter_names(qc)
+            vals = np.linspace(0, 2 * np.pi, len(param_names))
+            param_dict = dict(zip(param_names, vals))
+            out = cirq.resolve_parameters(qc, param_dict)
+            return out
+
+        assert len(cirq.parameter_names(result)) == 0
