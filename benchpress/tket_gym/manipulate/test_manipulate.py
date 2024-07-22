@@ -122,4 +122,6 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             return cu.circuit
 
         benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
+        benchmark.extra_info["depth_2q"] = result.depth_by_type(OpType.CZ)
+
         assert result

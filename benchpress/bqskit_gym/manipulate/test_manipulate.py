@@ -178,6 +178,8 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             return out
 
         benchmark.extra_info["gate_count_2q"] = result.gate_counts[CZGate()]
+        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+
         assert result
 
 

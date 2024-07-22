@@ -158,6 +158,9 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             return out
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        benchmark.extra_info["depth_2q"] = result.depth(
+            filter_function=lambda x: x.operation.name == "cz"
+        )
         assert result
 
 
