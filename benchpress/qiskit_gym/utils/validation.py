@@ -21,8 +21,8 @@ def qiskit_circuit_validation(circuit, backend):
     """
     circuit_ops = set(circuit.count_ops().keys())
     backend_ops = set(backend.operation_names)
-    # Remove barrier from circuit ops
-    circuit_ops.remove('barrier')
+    # Add barrier to backend ops
+    backend_ops.add('barrier')
     diff_set = set(circuit_ops).difference(backend_ops)
     if diff_set:
         raise Exception(f'Circuit has gates outside backend basis set {diff_set}')
