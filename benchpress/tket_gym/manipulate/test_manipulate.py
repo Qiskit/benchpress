@@ -22,6 +22,7 @@ from pytket.tailoring import PauliFrameRandomisation
 from pytket.predicates import CompilationUnit
 from pytket.passes import DecomposeMultiQubitsCX, DecomposeBoxes
 from pytket.passes import SequencePass, auto_rebase_pass
+from pytket.transform import Transform
 
 
 from benchpress.tket_gym.circuits import multi_control_circuit
@@ -99,6 +100,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         """Decompose a random clifford into
         basis [rz, sx, x, cz]
         """
+        opt_cliff = Transform.OptimiseCliffords()
         seqpass = SequencePass(
             [
                 DecomposeBoxes(),
@@ -110,10 +112,14 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
 
         @benchmark
         def result():
+            circ_cpy = circ.copy()
+            opt_cliff.apply(circ_cpy)  # Clifford optimization transformation
             cu = CompilationUnit(
-                circ.copy()
+                circ_cpy.copy()
             )  # Copy is needed because modifications are in-place
             seqpass.apply(cu)
+
             return cu.circuit
 
+        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(OpType.CZ)
         assert result
