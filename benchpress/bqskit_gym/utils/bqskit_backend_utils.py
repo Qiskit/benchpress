@@ -73,9 +73,9 @@ def BqskitFlexibleBackend(min_qubits, layout="square", basis_gates=None):
     possible_gates = _basis_gate_str_to_bqskit_gate(POSSIBLE_2Q_GATES)
     twoq_gates = list(model.gate_set.intersection(possible_gates))
     if len(twoq_gates) > 1:
-        raise Exception('Only one 2Q gate type is currently supported')
+        raise Exception("Only one 2Q gate type is currently supported")
     elif len(twoq_gates) == 0:
-        raise Exception(f'No gate in {possible_gates} found!')
+        raise Exception(f"No gate in {possible_gates} found!")
     setattr(model, "two_q_gate_type", twoq_gates[0])
     return model
 
@@ -96,9 +96,9 @@ def _get_bqskit_machine_model(backend):
     possible_gates = _basis_gate_str_to_bqskit_gate(POSSIBLE_2Q_GATES)
     twoq_gates = list(model.gate_set.intersection(possible_gates))
     if len(twoq_gates) > 1:
-        raise Exception('Only one 2Q gate type is currently supported')
+        raise Exception("Only one 2Q gate type is currently supported")
     elif len(twoq_gates) == 0:
-        raise Exception(f'No gate in {possible_gates} found!')
+        raise Exception(f"No gate in {possible_gates} found!")
     setattr(model, "two_q_gate_type", twoq_gates[0])
     return model
 

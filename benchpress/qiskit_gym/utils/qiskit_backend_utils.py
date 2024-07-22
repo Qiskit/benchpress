@@ -74,6 +74,7 @@ STR_TO_IBM_FAKE_BACKEND = {
     "fake_yorktown_v2": fake_backends.FakeYorktownV2,
 }
 
+
 def get_qiskit_bench_backend(backend_name):
     if "fake" in backend_name:
         backend = STR_TO_IBM_FAKE_BACKEND[backend_name]()
@@ -82,13 +83,13 @@ def get_qiskit_bench_backend(backend_name):
         backend = service.get_backend(backend_name)
     else:
         raise ValueError(f"Backend name {backend_name} not recognized.")
-   
+
     op_names = backend.operation_names
     twoq_gates = list(set(op_names).intersection(POSSIBLE_2Q_GATES))
     if len(twoq_gates) > 1:
-        raise Exception('Only one 2Q gate type is currently supported')
+        raise Exception("Only one 2Q gate type is currently supported")
     elif len(twoq_gates) == 0:
-        raise Exception(f'No gate in {POSSIBLE_2Q_GATES} found!')
+        raise Exception(f"No gate in {POSSIBLE_2Q_GATES} found!")
     setattr(backend, "two_q_gate_type", twoq_gates[0])
     return backend
 

@@ -3,13 +3,14 @@
 import numpy as np
 
 from qiskit import QuantumCircuit
-from qiskit.converters import circuit_to_dag, dag_to_circuit
+from qiskit.converters import circuit_to_dag
 from qiskit.circuit import CircuitInstruction, Qubit, library
 from qiskit.dagcircuit import DAGCircuit
 from qiskit.passmanager import PropertySet
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.qiskit_gym.circuits import multi_control_circuit
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
@@ -93,8 +94,8 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         """Perform Pauli-twirling on a 100Q QV
         circuit
         """
-        circuit = QuantumCircuit.from_qasm_file(
-            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", benchmark
         )
         assert benchmark(circuit_twirl, circuit)
 
@@ -123,8 +124,8 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         translate = generate_preset_pass_manager(
             1, basis_gates=["sx", "x", "rz", "cz"]
         ).translation
-        circ = QuantumCircuit.from_qasm_file(
-            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+        circ = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
         )
 
         @benchmark

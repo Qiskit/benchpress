@@ -30,6 +30,7 @@ from bqskit.ir.gates import (
 )
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 
@@ -82,8 +83,8 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         """Perform Pauli-twirling on a 100Q QV
         circuit
         """
-        circuit = Circuit.from_file(
-            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", benchmark
         )
 
         @benchmark
@@ -134,7 +135,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         to [sx, x, rz, cz]
         """
         qasm_file = Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
-        circ = Circuit.from_file(qasm_file)
+        circ = qasm_circuit_loader(qasm_file, benchmark)
 
         model = MachineModel(
             num_qudits=circ.num_qudits,

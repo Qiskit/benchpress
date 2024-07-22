@@ -19,16 +19,17 @@ PYTKET_QISKIT_VERSION = importlib.metadata.version("pytket-qiskit")
 
 
 def pytest_report_header(config):
-    """Add some info about packages and backend to the pytest CLI header
-    """
+    """Add some info about packages and backend to the pytest CLI header"""
     ret = [
-            f"pytket: {pytket.__version__}",
-            f"pytket_qiskit: {PYTKET_QISKIT_VERSION}",
-            f"qiskit: {qiskit.__version__}",
-            f"qiskit_ibm_runtime: {qiskit_ibm_runtime.__version__}"
-           ]
-    if hasattr(config.known_args_namespace, 'timeout_skip_list'):
-        ret.append(f"timeout_skip_list: {config.known_args_namespace.timeout_skip_list}")
+        f"pytket: {pytket.__version__}",
+        f"pytket_qiskit: {PYTKET_QISKIT_VERSION}",
+        f"qiskit: {qiskit.__version__}",
+        f"qiskit_ibm_runtime: {qiskit_ibm_runtime.__version__}",
+    ]
+    if hasattr(config.known_args_namespace, "timeout_skip_list"):
+        ret.append(
+            f"timeout_skip_list: {config.known_args_namespace.timeout_skip_list}"
+        )
     return ret
 
 
