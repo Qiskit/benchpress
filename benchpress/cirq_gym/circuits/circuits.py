@@ -13,6 +13,7 @@
 """Cirq circuit generation"""
 
 import numpy as np
+import sympy
 import cirq
 
 
@@ -120,3 +121,51 @@ def dtc_unitary(num_qubits, g=0.95, seed=12345):
     qc.append([moment1, moment2, moment3, moment4])
 
     return qc
+
+
+def cirq_circSU2(width, num_reps=3):
+    """Efficient SU2 circuit with circular entanglement
+    and using Ry and Rz 1Q-gates'
+
+    Parameters:
+        width (int): Number of qubits in circuit
+        num_reps (int): Number of repetitions, default = 3
+
+    Returns:
+        Circuit: Output circuit
+    """
+    num_params = 2 * width * (num_reps + 1)
+    params = [sympy.Symbol(f"x_{kk}") for kk in range(num_params)]
+
+    qreg= cirq.LineQubit.range(width)
+    out = cirq.Circuit()
+    
+    counter = 0
+    ops0 = []
+    ops1 = []
+    for i in range(0, width):
+        ops0.append(cirq.Ry(rads=params[counter]).on(qreg[i]))
+        ops1.append(cirq.Rz(rads=params[counter+width]).on(qreg[i]))
+        counter += 1
+    counter += width
+
+    out.append([cirq.Moment(ops0),cirq.Moment(ops1)])
+
+    for _ in range(num_reps):
+        ops = []
+        ops.append(cirq.CNOT.on(qreg[width - 1], qreg[0]))
+        out.append([cirq.Moment(ops)])
+        for qubit in range(width - 1):
+            ops = []
+            ops.append(cirq.CNOT.on(qreg[qubit], qreg[qubit + 1]))
+            out.append([cirq.Moment(ops)])
+
+        ops0 = []
+        ops1 = []
+        for i in range(width):
+            ops0.append(cirq.Ry(rads=params[counter]).on(qreg[i]))
+            ops1.append(cirq.Rz(rads=params[counter+width]).on(qreg[i]))
+            counter += 1
+        counter += width
+        out.append([cirq.Moment(ops0),cirq.Moment(ops1)])
+    return out
