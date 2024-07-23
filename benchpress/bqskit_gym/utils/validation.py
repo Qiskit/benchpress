@@ -31,6 +31,6 @@ def bqskit_circuit_validation(circuit, backend):
     edges = backend.coupling_graph
     for item in circuit.operations():
         if item.gate == backend.two_q_gate_type:
-            if item.location not in edges:
+            if item.location not in edges and item.location[::-1] not in edges:
                 raise Exception(f'2Q gate edge {item.location} not in backend topology')
     return True
