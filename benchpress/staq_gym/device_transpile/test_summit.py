@@ -18,6 +18,7 @@ from qiskit import QuantumCircuit, qasm2
 from qiskit.circuit.library import EfficientSU2
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.qiskit_gym.circuits import bv_all_ones, trivial_bvlike_circuit
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.workouts.validation import benchpress_test_validation
@@ -77,10 +78,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         # load output QASM as a QuantumCircuit to get statistics as
         # staq does not have built-in utilities for such
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
 
     def test_QV_100_transpile(self, benchmark, staq_device):
@@ -101,10 +99,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         # load output QASM as a QuantumCircuit to get statistics as
         # staq does not have built-in utilities for such
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
 
     def test_circSU2_100_transpile(self, benchmark, tmp_path_factory, staq_device):
@@ -132,10 +127,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
 
     def test_BV_100_transpile(self, benchmark, tmp_path_factory, staq_device):
@@ -157,10 +149,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
 
     def test_square_heisenberg_100_transpile(self, benchmark, staq_device):
@@ -179,10 +168,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
 
     def test_QAOA_100_transpile(self, benchmark, staq_device):
@@ -201,10 +187,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
 
     def test_BVlike_simplification_transpile(
@@ -230,8 +213,5 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result

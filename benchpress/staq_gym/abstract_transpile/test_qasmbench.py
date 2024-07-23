@@ -6,6 +6,7 @@ import pytest
 from qiskit import QuantumCircuit
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.staq_gym.utils.staq_backend_utils import StaqFlexibleBackend
 from benchpress.workouts.abstract_transpile import (
     WorkoutAbstractQasmBenchLarge,
@@ -90,10 +91,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
 
 
@@ -118,10 +116,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
 
 
@@ -146,8 +141,5 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result
