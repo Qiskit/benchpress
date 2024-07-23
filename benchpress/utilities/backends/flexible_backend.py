@@ -79,7 +79,7 @@ class FlexibleBackend(GenericBackendV2):
             num_qubits = cmap.size()
 
         elif layout == "all-to-all":
-            cmap = None
+            cmap = CouplingMap.from_full(min_qubits)
             num_qubits = min_qubits
 
         else:
