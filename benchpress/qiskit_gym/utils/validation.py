@@ -27,10 +27,12 @@ def qiskit_circuit_validation(circuit, backend):
     if diff_set:
         raise Exception(f'Circuit has gates outside backend basis set {diff_set}')
 
-    edges = set(backend.coupling_map.get_edges())
-    for gate in circuit.get_instructions(backend.two_q_gate_type):
-        _edge = (circuit.find_bit(gate.qubits[0]).index,
-                circuit.find_bit(gate.qubits[1]).index)
-        if _edge not in edges:
-            raise Exception(f'2Q gate edge {_edge} not in backend topology')
+    cmap = backend.coupling_map
+    if cmap.graph.num_edges() < cmap.graph.num_nodes() * (cmap.graph.num_nodes()-1):
+        edges = set(cmap.get_edges())
+        for gate in circuit.get_instructions(backend.two_q_gate_type):
+            _edge = (circuit.find_bit(gate.qubits[0]).index,
+                    circuit.find_bit(gate.qubits[1]).index)
+            if _edge not in edges:
+                raise Exception(f'2Q gate edge {_edge} not in backend topology')
     return True
