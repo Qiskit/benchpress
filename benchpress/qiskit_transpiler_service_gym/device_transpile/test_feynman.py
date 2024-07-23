@@ -16,7 +16,7 @@ import pytest
 from qiskit_transpiler_service.transpiler_service import TranspilerService
 
 from benchpress.config import Configuration
-from benchpress.utilities.io import qasm_circuit_loader
+from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
 from benchpress.utilities.validation import circuit_validator
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
@@ -56,8 +56,5 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
             trans_qc = TRANS_SERVICE.run(circuit)
             return trans_qc
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == TWO_Q_GATE
-        )
+        output_circuit_properties(result, BACKEND.two_q_gate_type, benchmark)
         assert circuit_validator(result, BACKEND)
