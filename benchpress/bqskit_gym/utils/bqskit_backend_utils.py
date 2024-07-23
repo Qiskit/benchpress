@@ -89,7 +89,7 @@ def _get_bqskit_machine_model(backend):
     if "ecr" in basis_gates:
         gate_set.add(ECRGate())
     if config.coupling_map:
-        coupling_map = config.coupling_map
+        coupling_map = list({tuple(sorted(e)) for e in config.coupling_map})
     else:
         coupling_map = None
     model = MachineModel(num_qudits, coupling_map, gate_set)  # type: ignore
