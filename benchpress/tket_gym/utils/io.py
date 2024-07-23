@@ -29,3 +29,15 @@ def tket_qasm_loader(qasm_file, benchmark):
     benchmark.extra_info["qasm_load_time"] = stop - start
     benchmark.extra_info["input_num_qubits"] = circuit.n_qubits
     return circuit
+
+
+def tket_output_circuit_properties(circuit, two_qubit_gate, benchmark):
+    ops = {}
+    for command in circuit.get_commands():
+        if command.op.type in ops:
+            ops[command.op.type] += 1
+        else:
+            ops[command.op.type] = 1
+    benchmark.extra_info["circuit_operations"] = ops
+    benchmark.extra_info["gate_count_2q"] = circuit.n_gates_of_type(two_qubit_gate)
+    benchmark.extra_info["depth_2q"] = circuit.depth_by_type(two_qubit_gate)

@@ -15,7 +15,7 @@ import pytest
 
 from bqskit import compile
 from bqskit.compiler import Compiler
-from benchpress.utilities.io import qasm_circuit_loader
+from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
 from benchpress.utilities.validation import circuit_validator
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.config import Configuration
@@ -44,7 +44,6 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     def test_QASMBench_small(self, benchmark, circ_and_topo):
         circuit = qasm_circuit_loader(circ_and_topo[0], benchmark)
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
-        TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
 
         @benchmark
@@ -57,8 +56,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, BACKEND.two_q_gate_type, benchmark)
         assert circuit_validator(result, BACKEND)
 
 
@@ -68,7 +66,6 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     def test_QASMBench_medium(self, benchmark, circ_and_topo):
         circuit = qasm_circuit_loader(circ_and_topo[0], benchmark)
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
-        TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
 
         @benchmark
@@ -81,8 +78,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, BACKEND.two_q_gate_type, benchmark)
         assert circuit_validator(result, BACKEND)
 
 
@@ -92,7 +88,6 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     def test_QASMBench_large(self, benchmark, circ_and_topo):
         circuit = qasm_circuit_loader(circ_and_topo[0], benchmark)
         BACKEND = BqskitFlexibleBackend(circuit.num_qudits, circ_and_topo[1])
-        TWO_Q_GATE = BACKEND.two_q_gate_type
         compiler = Compiler()
 
         @benchmark
@@ -105,6 +100,5 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, BACKEND.two_q_gate_type, benchmark)
         assert circuit_validator(result, BACKEND)
