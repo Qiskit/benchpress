@@ -28,3 +28,15 @@ def bqskit_qasm_loader(qasm_file, benchmark):
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
     return circuit
+
+
+def bqskit_output_circuit_properties(circuit, two_qubit_gate, benchmark):
+    ops = {}
+    for op in circuit.operations():
+        if op.gate.name in ops:
+            ops[op.gate.name] += 1
+        else:
+            ops[op.gate.name] = 1
+    benchmark.extra_info["circuit_operations"] = ops
+    benchmark.extra_info["gate_count_2q"] = circuit.gate_counts[two_qubit_gate]
+    benchmark.extra_info["depth_2q"] = circuit.multi_qudit_depth

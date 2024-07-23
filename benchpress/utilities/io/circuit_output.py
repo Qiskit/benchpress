@@ -30,5 +30,9 @@ def output_circuit_properties(circuit, two_qubit_gate, benchmark):
     elif gym_name == "tket":
         from benchpress.tket_gym.utils.io import tket_output_circuit_properties
         tket_output_circuit_properties(circuit, two_qubit_gate, benchmark)
+    
+    elif gym_name == "bqskit":
+        from benchpress.bqskit_gym.utils.io import bqskit_output_circuit_properties
+        bqskit_output_circuit_properties(circuit, two_qubit_gate, benchmark)
     else:
         raise Exception(f'Unsupported gym name {gym_name}')
