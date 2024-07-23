@@ -24,7 +24,7 @@ def qasm_circuit_loader(qasm_file, benchmark):
         The circuit instance for the corresponding SDK
     """
     gym_name = Configuration.gym_name
-    if gym_name in ["qiskit", "qiskit-transpiler-service"]:
+    if gym_name in ["qiskit", "qiskit-transpiler-service", "staq"]:
         from benchpress.qiskit_gym.utils.io import qiskit_qasm_loader
 
         circuit = qiskit_qasm_loader(qasm_file, benchmark)

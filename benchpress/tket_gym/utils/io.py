@@ -27,4 +27,5 @@ def tket_qasm_loader(qasm_file, benchmark):
     circuit = circuit_from_qasm(qasm_file)
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
+    benchmark.extra_info["input_num_qubits"] = circuit.n_qubits
     return circuit
