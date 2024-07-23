@@ -6,7 +6,7 @@ import pytest
 from qiskit import QuantumCircuit
 
 from benchpress.config import Configuration
-from benchpress.utilities.io import output_circuit_properties
+from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
 from benchpress.staq_gym.utils.staq_backend_utils import StaqFlexibleBackend
 from benchpress.workouts.abstract_transpile import (
     WorkoutAbstractQasmBenchLarge,
@@ -75,7 +75,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     @pytest.mark.parametrize("circ_and_topo", SMALL_CIRC_TOPO, ids=SMALL_NAMES)
     def test_QASMBench_small(self, benchmark, circ_and_topo, staq_device):
         input_qasm_file = circ_and_topo[0]
-        circuit = QuantumCircuit.from_qasm_file(input_qasm_file)
+        circuit = qasm_circuit_loader(input_qasm_file, benchmark)
         backend = StaqFlexibleBackend(
             circuit.num_qubits, circ_and_topo[1]
         ).get_staq_flexible_backend()
@@ -100,7 +100,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     @pytest.mark.parametrize("circ_and_topo", MEDIUM_CIRC_TOPO, ids=MEDIUM_NAMES)
     def test_QASMBench_medium(self, benchmark, circ_and_topo, staq_device):
         input_qasm_file = circ_and_topo[0]
-        circuit = QuantumCircuit.from_qasm_file(input_qasm_file)
+        circuit = qasm_circuit_loader(input_qasm_file, benchmark)
         backend = StaqFlexibleBackend(
             circuit.num_qubits, circ_and_topo[1]
         ).get_staq_flexible_backend()
@@ -125,7 +125,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     @pytest.mark.parametrize("circ_and_topo", LARGE_CIRC_TOPO_MARKED, ids=LARGE_NAMES)
     def test_QASMBench_large(self, benchmark, circ_and_topo, staq_device):
         input_qasm_file = circ_and_topo[0]
-        circuit = QuantumCircuit.from_qasm_file(input_qasm_file)
+        circuit = qasm_circuit_loader(input_qasm_file, benchmark)
         backend = StaqFlexibleBackend(
             circuit.num_qubits, circ_and_topo[1]
         ).get_staq_flexible_backend()
