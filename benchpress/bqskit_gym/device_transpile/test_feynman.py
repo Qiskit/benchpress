@@ -16,6 +16,7 @@ from bqskit import compile
 from bqskit.compiler import Compiler
 
 from benchpress.utilities.io import qasm_circuit_loader
+from benchpress.utilities.validation import circuit_validator
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
@@ -56,4 +57,4 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
         benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
         benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
-        assert result
+        assert circuit_validator(result, BACKEND)

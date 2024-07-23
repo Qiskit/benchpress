@@ -13,6 +13,7 @@
 import pytest
 
 from benchpress.utilities.io import qasm_circuit_loader
+from benchpress.utilities.validation import circuit_validator
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.config import Configuration
 from benchpress.tket_gym.utils.tket_backend_utils import TketFlexibleBackend
@@ -52,7 +53,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
 
         benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
         benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
-        assert result
+        assert circuit_validator(result, backend)
 
 
 @benchpress_test_validation
@@ -73,7 +74,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
 
         benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
         benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
-        assert result
+        assert circuit_validator(result, backend)
 
 
 @benchpress_test_validation
@@ -94,4 +95,4 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
 
         benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
         benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
-        assert result
+        assert circuit_validator(result, backend)

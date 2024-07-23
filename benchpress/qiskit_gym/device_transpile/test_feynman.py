@@ -19,6 +19,7 @@ from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 from benchpress.utilities.io import qasm_circuit_loader
+from benchpress.utilities.validation import circuit_validator
 
 BACKEND = Configuration.backend()
 TWO_Q_GATE = BACKEND.two_q_gate_type
@@ -52,4 +53,4 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
         benchmark.extra_info["depth_2q"] = result.depth(
             filter_function=lambda x: x.operation.name == TWO_Q_GATE
         )
-        assert result
+        assert circuit_validator(result, BACKEND)
