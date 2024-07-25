@@ -18,6 +18,7 @@ import pytest
 from qiskit import QuantumCircuit
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 from benchpress.workouts.validation import benchpress_test_validation
 
@@ -71,7 +72,7 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
         num_qubits = len(dev["qubits"])
         input_qasm_file = f"{Configuration.get_qasm_dir('feynman')}{filename}"
 
-        circuit = QuantumCircuit.from_qasm_file(input_qasm_file)
+        circuit = qasm_circuit_loader(input_qasm_file, benchmark)
         if circuit.num_qubits > num_qubits:
             pytest.skip("Circuit too large for given backend.")
 
@@ -85,8 +86,5 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cx", 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == "cx"
-        )
+        output_circuit_properties(result, 'cx', benchmark)
         assert result

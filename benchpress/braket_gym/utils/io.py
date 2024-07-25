@@ -31,4 +31,5 @@ def braket_qasm_loader(qasm_file, benchmark):
     circuit = Circuit.from_ir(data)
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
+    benchmark.extra_info["input_num_qubits"] = circuit.qubit_count
     return circuit

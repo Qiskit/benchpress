@@ -20,7 +20,7 @@ from benchpress.bqskit_gym.circuits import (
     trivial_bvlike_circuit,
 )
 from benchpress.config import Configuration
-from benchpress.utilities.io import qasm_circuit_loader
+from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
 from benchpress.utilities.validation import circuit_validator
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
@@ -50,8 +50,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_QV_100_transpile(self, benchmark):
@@ -70,8 +69,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_circSU2_100_transpile(self, benchmark):
@@ -88,8 +86,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_BV_100_transpile(self, benchmark):
@@ -106,8 +103,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_square_heisenberg_100_transpile(self, benchmark):
@@ -128,8 +124,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_QAOA_100_transpile(self, benchmark):
@@ -150,8 +145,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_BVlike_simplification_transpile(self, benchmark):
@@ -171,6 +165,5 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             )
             return new_circ
 
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
