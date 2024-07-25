@@ -49,6 +49,7 @@ class BenchpressConfig:
         self._gym_name = None
         self.config_parser = configparser.ConfigParser()
         self.qasm_dir = os.path.dirname(os.path.abspath(__file__)) + os.sep + "qasm"
+        self.hamiltonian_dir = os.path.dirname(os.path.abspath(__file__)) + os.sep + "hamiltonian"
         # read file
         self.config_parser.read(self.filename)
         for sec in self.config_parser.sections():
@@ -69,10 +70,17 @@ class BenchpressConfig:
 
     def get_qasm_dir(self, sub_dir=None):
         if sub_dir is None:
-            return self.qasm_dir
+            return self.qasm_dir + os.sep
 
         qasm_dir = self.qasm_dir
         return qasm_dir + os.sep + sub_dir + os.sep
+
+    def get_hamiltonian_dir(self, sub_dir=None):
+        if sub_dir is None:
+            return self.hamiltonian_dir + os.sep
+
+        ham_dir = self.hamiltonian_dir
+        return ham_dir + os.sep + sub_dir + os.sep
 
     def backend(self):
         from benchpress.utilities.backends import get_backend

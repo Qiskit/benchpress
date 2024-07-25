@@ -10,8 +10,12 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 from time import perf_counter
-from pytket.qasm import circuit_from_qasm
+from math import pi
 
+from pytket import Qubit, Circuit
+from pytket.qasm import circuit_from_qasm
+from pytket._tket.pauli import Pauli, QubitPauliString
+from pytket.utils import QubitPauliOperator, gen_term_sequence_circuit
 
 def tket_qasm_loader(qasm_file, benchmark):
     """Loads a QASM file and measures the import time
@@ -28,3 +32,20 @@ def tket_qasm_loader(qasm_file, benchmark):
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
     return circuit
+
+
+def qubit_pauli_operator_from_qiskit(sparse_pauli_op):
+    """Convert Qiskit SparsePauliOp to pytket QubitPauliOperator."""
+    tk_qpop = {}
+    input_qs = [Qubit(q) for q in range(sparse_pauli_op.num_qubits)]
+    tket_p = {"I": Pauli.I, "X": Pauli.X, "Y": Pauli.Y, "Z": Pauli.Z}
+    for (pauli_term, c) in sparse_pauli_op.to_list():
+        tk_qpop[QubitPauliString(input_qs, [tket_p[p] for p in pauli_term])] = c
+    return QubitPauliOperator(tk_qpop)
+
+
+def tket_hamiltonian_circuit(sparse_op, label=None, evo_time=1):
+    qc = Circuit(sparse_op.num_qubits)
+    # `gen_term_sequence_circuit` assumes a default evolution time of pi/2, hence we multiply a prefactor
+    tket_op = qubit_pauli_operator_from_qiskit(sparse_op*evo_time*2/pi)
+    return gen_term_sequence_circuit(tket_op, qc)

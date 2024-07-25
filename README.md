@@ -100,6 +100,8 @@ Benchpress makes use of files from the following open-source packages under term
 
 - [QasmBench](https://github.com/pnnl/QASMBench)
 
+- [HamLib](https://portal.nersc.gov/cfs/m888/dcamps/hamlib/)
+
 
 ## License
 

@@ -10,7 +10,9 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 from time import perf_counter
+from math import pi
 from qiskit import QuantumCircuit
+from qiskit.circuit.library import PauliEvolutionGate
 
 
 def qiskit_qasm_loader(qasm_file, benchmark):
@@ -19,3 +21,10 @@ def qiskit_qasm_loader(qasm_file, benchmark):
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
     return circuit
+
+
+def qiskit_hamiltonian_circuit(sparse_op, label=None, evo_time=1):
+    qc = QuantumCircuit(sparse_op.num_qubits)
+    qc.append(PauliEvolutionGate(sparse_op, time=evo_time, label=label),
+              qargs=range(sparse_op.num_qubits))
+    return qc

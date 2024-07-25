@@ -12,3 +12,4 @@
 
 from .device_transpile_100Q import WorkoutDeviceTranspile100Q
 from .feynman import WorkoutDeviceFeynman
+from .hamlib_hamiltonians import WorkoutDeviceHamlibHamiltonians
