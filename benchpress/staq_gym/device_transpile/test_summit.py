@@ -215,3 +215,24 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         output_circuit_properties(result, 'cx', benchmark)
         assert result
+
+    def test_clifford_100_transpile(self, benchmark, staq_device):
+        """Compile 100Q Clifford circuit against target backend"""
+        device = staq_device(backend=BACKEND)
+        qasm_file = "clifford_100_12345.qasm"
+        input_qasm_file = Configuration.get_qasm_dir("clifford") + qasm_file
+
+        @benchmark
+        def result():
+            out = subprocess.run(
+                RUN_ARGS_COMMON + ["-m", "--device", device, input_qasm_file],
+                capture_output=True,
+                text=True,
+            )
+
+            return QuantumCircuit.from_qasm_str(out.stdout)
+
+        # load output QASM as a QuantumCircuit to get statistics as
+        # staq does not have built-in utilities for such
+        output_circuit_properties(result, 'cx', benchmark)
+        assert result
