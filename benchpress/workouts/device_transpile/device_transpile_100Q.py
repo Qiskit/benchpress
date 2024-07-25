@@ -57,3 +57,8 @@ class WorkoutDeviceTranspile100Q:
         into a single X and Z gate on a target device
         """
         pass
+
+    @pytest.mark.skip(reason="Not implimented")
+    def test_clifford_100_transpile(self, benchmark):
+        """Transpile a Clifford 100 circuit against a target device"""
+        pass
