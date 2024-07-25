@@ -16,6 +16,7 @@ import pytest
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.utilities.io.hamiltonians import generate_hamiltonian_circuit
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceHamlibHamiltonians
@@ -50,8 +51,5 @@ class TestWorkoutDeviceHamlibHamiltonians(WorkoutDeviceHamlibHamiltonians):
             return trans_qc
 
         benchmark.extra_info.update(hamiltonian_info)
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get(TWO_Q_GATE, 0)
-        benchmark.extra_info["depth_2q"] = result.depth(
-            filter_function=lambda x: x.operation.name == TWO_Q_GATE
-        )
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)

@@ -16,6 +16,7 @@ from bqskit import compile
 from bqskit.compiler import Compiler
 
 from benchpress.bqskit_gym.utils.bqskit_backend_utils import BqskitFlexibleBackend
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.utilities.io.hamiltonians import generate_hamiltonian_circuit
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.config import Configuration
@@ -51,8 +52,7 @@ class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
             return new_circ
 
         benchmark.extra_info.update(circ_and_topo[0])
-        benchmark.extra_info["gate_count_2q"] = result.gate_counts[TWO_Q_GATE]
-        benchmark.extra_info["depth_2q"] = result.multi_qudit_depth
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
 

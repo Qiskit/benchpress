@@ -15,6 +15,7 @@ import pytest
 
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.utilities.io.hamiltonians import generate_hamiltonian_circuit
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceHamlibHamiltonians
@@ -51,6 +52,5 @@ class TestWorkoutDeviceHamlibHamiltonians(WorkoutDeviceHamlibHamiltonians):
             return new_circ
 
         benchmark.extra_info.update(hamiltonian_info)
-        benchmark.extra_info["gate_count_2q"] = result.n_gates_of_type(TWO_Q_GATE)
-        benchmark.extra_info["depth_2q"] = result.depth_by_type(TWO_Q_GATE)
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
