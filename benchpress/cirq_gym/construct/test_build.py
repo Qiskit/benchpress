@@ -97,6 +97,20 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             == 15000
         )
 
+    def test_bigint_qasm2_import(self, benchmark):
+        """QASM import with bigint"""
+
+        @benchmark
+        def result():
+            with open(
+                Configuration.get_qasm_dir("bigint") + "bigint.qasm", "r"
+            ) as file:
+                data = file.read()
+            out = circuit_from_qasm(data)
+            return out
+        
+        assert result
+
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
         parameterized efficient SU2 circuit with circular entanglement
