@@ -37,7 +37,7 @@ def cirq_output_circuit_properties(circuit, two_qubit_gate, benchmark):
 
     Parameters:
         circuit (Circuit): Input Cirq circuit
-        two_qubit_gate: A 2Q gate instance, e.g. cirq.CNOT or cirq.CZ
+        two_qubit_gate: A 2Q gate , e.g. 'CXPowGate', 'MatrixGate', or 'CZPowGate'
         benchmark : The benchmark object
     """
 
@@ -45,13 +45,13 @@ def cirq_output_circuit_properties(circuit, two_qubit_gate, benchmark):
     count_ops = {}
 
     for item in circuit.all_operations():
-        if item.gate == twoq_gates:
+        item_name = type(item.gate).__name__
+        if item_name == two_qubit_gate:
             twoq_gates.append(item)
-        item_type = type(item.gate).__name__
-        if item_type in count_ops:
-            count_ops[item_type] += 1
+        if item_name in count_ops:
+            count_ops[item_name] += 1
         else:
-            count_ops[item_type] = 1
+            count_ops[item_name] = 1
     
     benchmark.extra_info["output_num_qubits"] = cirq.num_qubits(circuit)
     benchmark.extra_info["output_circuit_operations"] = count_ops
