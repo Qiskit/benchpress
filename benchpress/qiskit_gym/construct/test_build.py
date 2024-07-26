@@ -27,7 +27,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = QuantumVolume(100, 100, seed=SEED)
             return out
 
-        assert output_circuit_properties(result, benchmark)
+        assert result
 
     def test_DTC100_set_build(self, benchmark):
         """Measures an SDKs ability to build a set
@@ -48,8 +48,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
+        output_circuit_properties(result, 'rzz', benchmark)
         assert result.count_ops()["rzz"] == 9900
-        assert output_circuit_properties(result, benchmark)
 
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
@@ -62,7 +62,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = multi_control_circuit(ITER_CIRCUIT_WIDTH)
             return out
 
-        assert output_circuit_properties(result, benchmark)
+        assert result
 
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
@@ -79,7 +79,6 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         assert result.num_parameters == 1000
-        assert output_circuit_properties(result, benchmark)
 
     def test_param_circSU2_100_bind(self, benchmark):
         """Measures an SDKs ability to bind 1000 parameters
@@ -97,7 +96,6 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         assert result.num_parameters == 0
-        assert output_circuit_properties(result, benchmark)
 
     def test_QV100_qasm2_import(self, benchmark):
         """QASM import of QV100 circuit"""
@@ -107,11 +105,11 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = load(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
             return out
 
+        output_circuit_properties(result, 'cx', benchmark)
         ops = result.count_ops()
         assert ops.get("rz", 0) == 120000
         assert ops.get("rx", 0) == 80000
         assert ops.get("cx", 0) == 15000
-        assert output_circuit_properties(result, benchmark)
 
     def test_bigint_qasm2_import(self, benchmark):
         """bigint QASM import test"""
@@ -121,4 +119,5 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = load(Configuration.get_qasm_dir("bigint") + "bigint.qasm")
             return out
 
-        assert output_circuit_properties(result, benchmark)
+        output_circuit_properties(result, 'cx', benchmark)
+        assert result
