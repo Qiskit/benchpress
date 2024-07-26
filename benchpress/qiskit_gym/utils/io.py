@@ -23,8 +23,9 @@ def qiskit_qasm_loader(qasm_file, benchmark):
 
 
 def qiskit_output_circuit_properties(circuit, two_qubit_gate, benchmark):
-    benchmark.extra_info["circuit_operations"] = circuit.count_ops()
-    benchmark.extra_info["gate_count_2q"] = circuit.count_ops().get(two_qubit_gate, 0)
-    benchmark.extra_info["depth_2q"] = circuit.depth(
+    benchmark.extra_info["output_num_qubits"] = circuit.num_qubits
+    benchmark.extra_info["output_circuit_operations"] = circuit.count_ops()
+    benchmark.extra_info["output_gate_count_2q"] = circuit.count_ops().get(two_qubit_gate, 0)
+    benchmark.extra_info["output_depth_2q"] = circuit.depth(
             filter_function=lambda x: x.operation.name == two_qubit_gate
         )

@@ -33,8 +33,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            braket_QV(100, 100)
-            return True
+            out = braket_QV(100, 100)
+            return out
 
         assert result
 
@@ -57,7 +57,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
-        assert True
+        assert result
 
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
@@ -71,7 +71,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out.x(0)
             for kk in range(ITER_CIRCUIT_WIDTH):
                 out.x(kk + 1, control=range(kk + 1))
-            return True
+            return out
 
         assert result
 

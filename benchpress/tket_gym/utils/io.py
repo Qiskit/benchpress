@@ -38,6 +38,7 @@ def tket_output_circuit_properties(circuit, two_qubit_gate, benchmark):
             ops[command.op.type] += 1
         else:
             ops[command.op.type] = 1
-    benchmark.extra_info["circuit_operations"] = ops
-    benchmark.extra_info["gate_count_2q"] = circuit.n_gates_of_type(two_qubit_gate)
-    benchmark.extra_info["depth_2q"] = circuit.depth_by_type(two_qubit_gate)
+    benchmark.extra_info["output_num_qubits"] = circuit.n_qubits
+    benchmark.extra_info["output_circuit_operations"] = ops
+    benchmark.extra_info["output_gate_count_2q"] = circuit.n_gates_of_type(two_qubit_gate)
+    benchmark.extra_info["output_depth_2q"] = circuit.depth_by_type(two_qubit_gate)

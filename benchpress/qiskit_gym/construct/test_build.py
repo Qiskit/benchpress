@@ -9,7 +9,7 @@ from qiskit.qasm2 import load
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
-
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.qiskit_gym.circuits import dtc_unitary, multi_control_circuit
 
 SEED = 12345
@@ -24,10 +24,10 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            QuantumVolume(100, 100, seed=SEED)
-            return True
+            out = QuantumVolume(100, 100, seed=SEED)
+            return out
 
-        assert result
+        assert output_circuit_properties(result, benchmark)
 
     def test_DTC100_set_build(self, benchmark):
         """Measures an SDKs ability to build a set
@@ -49,6 +49,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return circs[-1]
 
         assert result.count_ops()["rzz"] == 9900
+        assert output_circuit_properties(result, benchmark)
 
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
@@ -61,7 +62,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = multi_control_circuit(ITER_CIRCUIT_WIDTH)
             return out
 
-        assert result
+        assert output_circuit_properties(result, benchmark)
 
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
@@ -78,6 +79,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         assert result.num_parameters == 1000
+        assert output_circuit_properties(result, benchmark)
 
     def test_param_circSU2_100_bind(self, benchmark):
         """Measures an SDKs ability to bind 1000 parameters
@@ -95,6 +97,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         assert result.num_parameters == 0
+        assert output_circuit_properties(result, benchmark)
 
     def test_QV100_qasm2_import(self, benchmark):
         """QASM import of QV100 circuit"""
@@ -108,3 +111,14 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         assert ops.get("rz", 0) == 120000
         assert ops.get("rx", 0) == 80000
         assert ops.get("cx", 0) == 15000
+        assert output_circuit_properties(result, benchmark)
+
+    def test_bigint_qasm2_import(self, benchmark):
+        """bigint QASM import test"""
+
+        @benchmark
+        def result():
+            out = load(Configuration.get_qasm_dir("bigint") + "bigint.qasm")
+            return out
+
+        assert output_circuit_properties(result, benchmark)
