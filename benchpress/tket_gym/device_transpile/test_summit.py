@@ -61,6 +61,21 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
+    def test_circSU2_89_transpile(self, benchmark):
+        """Compile 89Q circSU2 circuit against target backend"""
+        circuit = tket_circSU2(89, 3)
+        pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
+
+        @benchmark
+        def result():
+            # Need to make a copy as the compilation is done in-place
+            new_circ = circuit.copy()
+            pm.apply(new_circ)
+            return new_circ
+
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
+        assert circuit_validator(result, BACKEND)
+    
     def test_circSU2_100_transpile(self, benchmark):
         """Compile 100Q circSU2 circuit against target backend"""
         circuit = tket_circSU2(100, 3)
