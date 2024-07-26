@@ -11,9 +11,10 @@
 # that they have been altered from the originals.
 """Test transpilation against a device"""
 import copy
-import pickle
+import json
 
 import pytest
+from qiskit.quantum_info import SparsePauliOp
 
 from benchpress.config import Configuration
 
@@ -22,7 +23,12 @@ TOPOLOGY_NAMES = Configuration.options["general"]["abstract_topologies"]
 
 def hamlib_parameters():
     directory = Configuration.get_hamiltonian_dir("hamlib")
-    ham_records = pickle.load(open(directory + "100_representative.p", 'rb'))
+    ham_records = json.load(open(directory + "100_representative.json", 'r'))
+    for h in ham_records:
+        terms = h.pop('ham_hamlib_hamiltonian_terms')
+        coefficients = h.pop('ham_hamlib_hamiltonian_coefficients')
+        h['ham_hamlib_hamiltonian'] = SparsePauliOp(terms, coefficients)
+
     hams_and_topo = []
     test_ids = []
     for idx, ham in enumerate(ham_records):

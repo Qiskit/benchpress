@@ -10,8 +10,9 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 """Test transpilation against a device"""
-import pickle
+import json
 import pytest
+from qiskit.quantum_info import SparsePauliOp
 
 from qiskit_transpiler_service.transpiler_service import TranspilerService
 
@@ -37,7 +38,11 @@ TRANS_SERVICE = TranspilerService(
 
 def pytest_generate_tests(metafunc):
     directory = Configuration.get_hamiltonian_dir("hamlib")
-    ham_records = pickle.load(open(directory+"100_representative.p", 'rb'))
+    ham_records = json.load(open(directory + "100_representative.json", 'r'))
+    for h in ham_records:
+        terms = h.pop('ham_hamlib_hamiltonian_terms')
+        coefficients = h.pop('ham_hamlib_hamiltonian_coefficients')
+        h['ham_hamlib_hamiltonian'] = SparsePauliOp(terms, coefficients)
     metafunc.parametrize("hamiltonian_info", ham_records,
                          ids=lambda x: "ham_" + x['ham_instance'][1:-1])
 

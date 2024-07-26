@@ -9,8 +9,10 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
+import json
 import os
-import pickle
+
+from qiskit.quantum_info import SparsePauliOp
 
 from benchpress.config import Configuration
 
@@ -41,9 +43,15 @@ def generate_hamiltonian_circuit(sparse_op, benchmark):
 
 
 def dump_hamiltonians_to_qasm(fn):
-    ham_records = pickle.load(open(fn, 'rb'))
+    ham_records = json.load(open(fn, 'r'))
+    for h in ham_records:
+        terms = h.pop('ham_hamlib_hamiltonian_terms')
+        coefficients = h.pop('ham_hamlib_hamiltonian_coefficients')
+        h['ham_hamlib_hamiltonian'] = SparsePauliOp(terms, coefficients)
+
     output_dir = fn[:-2]+os.sep
     os.makedirs(output_dir, exist_ok=True)
+
     from benchpress.qiskit_gym.utils.io import qiskit_hamiltonian_circuit
     from qiskit import qasm2
 
@@ -56,4 +64,4 @@ def dump_hamiltonians_to_qasm(fn):
 
 
 if __name__ == '__main__':
-    dump_hamiltonians_to_qasm(Configuration.get_hamiltonian_dir("hamlib")+"100_representative.p")
+    dump_hamiltonians_to_qasm(Configuration.get_hamiltonian_dir("hamlib")+"100_representative.json")
