@@ -30,3 +30,31 @@ def cirq_qasm_loader(qasm_file, benchmark):
     benchmark.extra_info["qasm_load_time"] = stop - start
     benchmark.extra_info["input_num_qubits"] = cirq.num_qubits(circuit)
     return circuit
+
+
+def cirq_output_circuit_properties(circuit, two_qubit_gate, benchmark):
+    """Get cirq output circuit statistics
+
+    Parameters:
+        circuit (Circuit): Input Cirq circuit
+        two_qubit_gate: A 2Q gate , e.g. 'CXPowGate', 'MatrixGate', or 'CZPowGate'
+        benchmark : The benchmark object
+    """
+
+    twoq_gates = []
+    count_ops = {}
+
+    for item in circuit.all_operations():
+        item_name = type(item.gate).__name__
+        if item_name == two_qubit_gate:
+            twoq_gates.append(item)
+        if item_name in count_ops:
+            count_ops[item_name] += 1
+        else:
+            count_ops[item_name] = 1
+    
+    benchmark.extra_info["output_num_qubits"] = cirq.num_qubits(circuit)
+    benchmark.extra_info["output_circuit_operations"] = count_ops
+    benchmark.extra_info["output_gate_count_2q"] = len(twoq_gates)
+    # https://quantumcomputing.stackexchange.com/questions/9302/computing-circuit-depth-in-cirq
+    benchmark.extra_info["output_depth_2q"] = len(cirq.Circuit(twoq_gates))

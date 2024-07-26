@@ -61,3 +61,9 @@ class WorkoutCircuitConstruction:
         QV100 circuit from a QASM2 file
         """
         pass
+
+    @pytest.mark.skip(reason="Not implimented")
+    def test_bigint_qasm2_import(self, benchmark):
+        """Try importing a QASM file with a bigint
+        """
+        pass

@@ -14,7 +14,7 @@
 import numpy as np
 
 from benchpress.config import Configuration
-from benchpress.utilities.io import qasm_circuit_loader
+from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
@@ -33,10 +33,11 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            braket_QV(100, 100)
-            return True
-
-        assert result
+            out = braket_QV(100, 100)
+            return out
+        
+        output_circuit_properties(result, 'Unitary', benchmark)
+        assert True
 
     def test_DTC100_set_build(self, benchmark):
         """Measures an SDKs ability to build a set
@@ -57,7 +58,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
-        assert True
+        output_circuit_properties(result, 'ZZ', benchmark)
+        assert result
 
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
@@ -71,7 +73,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out.x(0)
             for kk in range(ITER_CIRCUIT_WIDTH):
                 out.x(kk + 1, control=range(kk + 1))
-            return True
+            return out
 
         assert result
 
@@ -88,6 +90,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = braket_circSU2(N, 4)
             return out
 
+        output_circuit_properties(result, 'CNot', benchmark)
         assert len(result.parameters) == 1000
 
     def test_param_circSU2_100_bind(self, benchmark):
@@ -108,7 +111,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 params_dict[param.name] = vals[idx]
             out = qc.make_bound_circuit(params_dict)
             return out
-
+        output_circuit_properties(result, 'CNot', benchmark)
         assert result.parameters == set()
 
     def test_QV100_qasm2_import(self, benchmark):
@@ -120,5 +123,28 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
             )
             return circuit
+        output_circuit_properties(result, 'CNot', benchmark)
+        assert result
 
+    def test_QV100_qasm2_import(self, benchmark):
+        """QASM import of QV100 circuit"""
+
+        @benchmark
+        def result():
+            circuit = qasm_circuit_loader(
+                Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
+            )
+            return circuit
+        output_circuit_properties(result, 'CNot', benchmark)
+        assert result
+
+    def test_bigint_qasm2_import(self, benchmark):
+        """QASM import of circuit with bigint"""
+
+        @benchmark
+        def result():
+            circuit = qasm_circuit_loader(
+                Configuration.get_qasm_dir("bigint") + "bigint.qasm", benchmark
+            )
+            return circuit
         assert result
