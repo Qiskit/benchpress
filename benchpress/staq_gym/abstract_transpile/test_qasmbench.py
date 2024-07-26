@@ -40,23 +40,6 @@ RUN_ARGS_COMMON = [
     "qasm",
 ]
 
-# `cc` and `qft` circuits throw 'stoi: out of range' error.
-# So, those tests will be marked as `skip`
-mark_large_tests = ("cc", "qft")
-reason = (
-    "libc++abi: terminating due to uncaught exception of type "
-    "std::out_of_range: stoi: out of range"
-)
-
-LARGE_CIRC_TOPO_MARKED = [
-    (
-        pytest.param(circ_and_topo, marks=pytest.mark.skip(reason=reason), id=name)
-        if name.startswith(mark_large_tests)
-        else circ_and_topo
-    )
-    for circ_and_topo, name in zip(LARGE_CIRC_TOPO, LARGE_NAMES)
-]
-
 
 @pytest.fixture(scope="session")
 def staq_device(tmp_path_factory):
@@ -122,7 +105,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
 
 @benchpress_test_validation
 class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
-    @pytest.mark.parametrize("circ_and_topo", LARGE_CIRC_TOPO_MARKED, ids=LARGE_NAMES)
+    @pytest.mark.parametrize("circ_and_topo", LARGE_CIRC_TOPO, ids=LARGE_NAMES)
     def test_QASMBench_large(self, benchmark, circ_and_topo, staq_device):
         input_qasm_file = circ_and_topo[0]
         circuit = qasm_circuit_loader(input_qasm_file, benchmark)
