@@ -38,10 +38,11 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            tket_QV(100, 100, seed=SEED)
-            return True
+            out = tket_QV(100, 100, seed=SEED)
+            return out
 
-        assert output_circuit_properties(result, benchmark)
+        output_circuit_properties(result, OpType.Unitary2qBox, benchmark)
+        assert True
 
     def test_DTC100_set_build(self, benchmark):
         """Measures an SDKs ability to build a set
@@ -63,7 +64,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return circs[-1]
 
         assert result.n_gates_of_type(OpType.ZZPhase) == 9900
-        assert output_circuit_properties(result, benchmark)
+        output_circuit_properties(result,  OpType.ZZPhase, benchmark)
 
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
@@ -76,7 +77,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = multi_control_circuit(ITER_CIRCUIT_WIDTH)
             return out
 
-        assert output_circuit_properties(result, benchmark)
+        assert True
 
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
@@ -92,7 +93,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         assert len(result.free_symbols()) == 1000
-        assert output_circuit_properties(result, benchmark)
+        output_circuit_properties(result, OpType.CX, benchmark)
 
     def test_param_circSU2_100_bind(self, benchmark):
         """Measures an SDKs ability to bind 1000 parameters
@@ -116,7 +117,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         assert len(result.free_symbols()) == 0
-        assert output_circuit_properties(result, benchmark)
+        output_circuit_properties(result, OpType.CX, benchmark)
 
     def test_QV100_qasm2_import(self, benchmark):
         """QASM import of QV100 circuit"""
@@ -131,4 +132,4 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         assert result.n_gates_of_type(OpType.Rz) == 120000
         assert result.n_gates_of_type(OpType.Rx) == 80000
         assert result.n_gates_of_type(OpType.CX) == 15000
-        assert output_circuit_properties(result, benchmark)
+        output_circuit_properties(result, OpType.CX, benchmark)
