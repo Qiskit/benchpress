@@ -32,3 +32,11 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
         'xfailed': len(reporter.stats.get('xfailed', [])),
         'skipped': len(reporter.stats.get('skipped', []))
     }
+
+    test_dumps = {'passed': {}, 'failed': {}, 'xfailed': {}, 'skipped': {}}
+    for status in test_dumps:
+        for test in reporter.stats.get(status, []):
+            test_dumps[status][test.nodeid] = {'duration': test.duration,
+                                               'exception':test.longrepr,
+                                               'keywords':test.keywords}
+    output_json["test_dumps"] = test_dumps
