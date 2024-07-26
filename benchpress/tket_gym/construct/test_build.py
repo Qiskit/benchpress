@@ -42,7 +42,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         output_circuit_properties(result, OpType.Unitary2qBox, benchmark)
-        assert True
+        assert result
 
     def test_DTC100_set_build(self, benchmark):
         """Measures an SDKs ability to build a set
@@ -63,8 +63,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
-        assert result.n_gates_of_type(OpType.ZZPhase) == 9900
         output_circuit_properties(result,  OpType.ZZPhase, benchmark)
+        assert result.n_gates_of_type(OpType.ZZPhase) == 9900
 
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
@@ -92,8 +92,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = tket_circSU2(N, 4)
             return out
 
-        assert len(result.free_symbols()) == 1000
         output_circuit_properties(result, OpType.CX, benchmark)
+        assert len(result.free_symbols()) == 1000
 
     def test_param_circSU2_100_bind(self, benchmark):
         """Measures an SDKs ability to bind 1000 parameters
@@ -116,8 +116,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out.symbol_substitution(params_dict)
             return out
 
-        assert len(result.free_symbols()) == 0
         output_circuit_properties(result, OpType.CX, benchmark)
+        assert len(result.free_symbols()) == 0
 
     def test_QV100_qasm2_import(self, benchmark):
         """QASM import of QV100 circuit"""
@@ -128,8 +128,20 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
             )
             return out
-
+        
+        output_circuit_properties(result, OpType.CX, benchmark)
         assert result.n_gates_of_type(OpType.Rz) == 120000
         assert result.n_gates_of_type(OpType.Rx) == 80000
         assert result.n_gates_of_type(OpType.CX) == 15000
-        output_circuit_properties(result, OpType.CX, benchmark)
+
+    def test_bigint_qasm2_import(self, benchmark):
+        """QASM import circuit with bigint"""
+
+        @benchmark
+        def result():
+            out = circuit_from_qasm(
+                Configuration.get_qasm_dir("bigint") + "bigint.qasm"
+            )
+            return out
+
+        assert result
