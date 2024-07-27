@@ -56,7 +56,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
         circuit = qasm_circuit_loader(
-            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm",
+            benchmark
         )
 
         @benchmark
