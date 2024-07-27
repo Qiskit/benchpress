@@ -37,6 +37,6 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
     for status in test_dumps:
         for test in reporter.stats.get(status, []):
             test_dumps[status][test.nodeid] = {'duration': test.duration,
-                                               'exception':test.longrepr,
+                                               'exception':str(test.longrepr),
                                                'keywords':test.keywords}
     output_json["test_dumps"] = test_dumps
