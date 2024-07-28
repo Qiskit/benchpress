@@ -16,6 +16,7 @@ from pytket import Qubit, Circuit
 from pytket.qasm import circuit_from_qasm
 from pytket._tket.pauli import Pauli, QubitPauliString
 from pytket.utils import QubitPauliOperator, gen_term_sequence_circuit
+from benchpress.config import Configuration
 
 def tket_qasm_loader(qasm_file, benchmark):
     """Loads a QASM file and measures the import time
@@ -28,7 +29,7 @@ def tket_qasm_loader(qasm_file, benchmark):
         Circuit: A Tket circuit instance
     """
     start = perf_counter()
-    circuit = circuit_from_qasm(qasm_file)
+    circuit = circuit_from_qasm(qasm_file, maxwidth=Configuration.options["tket"]["maxwidth"])
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
     benchmark.extra_info["input_num_qubits"] = circuit.n_qubits
@@ -55,10 +56,12 @@ def tket_hamiltonian_circuit(sparse_op, label=None, evo_time=1):
 def tket_output_circuit_properties(circuit, two_qubit_gate, benchmark):
     ops = {}
     for command in circuit.get_commands():
-        if command.op.type in ops:
-            ops[command.op.type] += 1
+        cmd_name = command.op.type.name
+        if cmd_name in ops:
+            ops[cmd_name] += 1
         else:
-            ops[command.op.type] = 1
-    benchmark.extra_info["circuit_operations"] = ops
-    benchmark.extra_info["gate_count_2q"] = circuit.n_gates_of_type(two_qubit_gate)
-    benchmark.extra_info["depth_2q"] = circuit.depth_by_type(two_qubit_gate)
+            ops[cmd_name] = 1
+    benchmark.extra_info["output_num_qubits"] = circuit.n_qubits
+    benchmark.extra_info["output_circuit_operations"] = ops
+    benchmark.extra_info["output_gate_count_2q"] = circuit.n_gates_of_type(two_qubit_gate)
+    benchmark.extra_info["output_depth_2q"] = circuit.depth_by_type(two_qubit_gate)

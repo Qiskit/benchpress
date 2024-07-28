@@ -49,6 +49,7 @@ def bqskit_output_circuit_properties(circuit, two_qubit_gate, benchmark):
             ops[op.gate.name] += 1
         else:
             ops[op.gate.name] = 1
-    benchmark.extra_info["circuit_operations"] = ops
-    benchmark.extra_info["gate_count_2q"] = circuit.gate_counts[two_qubit_gate]
-    benchmark.extra_info["depth_2q"] = circuit.multi_qudit_depth
+    benchmark.extra_info["output_num_qubits"] = circuit.num_qudits
+    benchmark.extra_info["output_circuit_operations"] = ops
+    benchmark.extra_info["output_gate_count_2q"] = circuit.gate_counts.get(two_qubit_gate, 0)
+    benchmark.extra_info["output_depth_2q"] = circuit.multi_qudit_depth
