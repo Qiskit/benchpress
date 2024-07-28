@@ -10,7 +10,7 @@ from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
-from benchpress.qiskit_gym.circuits import dtc_unitary, multi_control_circuit
+from benchpress.qiskit_gym.circuits import dtc_unitary, multi_control_circuit, random_clifford_circuit
 
 SEED = 12345
 
@@ -19,7 +19,7 @@ SEED = 12345
 class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
     def test_QV100_build(self, benchmark):
         """Measures an SDKs ability to build a 100Q
-        QV circit from scratch.
+        QV circuit from scratch.
         """
 
         @benchmark
@@ -60,6 +60,18 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         def result():
             out = multi_control_circuit(ITER_CIRCUIT_WIDTH)
             return out
+
+        assert result
+
+    def test_clifford_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        Clifford circuit from scratch.
+        """
+
+        @benchmark
+        def result():
+            random_clifford_circuit(100, seed=SEED)
+            return True
 
         assert result
 
