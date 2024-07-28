@@ -15,55 +15,55 @@ import pytest
 
 @pytest.mark.benchmark(group="Transpile - Device")
 class WorkoutDeviceTranspile100Q:
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_QFT_100_transpile(self, benchmark):
         """Transpile a Quantum Fourier Transform (QFT) 100 circuit against a target device"""
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_QV_100_transpile(self, benchmark):
         """Transpile a Quantum Volume (QV) 100 circuit against a target device"""
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_circSU2_89_transpile(self, benchmark):
         """Transpile a 89Q SU2 circuit with circular entanglement against a target device"""
         pass
     
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_circSU2_100_transpile(self, benchmark):
         """Transpile a 100Q SU2 circuit with circular entanglement against a target device"""
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_BV_100_transpile(self, benchmark):
         """Transpile a 100Q Berstein-Vazirani (BV) circuit with an all-ones bit-string
         against a target device
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_square_heisenberg_100_transpile(self, benchmark):
         """Transpile a 100Q Heisenberg Hamiltonian matching a square topology
         against a target device
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_QAOA_100_transpile(self, benchmark):
         """Transpile a 100Q QAOA circuit with 3 repetitions derived from
         a random Barabasi-Albert graph to a target device
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_BVlike_simplification_transpile(self, benchmark):
         """Transpile a BV-like circuit that should collapse down
         into a single X and Z gate on a target device
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_clifford_100_transpile(self, benchmark):
         """Transpile a Clifford 100 circuit against a target device"""
         pass
