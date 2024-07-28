@@ -77,7 +77,6 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = tket_random_clifford(100, seed=SEED)
             return out
 
-        output_circuit_properties(result, OpType.CX, benchmark)
         assert result
 
     def test_multi_control_circuit(self, benchmark):

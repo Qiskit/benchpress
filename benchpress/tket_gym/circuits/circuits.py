@@ -171,38 +171,40 @@ def tket_random_clifford(num_qubits, num_gates=None, seed=None):
     out = Circuit(num_qubits)
     num_gates = num_gates or 10 * num_qubits * num_qubits
     gates = ["cx", "cz", "cy", "swap", "x", "y", "z", "s", "sdg", "h"]
+
     for _ in range(num_gates):
         gate = gates[RNG.integers(len(gates))]
-    if gate == 'cx':
-        qubits = RNG.choice(num_qubits, 2)
-        out.CX(qubits[0], qubits[1])
-    elif gate == 'cy':
-        qubits = RNG.choice(num_qubits, 2)
-        out.CY(qubits[0], qubits[1])
-    elif gate == 'cz':
-        qubits = RNG.choice(num_qubits, 2)
-        out.CZ(qubits[0], qubits[1])
-    elif gate == 'swap':
-        qubits = RNG.choice(num_qubits, 2)
-        out.SWAP(qubits[0], qubits[1])
 
-    elif gate == 'x':
-        qubit = RNG.integers(num_qubits)
-        out.X(qubit)
-    elif gate == 'y':
-        qubit = RNG.integers(num_qubits)
-        out.Y(qubit)
-    elif gate == 'z':
-        qubit = RNG.integers(num_qubits)
-        out.Z(qubit)
-    elif gate == 'h':
-        qubit = RNG.integers(num_qubits)
-        out.H(qubit)
-    elif gate == 's':
-        qubit = RNG.integers(num_qubits)
-        out.S(qubit)
-    elif gate == 'sdg':
-        qubit = RNG.integers(num_qubits)
-        out.Sdg(qubit)
+        if gate == 'cx':
+            qubits = RNG.choice(num_qubits, 2, replace=False)
+            out.CX(qubits[0], qubits[1])
+        elif gate == 'cy':
+            qubits = RNG.choice(num_qubits, 2, replace=False)
+            out.CY(qubits[0], qubits[1])
+        elif gate == 'cz':
+            qubits = RNG.choice(num_qubits, 2, replace=False)
+            out.CZ(qubits[0], qubits[1])
+        elif gate == 'swap':
+            qubits = RNG.choice(num_qubits, 2, replace=False)
+            out.SWAP(qubits[0], qubits[1])
+
+        elif gate == 'x':
+            qubit = RNG.integers(num_qubits)
+            out.X(qubit)
+        elif gate == 'y':
+            qubit = RNG.integers(num_qubits)
+            out.Y(qubit)
+        elif gate == 'z':
+            qubit = RNG.integers(num_qubits)
+            out.Z(qubit)
+        elif gate == 'h':
+            qubit = RNG.integers(num_qubits)
+            out.H(qubit)
+        elif gate == 's':
+            qubit = RNG.integers(num_qubits)
+            out.S(qubit)
+        elif gate == 'sdg':
+            qubit = RNG.integers(num_qubits)
+            out.Sdg(qubit)
 
     return out
