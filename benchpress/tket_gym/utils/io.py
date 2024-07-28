@@ -12,6 +12,7 @@
 from time import perf_counter
 from pytket.qasm import circuit_from_qasm
 
+from benchpress.config import Configuration
 
 def tket_qasm_loader(qasm_file, benchmark):
     """Loads a QASM file and measures the import time
@@ -24,7 +25,7 @@ def tket_qasm_loader(qasm_file, benchmark):
         Circuit: A Tket circuit instance
     """
     start = perf_counter()
-    circuit = circuit_from_qasm(qasm_file)
+    circuit = circuit_from_qasm(qasm_file, maxwidth=Configuration.options["tket"]["maxwidth"])
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
     benchmark.extra_info["input_num_qubits"] = circuit.n_qubits
