@@ -17,6 +17,7 @@ from bqskit.ir.gates import RZZGate, CXGate, RXGate, RZGate
 from benchpress.bqskit_gym.circuits import (
     bqskit_circSU2,
     bqskit_QV,
+    bqskit_random_clifford,
     dtc_unitary,
     multi_control_circuit,
 )
@@ -33,7 +34,7 @@ SEED = 12345
 class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
     def test_QV100_build(self, benchmark):
         """Measures an SDKs ability to build a 100Q
-        QV circit from scratch.
+        QV circuit from scratch.
         """
 
         @benchmark
@@ -80,6 +81,18 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             return out
 
         assert output_circuit_properties(result, benchmark)
+
+    def test_clifford_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        random Clifford circuit from scratch.
+        """
+
+        @benchmark
+        def result():
+            bqskit_random_clifford(100, seed=SEED)
+            return True
+
+        assert result
 
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
