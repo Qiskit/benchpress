@@ -140,7 +140,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         @benchmark
         def result():
             out = circuit_from_qasm(
-                Configuration.get_qasm_dir("bigint") + "bigint.qasm"
+                Configuration.get_qasm_dir("bigint") + "bigint.qasm", maxwidth=500
             )
             return out
 
