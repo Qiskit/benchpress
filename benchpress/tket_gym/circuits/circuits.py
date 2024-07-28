@@ -155,3 +155,54 @@ def trivial_bvlike_circuit(N):
     for kk in range(N - 2, -1, -1):
         qc.CX(kk, N - 1)
     return qc
+
+def tket_random_clifford(num_qubits, num_gates=None, seed=None):
+    """Construct a random clifford circuit
+
+    Parameters:
+        num_qubits (int): Number of qubits
+        num_gates (int): Number of gates
+        seed (int): RNG seed, default=None
+
+    Returns:
+        Circuit: random Clifford circuit
+    """
+    RNG = np.random.default_rng(seed=seed)
+    out = Circuit(num_qubits)
+    num_gates = num_gates or 10 * num_qubits * num_qubits
+    gates = ["cx", "cz", "cy", "swap", "x", "y", "z", "s", "sdg", "h"]
+    for _ in range(num_gates):
+        gate = gates[RNG.integers(len(gates))]
+    if gate == 'cx':
+        qubits = RNG.choice(num_qubits, 2)
+        out.CX(qubits[0], qubits[1])
+    elif gate == 'cy':
+        qubits = RNG.choice(num_qubits, 2)
+        out.CY(qubits[0], qubits[1])
+    elif gate == 'cz':
+        qubits = RNG.choice(num_qubits, 2)
+        out.CZ(qubits[0], qubits[1])
+    elif gate == 'swap':
+        qubits = RNG.choice(num_qubits, 2)
+        out.SWAP(qubits[0], qubits[1])
+
+    elif gate == 'x':
+        qubit = RNG.integers(num_qubits)
+        out.X(qubit)
+    elif gate == 'y':
+        qubit = RNG.integers(num_qubits)
+        out.Y(qubit)
+    elif gate == 'z':
+        qubit = RNG.integers(num_qubits)
+        out.Z(qubit)
+    elif gate == 'h':
+        qubit = RNG.integers(num_qubits)
+        out.H(qubit)
+    elif gate == 's':
+        qubit = RNG.integers(num_qubits)
+        out.S(qubit)
+    elif gate == 'sdg':
+        qubit = RNG.integers(num_qubits)
+        out.Sdg(qubit)
+
+    return out

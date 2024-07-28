@@ -17,6 +17,7 @@ from pytket.qasm import circuit_from_qasm
 from benchpress.tket_gym.circuits import (
     tket_circSU2,
     tket_QV,
+    tket_random_clifford,
     dtc_unitary,
     multi_control_circuit,
 )
@@ -33,7 +34,7 @@ SEED = 12345
 class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
     def test_QV100_build(self, benchmark):
         """Measures an SDKs ability to build a 100Q
-        QV circit from scratch.
+        QV circuit from scratch.
         """
 
         @benchmark
@@ -65,6 +66,19 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         output_circuit_properties(result,  OpType.ZZPhase, benchmark)
         assert result.n_gates_of_type(OpType.ZZPhase) == 9900
+
+    def test_clifford_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        Clifford circuit from scratch.
+        """
+
+        @benchmark
+        def result():
+            out = tket_random_clifford(100, seed=SEED)
+            return out
+
+        output_circuit_properties(result, OpType.CX, benchmark)
+        assert result
 
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
