@@ -22,6 +22,7 @@ from benchpress.tket_gym.circuits import (
 )
 
 from benchpress.config import Configuration
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
@@ -37,9 +38,10 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            tket_QV(100, 100, seed=SEED)
-            return True
+            out = tket_QV(100, 100, seed=SEED)
+            return out
 
+        output_circuit_properties(result, OpType.Unitary2qBox, benchmark)
         assert result
 
     def test_DTC100_set_build(self, benchmark):
@@ -61,6 +63,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
+        output_circuit_properties(result,  OpType.ZZPhase, benchmark)
         assert result.n_gates_of_type(OpType.ZZPhase) == 9900
 
     def test_multi_control_circuit(self, benchmark):
@@ -72,9 +75,9 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         @benchmark
         def result():
             out = multi_control_circuit(ITER_CIRCUIT_WIDTH)
-            return True
+            return out
 
-        assert result
+        assert True
 
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
@@ -89,6 +92,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = tket_circSU2(N, 4)
             return out
 
+        output_circuit_properties(result, OpType.CX, benchmark)
         assert len(result.free_symbols()) == 1000
 
     def test_param_circSU2_100_bind(self, benchmark):
@@ -112,6 +116,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out.symbol_substitution(params_dict)
             return out
 
+        output_circuit_properties(result, OpType.CX, benchmark)
         assert len(result.free_symbols()) == 0
 
     def test_QV100_qasm2_import(self, benchmark):
@@ -123,7 +128,20 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
             )
             return out
-
+        
+        output_circuit_properties(result, OpType.CX, benchmark)
         assert result.n_gates_of_type(OpType.Rz) == 120000
         assert result.n_gates_of_type(OpType.Rx) == 80000
         assert result.n_gates_of_type(OpType.CX) == 15000
+
+    def test_bigint_qasm2_import(self, benchmark):
+        """QASM import circuit with bigint"""
+
+        @benchmark
+        def result():
+            out = circuit_from_qasm(
+                Configuration.get_qasm_dir("bigint") + "bigint.qasm"
+            )
+            return out
+
+        assert result

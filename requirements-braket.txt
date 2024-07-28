@@ -1,1 +1,2 @@
 amazon-braket-sdk
+git+https://github.com/1ucian0/pytest-benchmark.git@timeout-skiplist/fork/decorator

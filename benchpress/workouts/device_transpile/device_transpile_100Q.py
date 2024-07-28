@@ -26,8 +26,13 @@ class WorkoutDeviceTranspile100Q:
         pass
 
     @pytest.mark.skip(reason="Not implimented")
+    def test_circSU2_89_transpile(self, benchmark):
+        """Transpile a 89Q SU2 circuit with circular entanglement against a target device"""
+        pass
+    
+    @pytest.mark.skip(reason="Not implimented")
     def test_circSU2_100_transpile(self, benchmark):
-        """Transpile a SU2 circuit with circular entanglement against a target device"""
+        """Transpile a 100Q SU2 circuit with circular entanglement against a target device"""
         pass
 
     @pytest.mark.skip(reason="Not implimented")

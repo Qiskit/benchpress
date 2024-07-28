@@ -14,7 +14,7 @@
 import numpy as np
 import cirq
 from cirq.contrib.qasm_import import circuit_from_qasm
-
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
@@ -40,7 +40,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         def result():
             out = cirq_QV(100, 100, seed=12345)
             return out
-
+        output_circuit_properties(result, 'MatrixGate', benchmark)
         assert result
 
     def test_DTC100_set_build(self, benchmark):
@@ -62,7 +62,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 qc += dtc_circuit
                 circs.append(qc)
             return circs[-1]
-
+        output_circuit_properties(result, 'ZZPowGate', benchmark)
         assert True
 
     def test_multi_control_circuit(self, benchmark):
@@ -89,13 +89,27 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 data = file.read()
             out = circuit_from_qasm(data)
             return out
-
+        output_circuit_properties(result, 'CXPowGate', benchmark)
         assert len(list(result.findall_operations_with_gate_type(cirq.Rz))) == 120000
         assert len(list(result.findall_operations_with_gate_type(cirq.Rx))) == 80000
         assert (
             len(list(result.findall_operations_with_gate_type(cirq.CNotPowGate)))
             == 15000
         )
+
+    def test_bigint_qasm2_import(self, benchmark):
+        """QASM import with bigint"""
+
+        @benchmark
+        def result():
+            with open(
+                Configuration.get_qasm_dir("bigint") + "bigint.qasm", "r"
+            ) as file:
+                data = file.read()
+            out = circuit_from_qasm(data)
+            return out
+        
+        assert result
 
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
@@ -109,7 +123,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         def result():
             out = cirq_circSU2(N, 4)
             return out
-
+        
+        output_circuit_properties(result, 'CXPowGate', benchmark)
         assert len(cirq.parameter_names(result)) == 1000
 
     def test_param_circSU2_100_bind(self, benchmark):
@@ -130,5 +145,5 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             param_dict = dict(zip(param_names, vals))
             out = cirq.resolve_parameters(qc, param_dict)
             return out
-
+        output_circuit_properties(result, 'CXPowGate', benchmark)
         assert len(cirq.parameter_names(result)) == 0

@@ -56,10 +56,6 @@ def staq_device(tmp_path_factory):
 
 @benchpress_test_validation
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
-    @pytest.mark.skip(
-        reason="Error: libc++abi: terminating due to uncaught exception of type "
-        "std::out_of_range: stoi: out of range",
-    )
     def test_QFT_100_transpile(self, benchmark, staq_device):
         """Compile 100Q QFT circuit against target backend"""
         device = staq_device(backend=BACKEND)
@@ -102,6 +98,34 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         output_circuit_properties(result, 'cx', benchmark)
         assert result
 
+    def test_circSU2_89_transpile(self, benchmark, tmp_path_factory, staq_device):
+        """Compile 89Q circSU2 circuit against target backend"""
+        device = staq_device(backend=BACKEND)
+        circuit = EfficientSU2(89, reps=3, entanglement="circular")
+
+        # staq works on qasm files only & qasm files need bounded params
+        num_parameters = circuit.num_parameters
+        np.random.seed(0)
+        params = np.random.uniform(low=0.1, high=np.pi, size=num_parameters)
+        circuit.assign_parameters(parameters=params, inplace=True)
+
+        base_temp_dir = tmp_path_factory.getbasetemp()
+        input_qasm_file = base_temp_dir / "circ.qasm"
+        qasm2.dump(circuit, input_qasm_file)
+
+        @benchmark
+        def result():
+            out = subprocess.run(
+                RUN_ARGS_COMMON + ["-m", "--device", device, input_qasm_file],
+                capture_output=True,
+                text=True,
+            )
+
+            return QuantumCircuit.from_qasm_str(out.stdout)
+
+        output_circuit_properties(result, 'cx', benchmark)
+        assert result
+    
     def test_circSU2_100_transpile(self, benchmark, tmp_path_factory, staq_device):
         """Compile 100Q circSU2 circuit against target backend"""
         device = staq_device(backend=BACKEND)
