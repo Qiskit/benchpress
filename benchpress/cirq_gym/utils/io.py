@@ -25,7 +25,9 @@ def cirq_qasm_loader(qasm_file, benchmark):
         Circuit: A Cirq circuit instance
     """
     start = perf_counter()
-    circuit = circuit_from_qasm(qasm_file)
+    with open(qasm_file, "r") as f:
+        qasm_str = ''.join(f.readlines())
+    circuit = circuit_from_qasm(qasm_str)
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
     benchmark.extra_info["input_num_qubits"] = cirq.num_qubits(circuit)
