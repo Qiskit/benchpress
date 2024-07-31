@@ -112,3 +112,21 @@ def random_clifford_circuit(num_qubits, seed=12345):
         num_qubits, gates=gates, num_gates=10 * num_qubits * num_qubits, seed=seed
     )
     return qc
+
+
+def random_clifford_optimized(num_qubits, seed=12345):
+    """Generate a random clifford, using optimized decomposition
+    Parameters:
+        num_qubits (int): Number of qubits
+        seed (int): Optional. Seed the random number generator, default=12345
+
+    Returns:
+        QuantumCircuit: Clifford circuit
+    """
+    # This code is used to generate the QASM file
+    from qiskit.quantum_info import random_clifford
+
+    cliff = random_clifford(num_qubits, seed=seed)
+    qc = cliff.to_circuit()
+
+    return qc

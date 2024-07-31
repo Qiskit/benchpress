@@ -12,6 +12,7 @@
 from .circuits import (
     tket_circSU2,
     tket_QV,
+    tket_random_clifford,
     dtc_unitary,
     multi_control_circuit,
     tket_bv_all_ones,

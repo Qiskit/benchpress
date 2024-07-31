@@ -141,3 +141,19 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
+
+    def test_clifford_100_transpile(self, benchmark):
+        """Compile 100Q Clifford circuit against target backend"""
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("clifford") + "clifford_100_12345.qasm", benchmark
+        )
+
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
+
+        @benchmark
+        def result():
+            trans_qc = pm.run(circuit)
+            return trans_qc
+
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
+        assert circuit_validator(result, BACKEND)

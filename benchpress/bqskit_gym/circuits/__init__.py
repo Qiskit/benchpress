@@ -13,6 +13,7 @@ from .circuits import (
     bqskit_bv_all_ones,
     bqskit_circSU2,
     bqskit_QV,
+    bqskit_random_clifford,
     dtc_unitary,
     multi_control_circuit,
     trivial_bvlike_circuit,

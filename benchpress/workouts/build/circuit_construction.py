@@ -16,14 +16,14 @@ import pytest
 
 @pytest.mark.benchmark(group="Circuit construction")
 class WorkoutCircuitConstruction:
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_QV100_build(self, benchmark):
         """Measures an SDKs ability to build a 100Q
-        QV circit from scratch.
+        QV circuit from scratch.
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_DTC100_set_build(self, benchmark):
         """Measures an SDKs ability to build a set
         of 100Q DTC circuits out to 100 layers of
@@ -31,14 +31,21 @@ class WorkoutCircuitConstruction:
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
+    def test_clifford_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        Clifford circuit from scratch.
+        """
+        pass
+
+    @pytest.mark.skip(reason="Not implemented")
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
         with a multi-controlled X-gate
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_param_circSU2_100_build(self, benchmark):
         """Measures an SDKs ability to build a
         parameterized efficient SU2 circuit with circular entanglement
@@ -47,7 +54,7 @@ class WorkoutCircuitConstruction:
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_param_circSU2_100_bind(self, benchmark):
         """Measures an SDKs ability to bind 1000 parameters
         to efficient SU2 circuit over 100Q with circular
@@ -55,7 +62,7 @@ class WorkoutCircuitConstruction:
         """
         pass
 
-    @pytest.mark.skip(reason="Not implimented")
+    @pytest.mark.skip(reason="Not implemented")
     def test_QV100_qasm2_import(self, benchmark):
         """Gather metrics on an SDKs import of a
         QV100 circuit from a QASM2 file

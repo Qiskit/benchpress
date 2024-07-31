@@ -16,6 +16,10 @@ import pytest
 from bqskit.ir import Circuit
 from bqskit.ir.gates import (
     CNOTGate,
+    CXGate,
+    CZGate,
+    CYGate,
+    SwapGate,
     ConstantUnitaryGate,
     ControlledGate,
     HGate,
@@ -25,7 +29,10 @@ from bqskit.ir.gates import (
     RZGate,
     RZZGate,
     XGate,
+    YGate,
     ZGate,
+    SGate,
+    SdgGate,
 )
 from bqskit.qis.unitary import UnitaryMatrix
 from scipy import stats
@@ -125,6 +132,34 @@ def multi_control_circuit(num_qubits):
 
     return out
 
+def bqskit_random_clifford(num_qubits, num_gates=None, seed=None):
+    """Construct a random clifford circuit
+    Parameters:
+        num_qubits (int): Number of qubits
+        num_gates (int): Number of gates
+        seed (int): RNG seed, default=None
+    Returns:
+        Circuit: random Clifford circuit
+    """
+    RNG = np.random.default_rng(seed=seed)
+    out = Circuit(num_qubits)
+    num_gates = num_gates or 10 * num_qubits * num_qubits
+    gates_2q = [CXGate(), CZGate(), CYGate(), SwapGate()]
+    gates_1q = [XGate(), YGate(), ZGate(), SGate(), SdgGate(), HGate()]
+    gates = gates_1q + gates_2q
+
+    for _ in range(num_gates):
+        gate = gates[RNG.integers(len(gates))]
+
+        if gate in gates_2q:
+            qubits = RNG.choice(num_qubits, 2, replace=False)
+            out.append_gate(gate, [qubits[0], qubits[1]])
+
+        elif gate in gates_1q:
+            qubit = RNG.integers(num_qubits)
+            out.append_gate(gate, qubit)
+
+    return out
 
 def bqskit_bv_all_ones(N):
     """A circuit to generate a BV circuit over N
