@@ -19,7 +19,7 @@ from benchpress.config import Config
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
-from benchpress.cirq_gym.circuits import cirq_QV, cirq_QFT, multi_control_circuit, dtc_unitary
+from benchpress.cirq_gym.circuits import cirq_QV, cirq_QFT, multi_control_circuit, dtc_unitary, prepare_and_select_oracle
 
 SEED = 12345
 
@@ -72,6 +72,24 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         assert result
 
+    def test_prep_select_build(self, benchmark):
+        """
+        """
+        # Define the number of qubits and target state
+        num_qubits = 100
+        target_state = '0' * num_qubits # the all zero state
+
+        # Create qubits
+        qubits = [cirq.LineQubit(i) for i in range(num_qubits)]
+
+        @benchmark
+        def result():    
+            # Prepare and select oracle
+            oracle_circuit = prepare_and_select_oracle(qubits, target_state)
+            return oracle_circuit
+
+        assert result
+        
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
         with a multi-controlled X-gate

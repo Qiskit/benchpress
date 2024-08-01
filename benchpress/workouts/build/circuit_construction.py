@@ -29,7 +29,14 @@ class WorkoutCircuitConstruction:
         QFT circuit from scratch.
         """
         pass
-    
+
+    @pytest.mark.skip(reason="Not implimented")
+    def test_prep_select_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        QFT circuit from scratch.
+        """
+        pass
+
     @pytest.mark.skip(reason="Not implimented")
     def test_DTC100_set_build(self, benchmark):
         """Measures an SDKs ability to build a set
