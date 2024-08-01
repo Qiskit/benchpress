@@ -60,7 +60,7 @@ class TestWorkoutDeviceHamlibHamiltonians(WorkoutDeviceHamlibHamiltonians):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         benchmark.extra_info.update(hamiltonian_info)
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)

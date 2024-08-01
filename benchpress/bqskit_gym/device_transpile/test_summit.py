@@ -29,7 +29,6 @@ from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 BACKEND = Configuration.backend()
 TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
-compiler = Compiler()
 
 
 @benchpress_test_validation
@@ -39,7 +38,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         circuit = qasm_circuit_loader(
             Configuration.get_qasm_dir("qft") + "qft_N100.qasm", benchmark
         )
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -49,7 +48,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
@@ -59,7 +58,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm",
             benchmark
         )
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -69,14 +68,14 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_circSU2_89_transpile(self, benchmark):
         """Compile 89Q circSU2 circuit against target backend"""
         circuit = bqskit_circSU2(89, 3)
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -86,14 +85,14 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_circSU2_100_transpile(self, benchmark):
         """Compile 100Q circSU2 circuit against target backend"""
         circuit = bqskit_circSU2(100, 3)
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -103,14 +102,14 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
     def test_BV_100_transpile(self, benchmark):
         """Compile 100Q BV circuit against target backend"""
         circuit = bqskit_bv_all_ones(100)
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -120,7 +119,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
@@ -131,7 +130,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             + "square_heisenberg_N100.qasm",
             benchmark,
         )
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -141,7 +140,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
@@ -151,7 +150,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             Configuration.get_qasm_dir("qaoa") + "qaoa_barabasi_albert_N100_3reps.qasm",
             benchmark,
         )
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -171,7 +170,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         into a single X and Z gate on a target device
         """
         circuit = trivial_bvlike_circuit(100)
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -182,7 +181,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
                 seed=0,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
 
@@ -192,7 +191,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             Configuration.get_qasm_dir("clifford") + "clifford_100_12345.qasm",
             benchmark,
         )
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -202,6 +201,6 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
