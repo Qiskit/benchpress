@@ -25,7 +25,6 @@ from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 BACKEND = Configuration.backend()
 TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["bqskit"]["optimization_level"]
-compiler = Compiler()
 
 
 def pytest_generate_tests(metafunc):
@@ -44,7 +43,7 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
         )
         if circuit.num_qudits > BACKEND.num_qudits:
             pytest.skip("Circuit too large for given backend.")
-
+        compiler = Compiler()
         @benchmark
         def result():
             new_circ = compile(
@@ -54,6 +53,6 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)

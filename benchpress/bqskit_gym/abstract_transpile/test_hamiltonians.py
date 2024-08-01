@@ -50,7 +50,7 @@ class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
                 compiler=compiler,
             )
             return new_circ
-
+        compiler.close()
         benchmark.extra_info.update(circ_and_topo[0])
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, BACKEND)
