@@ -74,7 +74,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         # load output QASM as a QuantumCircuit to get statistics as
         # staq does not have built-in utilities for such
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result
 
     def test_QV_100_transpile(self, benchmark, staq_device):
@@ -95,7 +95,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         # load output QASM as a QuantumCircuit to get statistics as
         # staq does not have built-in utilities for such
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result
 
     def test_circSU2_89_transpile(self, benchmark, tmp_path_factory, staq_device):
@@ -123,9 +123,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result
-    
+
     def test_circSU2_100_transpile(self, benchmark, tmp_path_factory, staq_device):
         """Compile 100Q circSU2 circuit against target backend"""
         device = staq_device(backend=BACKEND)
@@ -151,7 +151,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result
 
     def test_BV_100_transpile(self, benchmark, tmp_path_factory, staq_device):
@@ -173,7 +173,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result
 
     def test_square_heisenberg_100_transpile(self, benchmark, staq_device):
@@ -192,7 +192,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result
 
     def test_QAOA_100_transpile(self, benchmark, staq_device):
@@ -211,7 +211,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result
 
     def test_BVlike_simplification_transpile(
@@ -237,7 +237,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result
 
     def test_clifford_100_transpile(self, benchmark, staq_device):
@@ -258,5 +258,5 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         # load output QASM as a QuantumCircuit to get statistics as
         # staq does not have built-in utilities for such
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result

@@ -11,6 +11,7 @@
 # that they have been altered from the originals.
 """Basic circuit validation"""
 
+
 def bqskit_circuit_validation(circuit, backend):
     """Validate that input circuit matches gate set
     and topology of target backend
@@ -22,15 +23,15 @@ def bqskit_circuit_validation(circuit, backend):
     circuit_ops = set(item.name for item in circuit.gate_counts.keys())
     backend_ops = set(item.name for item in backend.gate_set)
     # Add barrier to backend ops
-    backend_ops.add('barrier')
-    backend_ops.add('measurement')
+    backend_ops.add("barrier")
+    backend_ops.add("measurement")
     diff_set = set(circuit_ops).difference(backend_ops)
     if diff_set:
-        raise Exception(f'Circuit has gates outside backend basis set {diff_set}')
+        raise Exception(f"Circuit has gates outside backend basis set {diff_set}")
 
     edges = backend.coupling_graph
     for item in circuit.operations():
         if item.gate == backend.two_q_gate_type:
             if item.location not in edges and item.location[::-1] not in edges:
-                raise Exception(f'2Q gate edge {item.location} not in backend topology')
+                raise Exception(f"2Q gate edge {item.location} not in backend topology")
     return True

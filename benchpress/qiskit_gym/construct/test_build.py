@@ -10,7 +10,11 @@ from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 from benchpress.utilities.io import output_circuit_properties
-from benchpress.qiskit_gym.circuits import dtc_unitary, multi_control_circuit, random_clifford_circuit
+from benchpress.qiskit_gym.circuits import (
+    dtc_unitary,
+    multi_control_circuit,
+    random_clifford_circuit,
+)
 
 SEED = 12345
 
@@ -48,7 +52,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
-        output_circuit_properties(result, 'rzz', benchmark)
+        output_circuit_properties(result, "rzz", benchmark)
         assert result.count_ops()["rzz"] == 9900
 
     def test_multi_control_circuit(self, benchmark):
@@ -117,7 +121,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = load(Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm")
             return out
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         ops = result.count_ops()
         assert ops.get("rz", 0) == 120000
         assert ops.get("rx", 0) == 80000
@@ -131,5 +135,5 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = load(Configuration.get_qasm_dir("bigint") + "bigint.qasm")
             return out
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result

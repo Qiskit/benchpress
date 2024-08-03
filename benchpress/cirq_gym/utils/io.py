@@ -26,7 +26,7 @@ def cirq_qasm_loader(qasm_file, benchmark):
     """
     start = perf_counter()
     with open(qasm_file, "r") as f:
-        qasm_str = ''.join(f.readlines())
+        qasm_str = "".join(f.readlines())
     circuit = circuit_from_qasm(qasm_str)
     stop = perf_counter()
     benchmark.extra_info["qasm_load_time"] = stop - start
@@ -54,7 +54,7 @@ def cirq_output_circuit_properties(circuit, two_qubit_gate, benchmark):
             count_ops[item_name] += 1
         else:
             count_ops[item_name] = 1
-    
+
     benchmark.extra_info["output_num_qubits"] = cirq.num_qubits(circuit)
     benchmark.extra_info["output_circuit_operations"] = count_ops
     benchmark.extra_info["output_gate_count_2q"] = len(twoq_gates)

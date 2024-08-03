@@ -142,7 +142,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         assert result.gate_counts[RXGate()] == 80000
         assert result.gate_counts[CXGate()] == 15000
         assert output_circuit_properties(result, benchmark)
-    
+
     def test_bigint_qasm2_import(self, benchmark):
         """QASM import of QV100 circuit"""
 

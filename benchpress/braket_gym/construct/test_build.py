@@ -35,8 +35,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         def result():
             out = braket_QV(100, 100)
             return out
-        
-        output_circuit_properties(result, 'Unitary', benchmark)
+
+        output_circuit_properties(result, "Unitary", benchmark)
         assert True
 
     def test_DTC100_set_build(self, benchmark):
@@ -58,7 +58,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
-        output_circuit_properties(result, 'ZZ', benchmark)
+        output_circuit_properties(result, "ZZ", benchmark)
         assert result
 
     def test_multi_control_circuit(self, benchmark):
@@ -90,7 +90,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = braket_circSU2(N, 4)
             return out
 
-        output_circuit_properties(result, 'CNot', benchmark)
+        output_circuit_properties(result, "CNot", benchmark)
         assert len(result.parameters) == 1000
 
     def test_param_circSU2_100_bind(self, benchmark):
@@ -111,7 +111,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 params_dict[param.name] = vals[idx]
             out = qc.make_bound_circuit(params_dict)
             return out
-        output_circuit_properties(result, 'CNot', benchmark)
+
+        output_circuit_properties(result, "CNot", benchmark)
         assert result.parameters == set()
 
     def test_QV100_qasm2_import(self, benchmark):
@@ -123,7 +124,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
             )
             return circuit
-        output_circuit_properties(result, 'CNot', benchmark)
+
+        output_circuit_properties(result, "CNot", benchmark)
         assert result
 
     def test_QV100_qasm2_import(self, benchmark):
@@ -135,7 +137,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
             )
             return circuit
-        output_circuit_properties(result, 'CNot', benchmark)
+
+        output_circuit_properties(result, "CNot", benchmark)
         assert result
 
     def test_bigint_qasm2_import(self, benchmark):
@@ -147,4 +150,5 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 Configuration.get_qasm_dir("bigint") + "bigint.qasm", benchmark
             )
             return circuit
+
         assert result

@@ -17,7 +17,7 @@ from benchpress.config import Configuration
 def circuit_validator(circuit, backend):
     """Validate a circuit matches the gate set and
     topology of the target backend
-    
+
     Parameters:
         circuit : Input circuit
         backend : Target backend
@@ -31,11 +31,15 @@ def circuit_validator(circuit, backend):
         from benchpress.tket_gym.utils.validation import tket_circuit_validation
 
         tket_circuit_validation(circuit, backend)
-    
+
     elif gym_name in ["bqskit"]:
         from benchpress.bqskit_gym.utils.validation import bqskit_circuit_validation
 
         bqskit_circuit_validation(circuit, backend)
+    elif gym_name in ["staq"]:
+        from benchpress.staq_gym.utils.validation import staq_circuit_validation
+
+        staq_circuit_validation(circuit, backend)
     else:
         raise ValueError(f"Unknown gym name {gym_name}")
-    return circuit
+    return True

@@ -17,7 +17,7 @@ import scipy
 
 def pytest_benchmark_update_json(config, benchmarks, output_json):
     """Adds custom sections to the pytest-benchmark report"""
-    reporter = config.pluginmanager.get_plugin('terminalreporter')
+    reporter = config.pluginmanager.get_plugin("terminalreporter")
 
     output_json["total_duration"] = time.time() - reporter._sessionstarttime
 
@@ -27,16 +27,18 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
     }
 
     output_json["test_status_counts"] = {
-        'passed': len(reporter.stats.get('passed', [])),
-        'failed': len(reporter.stats.get('failed', [])),
-        'xfailed': len(reporter.stats.get('xfailed', [])),
-        'skipped': len(reporter.stats.get('skipped', []))
+        "passed": len(reporter.stats.get("passed", [])),
+        "failed": len(reporter.stats.get("failed", [])),
+        "xfailed": len(reporter.stats.get("xfailed", [])),
+        "skipped": len(reporter.stats.get("skipped", [])),
     }
 
-    test_dumps = {'passed': {}, 'failed': {}, 'xfailed': {}, 'skipped': {}}
+    test_dumps = {"passed": {}, "failed": {}, "xfailed": {}, "skipped": {}}
     for status in test_dumps:
         for test in reporter.stats.get(status, []):
-            test_dumps[status][test.nodeid] = {'duration': test.duration,
-                                               'exception':str(test.longrepr),
-                                               'keywords':test.keywords}
+            test_dumps[status][test.nodeid] = {
+                "duration": test.duration,
+                "exception": str(test.longrepr),
+                "keywords": test.keywords,
+            }
     output_json["test_dumps"] = test_dumps

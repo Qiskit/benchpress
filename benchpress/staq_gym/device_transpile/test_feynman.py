@@ -86,5 +86,5 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
+        output_circuit_properties(result, "cx", benchmark)
         assert result

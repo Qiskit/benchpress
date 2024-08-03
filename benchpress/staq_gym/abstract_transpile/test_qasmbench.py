@@ -7,6 +7,7 @@ from qiskit import QuantumCircuit
 
 from benchpress.config import Configuration
 from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
+from benchpress.utilities.validation import circuit_validator
 from benchpress.staq_gym.utils.staq_backend_utils import StaqFlexibleBackend
 from benchpress.workouts.abstract_transpile import (
     WorkoutAbstractQasmBenchLarge,
@@ -59,10 +60,9 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     def test_QASMBench_small(self, benchmark, circ_and_topo, staq_device):
         input_qasm_file = circ_and_topo[0]
         circuit = qasm_circuit_loader(input_qasm_file, benchmark)
-        backend = StaqFlexibleBackend(
-            circuit.num_qubits, circ_and_topo[1]
-        ).get_staq_flexible_backend()
-        device = staq_device(backend=backend)
+        backend = StaqFlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        staq_backend = backend.get_staq_flexible_backend()
+        device = staq_device(backend=staq_backend)
 
         @benchmark
         def result():
@@ -74,8 +74,8 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
-        assert result
+        output_circuit_properties(result, "cx", benchmark)
+        assert circuit_validator(result, backend)
 
 
 @benchpress_test_validation
@@ -84,10 +84,9 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     def test_QASMBench_medium(self, benchmark, circ_and_topo, staq_device):
         input_qasm_file = circ_and_topo[0]
         circuit = qasm_circuit_loader(input_qasm_file, benchmark)
-        backend = StaqFlexibleBackend(
-            circuit.num_qubits, circ_and_topo[1]
-        ).get_staq_flexible_backend()
-        device = staq_device(backend=backend)
+        backend = StaqFlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        staq_backend = backend.get_staq_flexible_backend()
+        device = staq_device(backend=staq_backend)
 
         @benchmark
         def result():
@@ -99,8 +98,8 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
-        assert result
+        output_circuit_properties(result, "cx", benchmark)
+        assert circuit_validator(result, backend)
 
 
 @benchpress_test_validation
@@ -109,10 +108,9 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     def test_QASMBench_large(self, benchmark, circ_and_topo, staq_device):
         input_qasm_file = circ_and_topo[0]
         circuit = qasm_circuit_loader(input_qasm_file, benchmark)
-        backend = StaqFlexibleBackend(
-            circuit.num_qubits, circ_and_topo[1]
-        ).get_staq_flexible_backend()
-        device = staq_device(backend=backend)
+        backend = StaqFlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        staq_backend = backend.get_staq_flexible_backend()
+        device = staq_device(backend=staq_backend)
 
         @benchmark
         def result():
@@ -124,5 +122,5 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
 
             return QuantumCircuit.from_qasm_str(out.stdout)
 
-        output_circuit_properties(result, 'cx', benchmark)
-        assert result
+        output_circuit_properties(result, "cx", benchmark)
+        assert circuit_validator(result, backend)

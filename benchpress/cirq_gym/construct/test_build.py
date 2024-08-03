@@ -40,7 +40,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         def result():
             out = cirq_QV(100, 100, seed=12345)
             return out
-        output_circuit_properties(result, 'MatrixGate', benchmark)
+
+        output_circuit_properties(result, "MatrixGate", benchmark)
         assert result
 
     def test_DTC100_set_build(self, benchmark):
@@ -62,7 +63,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 qc += dtc_circuit
                 circs.append(qc)
             return circs[-1]
-        output_circuit_properties(result, 'ZZPowGate', benchmark)
+
+        output_circuit_properties(result, "ZZPowGate", benchmark)
         assert True
 
     def test_multi_control_circuit(self, benchmark):
@@ -89,7 +91,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 data = file.read()
             out = circuit_from_qasm(data)
             return out
-        output_circuit_properties(result, 'CXPowGate', benchmark)
+
+        output_circuit_properties(result, "CXPowGate", benchmark)
         assert len(list(result.findall_operations_with_gate_type(cirq.Rz))) == 120000
         assert len(list(result.findall_operations_with_gate_type(cirq.Rx))) == 80000
         assert (
@@ -108,7 +111,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 data = file.read()
             out = circuit_from_qasm(data)
             return out
-        
+
         assert result
 
     def test_param_circSU2_100_build(self, benchmark):
@@ -123,8 +126,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         def result():
             out = cirq_circSU2(N, 4)
             return out
-        
-        output_circuit_properties(result, 'CXPowGate', benchmark)
+
+        output_circuit_properties(result, "CXPowGate", benchmark)
         assert len(cirq.parameter_names(result)) == 1000
 
     def test_param_circSU2_100_bind(self, benchmark):
@@ -145,5 +148,6 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             param_dict = dict(zip(param_names, vals))
             out = cirq.resolve_parameters(qc, param_dict)
             return out
-        output_circuit_properties(result, 'CXPowGate', benchmark)
+
+        output_circuit_properties(result, "CXPowGate", benchmark)
         assert len(cirq.parameter_names(result)) == 0

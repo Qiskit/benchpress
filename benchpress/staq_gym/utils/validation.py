@@ -12,13 +12,22 @@
 """Basic circuit validation"""
 
 
-def tket_circuit_validation(circuit, backend):
-    """Validate that input circuit matches gate set
-    and topology of target backend
+def staq_circuit_validation(circuit, backend):
+    """Validate that input circuit matches the
+      topology of target backend
 
     Parameters:
         circuit (QuantumCircuit): Input circuit
         backend (BackendV2): Target backend
     """
-
-    return backend.valid_circuit(circuit)
+    cmap = backend._backend.coupling_map
+    if cmap.graph.num_edges() < cmap.graph.num_nodes() * (cmap.graph.num_nodes() - 1):
+        edges = set(cmap.get_edges())
+        for gate in circuit.get_instructions("cx"):
+            _edge = (
+                circuit.find_bit(gate.qubits[0]).index,
+                circuit.find_bit(gate.qubits[1]).index,
+            )
+            if _edge not in edges:
+                raise Exception(f"2Q gate edge {_edge} not in backend topology")
+    return True

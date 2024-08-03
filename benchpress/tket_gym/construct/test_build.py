@@ -64,7 +64,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
-        output_circuit_properties(result,  OpType.ZZPhase, benchmark)
+        output_circuit_properties(result, OpType.ZZPhase, benchmark)
         assert result.n_gates_of_type(OpType.ZZPhase) == 9900
 
     def test_clifford_build(self, benchmark):
@@ -141,7 +141,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm"
             )
             return out
-        
+
         output_circuit_properties(result, OpType.CX, benchmark)
         assert result.n_gates_of_type(OpType.Rz) == 120000
         assert result.n_gates_of_type(OpType.Rx) == 80000

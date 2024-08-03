@@ -23,18 +23,18 @@ TOPOLOGY_NAMES = Configuration.options["general"]["abstract_topologies"]
 
 def hamlib_parameters():
     directory = Configuration.get_hamiltonian_dir("hamlib")
-    ham_records = json.load(open(directory + "100_representative.json", 'r'))
+    ham_records = json.load(open(directory + "100_representative.json", "r"))
     for h in ham_records:
-        terms = h.pop('ham_hamlib_hamiltonian_terms')
-        coefficients = h.pop('ham_hamlib_hamiltonian_coefficients')
-        h['ham_hamlib_hamiltonian'] = SparsePauliOp(terms, coefficients)
+        terms = h.pop("ham_hamlib_hamiltonian_terms")
+        coefficients = h.pop("ham_hamlib_hamiltonian_coefficients")
+        h["ham_hamlib_hamiltonian"] = SparsePauliOp(terms, coefficients)
 
     hams_and_topo = []
     test_ids = []
     for idx, ham in enumerate(ham_records):
         for topo_name in TOPOLOGY_NAMES:
             hams_and_topo.append((copy.copy(ham), topo_name))
-            test_ids.append("ham_" + ham['ham_instance'][1:-1] + "-" + topo_name)
+            test_ids.append("ham_" + ham["ham_instance"][1:-1] + "-" + topo_name)
     return hams_and_topo, test_ids
 
 

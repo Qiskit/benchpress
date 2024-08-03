@@ -55,6 +55,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
                 compiler=compiler,
             )
             return new_circ
+
         compiler.close()
         output_circuit_properties(result, BACKEND.two_q_gate_type, benchmark)
         assert circuit_validator(result, BACKEND)
@@ -77,6 +78,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
                 compiler=compiler,
             )
             return new_circ
+
         compiler.close()
         output_circuit_properties(result, BACKEND.two_q_gate_type, benchmark)
         assert circuit_validator(result, BACKEND)
@@ -99,6 +101,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
                 compiler=compiler,
             )
             return new_circ
+
         compiler.close()
         output_circuit_properties(result, BACKEND.two_q_gate_type, benchmark)
         assert circuit_validator(result, BACKEND)
