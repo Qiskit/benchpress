@@ -49,7 +49,9 @@ class BenchpressConfig:
         self._gym_name = None
         self.config_parser = configparser.ConfigParser()
         self.qasm_dir = os.path.dirname(os.path.abspath(__file__)) + os.sep + "qasm"
-        self.hamiltonian_dir = os.path.dirname(os.path.abspath(__file__)) + os.sep + "hamiltonian"
+        self.hamiltonian_dir = (
+            os.path.dirname(os.path.abspath(__file__)) + os.sep + "hamiltonian"
+        )
         # read file
         self.config_parser.read(self.filename)
         for sec in self.config_parser.sections():

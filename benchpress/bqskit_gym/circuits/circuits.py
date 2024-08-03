@@ -132,6 +132,7 @@ def multi_control_circuit(num_qubits):
 
     return out
 
+
 def bqskit_random_clifford(num_qubits, num_gates=None, seed=None):
     """Construct a random clifford circuit
     Parameters:
@@ -160,6 +161,7 @@ def bqskit_random_clifford(num_qubits, num_gates=None, seed=None):
             out.append_gate(gate, qubit)
 
     return out
+
 
 def bqskit_bv_all_ones(N):
     """A circuit to generate a BV circuit over N

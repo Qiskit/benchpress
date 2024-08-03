@@ -35,7 +35,9 @@ BACKEND = Configuration.backend()
 class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
     @pytest.mark.parametrize("circ_and_topo", HAM_TOPO, ids=HAM_TOPO_NAMES)
     def test_hamiltonians(self, benchmark, circ_and_topo):
-        circuit = generate_hamiltonian_circuit(circ_and_topo[0].pop('ham_hamlib_hamiltonian'), benchmark)
+        circuit = generate_hamiltonian_circuit(
+            circ_and_topo[0].pop("ham_hamlib_hamiltonian"), benchmark
+        )
         backend = TketFlexibleBackend(circuit.n_qubits, circ_and_topo[1])
         TWO_Q_GATE = backend.two_q_gate_type
 
@@ -51,5 +53,3 @@ class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
         benchmark.extra_info.update(circ_and_topo[0])
         output_circuit_properties(result, TWO_Q_GATE, benchmark)
         assert circuit_validator(result, backend)
-
-

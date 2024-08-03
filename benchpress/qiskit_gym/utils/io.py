@@ -26,15 +26,19 @@ def qiskit_qasm_loader(qasm_file, benchmark):
 
 def qiskit_hamiltonian_circuit(sparse_op, label=None, evo_time=1):
     qc = QuantumCircuit(sparse_op.num_qubits)
-    qc.append(PauliEvolutionGate(sparse_op, time=evo_time, label=label),
-              qargs=range(sparse_op.num_qubits))
+    qc.append(
+        PauliEvolutionGate(sparse_op, time=evo_time, label=label),
+        qargs=range(sparse_op.num_qubits),
+    )
     return qc
 
-  
+
 def qiskit_output_circuit_properties(circuit, two_qubit_gate, benchmark):
     benchmark.extra_info["output_num_qubits"] = circuit.num_qubits
     benchmark.extra_info["output_circuit_operations"] = circuit.count_ops()
-    benchmark.extra_info["output_gate_count_2q"] = circuit.count_ops().get(two_qubit_gate, 0)
+    benchmark.extra_info["output_gate_count_2q"] = circuit.count_ops().get(
+        two_qubit_gate, 0
+    )
     benchmark.extra_info["output_depth_2q"] = circuit.depth(
-            filter_function=lambda x: x.operation.name == two_qubit_gate
-        )
+        filter_function=lambda x: x.operation.name == two_qubit_gate
+    )

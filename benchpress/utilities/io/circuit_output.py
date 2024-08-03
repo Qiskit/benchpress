@@ -25,26 +25,32 @@ def output_circuit_properties(circuit, two_qubit_gate, benchmark):
     gym_name = Configuration.gym_name
     if gym_name in ["qiskit", "qiskit-transpiler-service"]:
         from benchpress.qiskit_gym.utils.io import qiskit_output_circuit_properties
+
         qiskit_output_circuit_properties(circuit, two_qubit_gate, benchmark)
-    
+
     elif gym_name == "tket":
         from benchpress.tket_gym.utils.io import tket_output_circuit_properties
+
         tket_output_circuit_properties(circuit, two_qubit_gate, benchmark)
-    
+
     elif gym_name == "bqskit":
         from benchpress.bqskit_gym.utils.io import bqskit_output_circuit_properties
+
         bqskit_output_circuit_properties(circuit, two_qubit_gate, benchmark)
 
     elif gym_name == "staq":
         from benchpress.staq_gym.utils.io import staq_output_circuit_properties
+
         staq_output_circuit_properties(circuit, two_qubit_gate, benchmark)
 
     elif gym_name == "braket":
         from benchpress.braket_gym.utils.io import braket_output_circuit_properties
+
         braket_output_circuit_properties(circuit, two_qubit_gate, benchmark)
-    
+
     elif gym_name == "cirq":
         from benchpress.cirq_gym.utils.io import cirq_output_circuit_properties
+
         cirq_output_circuit_properties(circuit, two_qubit_gate, benchmark)
     else:
-        raise Exception(f'Unsupported gym name {gym_name}')
+        raise Exception(f"Unsupported gym name {gym_name}")

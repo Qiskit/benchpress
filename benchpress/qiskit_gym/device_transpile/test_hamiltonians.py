@@ -30,13 +30,14 @@ OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 def pytest_generate_tests(metafunc):
     directory = Configuration.get_hamiltonian_dir("hamlib")
-    ham_records = json.load(open(directory + "100_representative.json", 'r'))
+    ham_records = json.load(open(directory + "100_representative.json", "r"))
     for h in ham_records:
-        terms = h.pop('ham_hamlib_hamiltonian_terms')
-        coefficients = h.pop('ham_hamlib_hamiltonian_coefficients')
-        h['ham_hamlib_hamiltonian'] = SparsePauliOp(terms, coefficients)
-    metafunc.parametrize("hamiltonian_info", ham_records,
-                         ids=lambda x: "ham_" + x['ham_instance'][1:-1])
+        terms = h.pop("ham_hamlib_hamiltonian_terms")
+        coefficients = h.pop("ham_hamlib_hamiltonian_coefficients")
+        h["ham_hamlib_hamiltonian"] = SparsePauliOp(terms, coefficients)
+    metafunc.parametrize(
+        "hamiltonian_info", ham_records, ids=lambda x: "ham_" + x["ham_instance"][1:-1]
+    )
 
 
 @benchpress_test_validation
@@ -44,11 +45,13 @@ class TestWorkoutDeviceHamlibHamiltonians(WorkoutDeviceHamlibHamiltonians):
 
     def test_hamlib_hamiltonians_transpile(self, benchmark, hamiltonian_info):
         """Transpile a Hamiltonian against a target device"""
-        if hamiltonian_info['ham_qubits'] > BACKEND.num_qubits:
+        if hamiltonian_info["ham_qubits"] > BACKEND.num_qubits:
             pytest.skip("Circuit too large for given backend.")
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
-        circuit = generate_hamiltonian_circuit(hamiltonian_info.pop('ham_hamlib_hamiltonian'), benchmark)
+        circuit = generate_hamiltonian_circuit(
+            hamiltonian_info.pop("ham_hamlib_hamiltonian"), benchmark
+        )
 
         @benchmark
         def result():
