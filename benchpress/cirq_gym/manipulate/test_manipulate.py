@@ -13,6 +13,10 @@
 import random
 
 import cirq
+from cirq import ops, protocols
+from cirq.transformers.analytical_decompositions import two_qubit_to_cz
+from cirq.transformers.target_gatesets import compilation_target_gateset
+from typing import Any, Dict, Sequence, Type, Union
 
 from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.config import Configuration
@@ -55,17 +59,86 @@ def _twirl_single_CNOT_gate(op):
     ]
 
 
+class IBMTargetGateset(compilation_target_gateset.TwoQubitCompilationTargetGateset):
+    """Modified from 
+
+    https://github.com/quantumlib/Cirq/blob/2975d10912acd4183838f5c1ddba8f278faedb2a/
+    cirq-core/cirq/transformers/target_gatesets/cz_gateset.py#L27
+    """
+    def __init__(
+        self,
+        *,
+        atol: float = 1e-8,
+        allow_partial_czs: bool = False,
+        additional_gates: Sequence[Union[Type['cirq.Gate'], 'cirq.Gate', 'cirq.GateFamily']] = (),
+        preserve_moment_structure: bool = True,
+    ) -> None:
+        """Initializes IBMTargetGateset
+        """
+        super().__init__(
+            ops.CZ,
+            ops.MeasurementGate,
+            ops.XPowGate(exponent=0.5),
+            ops.X,
+            ops.Rz,
+            ops.GlobalPhaseGate,
+            *additional_gates,
+            name='IBMTargetGateset',
+            preserve_moment_structure=preserve_moment_structure,
+        )
+        self.additional_gates = tuple(
+            g if isinstance(g, ops.GateFamily) else ops.GateFamily(gate=g) for g in additional_gates
+        )
+        self._additional_gates_repr_str = ", ".join(
+            [ops.gateset._gate_str(g, repr) for g in additional_gates]
+        )
+        self.atol = atol
+        self.allow_partial_czs = allow_partial_czs
+
+    def _decompose_two_qubit_operation(self, op: 'cirq.Operation', _) -> 'cirq.OP_TREE':
+        if not protocols.has_unitary(op):
+            return NotImplemented
+        return two_qubit_to_cz.two_qubit_matrix_to_cz_operations(
+            op.qubits[0],
+            op.qubits[1],
+            protocols.unitary(op),
+            allow_partial_czs=self.allow_partial_czs,
+            atol=self.atol,
+        )
+
+    def __repr__(self) -> str:
+        return (
+            f'cirq.IBMTargetGateset('
+            f'atol={self.atol}, '
+            f'allow_partial_czs={self.allow_partial_czs}, '
+            f'additional_gates=[{self._additional_gates_repr_str}]'
+            f')'
+        )
+
+    def _value_equality_values_(self) -> Any:
+        return self.atol, self.allow_partial_czs, frozenset(self.additional_gates)
+
+    def _json_dict_(self) -> Dict[str, Any]:
+        d: Dict[str, Any] = {'atol': self.atol, 'allow_partial_czs': self.allow_partial_czs}
+        if self.additional_gates:
+            d['additional_gates'] = list(self.additional_gates)
+        return d
+
+    @classmethod
+    def _from_json_dict_(cls, atol, allow_partial_czs, additional_gates=(), **kwargs):
+        return cls(
+            atol=atol, allow_partial_czs=allow_partial_czs, additional_gates=additional_gates
+        )
+
+
 @benchpress_test_validation
 class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
     def test_DTC100_twirling(self, benchmark):
         """Perform Pauli-twirling on a 100Q QV
         circuit
         """
-        with open(
-            Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm", "r"
-        ) as file:
-            circ_data = file.read().replace("\n", "")
-        circuit = qasm_circuit_loader(circ_data, benchmark)
+        circuit = qasm_circuit_loader(Configuration.get_qasm_dir("dtc") + \
+                                       "dtc_100_cx_12345.qasm", benchmark)
 
         @benchmark
         def result():
@@ -73,3 +146,18 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             return twirled_circuit
 
         assert result
+
+    def test_QV100_basis_change(self, benchmark):
+        """Change a QV100 circuit basis from [rx, ry, rz, cx]
+        to [sx, x, rz, cz]
+        """
+        circ = qasm_circuit_loader(
+            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
+        )
+        @benchmark
+        def result():
+            out = cirq.optimize_for_target_gateset(circ, gateset=IBMTargetGateset())
+            return out
+
+        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
+        assert result.count_ops().get("cz", 0) == 15000
