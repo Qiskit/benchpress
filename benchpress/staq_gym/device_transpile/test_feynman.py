@@ -27,11 +27,15 @@ LAYOUT = Configuration.options["staq"]["layout"]
 MAPPING = Configuration.options["staq"]["mapping"]
 OPTIMIZATION_LEVEL = Configuration.options["staq"]["optimization_level"]
 
+# Truncating OPTIMIZATION_LEVEL to max 2
+# OPTIMIZATION_LEVEL=3 uses a `--cnot-resynthesis` flag
+# that removes qubit connectivity
+OPTIMIZATION_LEVEL = 2 if OPTIMIZATION_LEVEL > 2 else OPTIMIZATION_LEVEL
+
 RUN_ARGS_COMMON = [
     "staq",
     "-S",
     f"-O{OPTIMIZATION_LEVEL}",
-    "-c",
     "-l",
     LAYOUT,
     "-M",
