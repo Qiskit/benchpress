@@ -20,7 +20,10 @@ def staq_circuit_validation(circuit, backend):
         circuit (QuantumCircuit): Input circuit
         backend (BackendV2): Target backend
     """
-    cmap = backend._backend.coupling_map
+    try:
+        cmap = backend._backend.coupling_map
+    except:
+        cmap = backend.coupling_map
     if cmap.graph.num_edges() < cmap.graph.num_nodes() * (cmap.graph.num_nodes() - 1):
         edges = set(cmap.get_edges())
         for gate in circuit.get_instructions("cx"):
