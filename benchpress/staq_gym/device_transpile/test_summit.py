@@ -19,10 +19,15 @@ from qiskit.circuit.library import EfficientSU2
 
 from benchpress.config import Configuration
 from benchpress.utilities.io import output_circuit_properties
+from benchpress.utilities.validation import circuit_validator
 from benchpress.qiskit_gym.circuits import bv_all_ones, trivial_bvlike_circuit
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.workouts.validation import benchpress_test_validation
+from benchpress.qiskit_gym.utils.qiskit_backend_utils import get_qiskit_bench_backend
 
+QISKIT_BACKEND = get_qiskit_bench_backend(
+    Configuration.options["general"]["backend_name"]
+)
 BACKEND = Configuration.backend()
 LAYOUT = Configuration.options["staq"]["layout"]
 MAPPING = Configuration.options["staq"]["mapping"]
@@ -79,7 +84,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         # load output QASM as a QuantumCircuit to get statistics as
         # staq does not have built-in utilities for such
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
 
     def test_QV_100_transpile(self, benchmark, staq_device):
         """Compile 100Q QV circuit against target backend"""
@@ -100,7 +105,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         # load output QASM as a QuantumCircuit to get statistics as
         # staq does not have built-in utilities for such
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
 
     def test_circSU2_89_transpile(self, benchmark, tmp_path_factory, staq_device):
         """Compile 89Q circSU2 circuit against target backend"""
@@ -128,7 +133,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             return QuantumCircuit.from_qasm_str(out.stdout)
 
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
 
     def test_circSU2_100_transpile(self, benchmark, tmp_path_factory, staq_device):
         """Compile 100Q circSU2 circuit against target backend"""
@@ -156,7 +161,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             return QuantumCircuit.from_qasm_str(out.stdout)
 
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
 
     def test_BV_100_transpile(self, benchmark, tmp_path_factory, staq_device):
         """Compile 100Q BV circuit against target backend"""
@@ -178,7 +183,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             return QuantumCircuit.from_qasm_str(out.stdout)
 
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
 
     def test_square_heisenberg_100_transpile(self, benchmark, staq_device):
         """Compile 100Q square-Heisenberg circuit against target backend"""
@@ -197,7 +202,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             return QuantumCircuit.from_qasm_str(out.stdout)
 
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
 
     def test_QAOA_100_transpile(self, benchmark, staq_device):
         """Compile 100Q QAOA circuit against target backend"""
@@ -216,7 +221,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             return QuantumCircuit.from_qasm_str(out.stdout)
 
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
 
     def test_BVlike_simplification_transpile(
         self, benchmark, tmp_path_factory, staq_device
@@ -242,7 +247,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             return QuantumCircuit.from_qasm_str(out.stdout)
 
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
 
     def test_clifford_100_transpile(self, benchmark, staq_device):
         """Compile 100Q Clifford circuit against target backend"""
@@ -263,4 +268,4 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         # load output QASM as a QuantumCircuit to get statistics as
         # staq does not have built-in utilities for such
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)

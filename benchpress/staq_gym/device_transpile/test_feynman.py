@@ -19,9 +19,14 @@ from qiskit import QuantumCircuit
 
 from benchpress.config import Configuration
 from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
+from benchpress.utilities.validation import circuit_validator
 from benchpress.workouts.device_transpile import WorkoutDeviceFeynman
 from benchpress.workouts.validation import benchpress_test_validation
+from benchpress.qiskit_gym.utils.qiskit_backend_utils import get_qiskit_bench_backend
 
+QISKIT_BACKEND = get_qiskit_bench_backend(
+    Configuration.options["general"]["backend_name"]
+)
 BACKEND = Configuration.backend()
 LAYOUT = Configuration.options["staq"]["layout"]
 MAPPING = Configuration.options["staq"]["mapping"]
@@ -91,4 +96,4 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
             return QuantumCircuit.from_qasm_str(out.stdout)
 
         output_circuit_properties(result, "cx", benchmark)
-        assert result
+        assert circuit_validator(result, QISKIT_BACKEND)
