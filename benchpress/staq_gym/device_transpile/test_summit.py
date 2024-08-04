@@ -25,7 +25,9 @@ from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.qiskit_gym.utils.qiskit_backend_utils import get_qiskit_bench_backend
 
-QISKIT_BACKEND = get_qiskit_bench_backend(Configuration.options["general"]["backend_name"])
+QISKIT_BACKEND = get_qiskit_bench_backend(
+    Configuration.options["general"]["backend_name"]
+)
 BACKEND = Configuration.backend()
 LAYOUT = Configuration.options["staq"]["layout"]
 MAPPING = Configuration.options["staq"]["mapping"]
