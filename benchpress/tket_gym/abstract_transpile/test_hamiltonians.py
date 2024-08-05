@@ -28,7 +28,6 @@ from benchpress.workouts.abstract_transpile.hamlib_hamiltonians import (
 )
 
 OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
-BACKEND = Configuration.backend()
 
 
 @benchpress_test_validation
@@ -41,7 +40,7 @@ class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
         backend = TketFlexibleBackend(circuit.n_qubits, circ_and_topo[1])
         TWO_Q_GATE = backend.two_q_gate_type
 
-        pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
+        pm = backend.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
         def result():
