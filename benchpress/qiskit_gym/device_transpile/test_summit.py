@@ -6,7 +6,8 @@ from qiskit.transpiler.passes import StarPreRouting
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
-from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
+from benchpress.utilities.io import (qasm_circuit_loader, input_circuit_properties,
+                                     output_circuit_properties)
 from benchpress.utilities.validation import circuit_validator
 from benchpress.qiskit_gym.circuits import bv_all_ones
 
@@ -57,6 +58,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_circSU2_89_transpile(self, benchmark):
         """Compile 89Q circSU2 circuit against target backend"""
         circuit = EfficientSU2(89, reps=3, entanglement="circular")
+        input_circuit_properties(circuit, benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark
@@ -70,6 +72,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_circSU2_100_transpile(self, benchmark):
         """Compile 100Q circSU2 circuit against target backend"""
         circuit = EfficientSU2(100, reps=3, entanglement="circular")
+        input_circuit_properties(circuit, benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark
@@ -83,6 +86,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_BV_100_transpile(self, benchmark):
         """Compile 100Q BV circuit against target backend"""
         circuit = bv_all_ones(100)
+        input_circuit_properties(circuit, benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark
@@ -131,6 +135,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         into a single X and Z gate on a target device
         """
         circuit = trivial_bvlike_circuit(100)
+        input_circuit_properties(circuit, benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark

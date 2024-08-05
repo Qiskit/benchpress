@@ -13,7 +13,8 @@
 
 from benchpress.config import Configuration
 from benchpress.tket_gym.circuits import tket_bv_all_ones, tket_circSU2
-from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
+from benchpress.utilities.io import (qasm_circuit_loader, input_circuit_properties,
+                                     output_circuit_properties)
 from benchpress.utilities.validation import circuit_validator
 
 from benchpress.workouts.validation import benchpress_test_validation
@@ -64,6 +65,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_circSU2_89_transpile(self, benchmark):
         """Compile 89Q circSU2 circuit against target backend"""
         circuit = tket_circSU2(89, 3)
+        input_circuit_properties(circuit, benchmark)
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -79,6 +81,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_circSU2_100_transpile(self, benchmark):
         """Compile 100Q circSU2 circuit against target backend"""
         circuit = tket_circSU2(100, 3)
+        input_circuit_properties(circuit, benchmark)
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -94,6 +97,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_BV_100_transpile(self, benchmark):
         """Compile 100Q BV circuit against target backend"""
         circuit = tket_bv_all_ones(100)
+        input_circuit_properties(circuit, benchmark)
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
@@ -148,6 +152,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         into a single X and Z gate on a target device
         """
         circuit = trivial_bvlike_circuit(100)
+        input_circuit_properties(circuit, benchmark)
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark

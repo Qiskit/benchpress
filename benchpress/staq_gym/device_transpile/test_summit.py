@@ -18,7 +18,8 @@ from qiskit import QuantumCircuit, qasm2
 from qiskit.circuit.library import EfficientSU2
 
 from benchpress.config import Configuration
-from benchpress.utilities.io import output_circuit_properties
+from benchpress.utilities.io import (qasm_circuit_loader, input_circuit_properties,
+                                     output_circuit_properties)
 from benchpress.utilities.validation import circuit_validator
 from benchpress.qiskit_gym.circuits import bv_all_ones, trivial_bvlike_circuit
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
@@ -70,7 +71,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         device = staq_device(backend=BACKEND)
         qasm_file = "qft_N100.qasm"
         input_qasm_file = Configuration.get_qasm_dir("qft") + qasm_file
-
+        _ = qasm_circuit_loader(input_qasm_file, benchmark)
         @benchmark
         def result():
             out = subprocess.run(
@@ -91,7 +92,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         device = staq_device(backend=BACKEND)
         qasm_file = "qv_N100_12345.qasm"
         input_qasm_file = Configuration.get_qasm_dir("qv") + qasm_file
-
+        _ = qasm_circuit_loader(input_qasm_file, benchmark)
         @benchmark
         def result():
             out = subprocess.run(
@@ -111,7 +112,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 89Q circSU2 circuit against target backend"""
         device = staq_device(backend=BACKEND)
         circuit = EfficientSU2(89, reps=3, entanglement="circular")
-
+        input_circuit_properties(circuit, benchmark)
         # staq works on qasm files only & qasm files need bounded params
         num_parameters = circuit.num_parameters
         np.random.seed(0)
@@ -139,7 +140,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 100Q circSU2 circuit against target backend"""
         device = staq_device(backend=BACKEND)
         circuit = EfficientSU2(100, reps=3, entanglement="circular")
-
+        input_circuit_properties(circuit, benchmark)
         # staq works on qasm files only & qasm files need bounded params
         num_parameters = circuit.num_parameters
         np.random.seed(0)
@@ -167,7 +168,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 100Q BV circuit against target backend"""
         device = staq_device(backend=BACKEND)
         circuit = bv_all_ones(100)
-
+        input_circuit_properties(circuit, benchmark)
         base_temp_dir = tmp_path_factory.getbasetemp()
         input_qasm_file = base_temp_dir / "circ.qasm"
         qasm2.dump(circuit, input_qasm_file)
@@ -190,7 +191,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         device = staq_device(backend=BACKEND)
         qasm_file = "square_heisenberg_N100.qasm"
         input_qasm_file = Configuration.get_qasm_dir("square-heisenberg") + qasm_file
-
+        _ = qasm_circuit_loader(input_qasm_file, benchmark)
         @benchmark
         def result():
             out = subprocess.run(
@@ -209,7 +210,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         device = staq_device(backend=BACKEND)
         qasm_file = "qaoa_barabasi_albert_N100_3reps.qasm"
         input_qasm_file = Configuration.get_qasm_dir("qaoa") + qasm_file
-
+        _ = qasm_circuit_loader(input_qasm_file, benchmark)
         @benchmark
         def result():
             out = subprocess.run(
@@ -231,7 +232,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """
         device = staq_device(backend=BACKEND)
         circuit = trivial_bvlike_circuit(100)
-
+        input_circuit_properties(circuit, benchmark)
         base_temp_dir = tmp_path_factory.getbasetemp()
         input_qasm_file = base_temp_dir / "trivial_bvlike_100.qasm"
         qasm2.dump(circuit, input_qasm_file)
@@ -254,7 +255,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         device = staq_device(backend=BACKEND)
         qasm_file = "clifford_100_12345.qasm"
         input_qasm_file = Configuration.get_qasm_dir("clifford") + qasm_file
-
+        _ = qasm_circuit_loader(input_qasm_file, benchmark)
         @benchmark
         def result():
             out = subprocess.run(

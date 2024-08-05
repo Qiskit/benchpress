@@ -33,6 +33,10 @@ def qiskit_hamiltonian_circuit(sparse_op, label=None, evo_time=1):
     return qc
 
 
+def qiskit_input_circuit_properties(circuit, benchmark):
+    benchmark.extra_info["input_num_qubits"] = circuit.num_qubits
+
+
 def qiskit_output_circuit_properties(circuit, two_qubit_gate, benchmark):
     benchmark.extra_info["output_num_qubits"] = circuit.num_qubits
     benchmark.extra_info["output_circuit_operations"] = circuit.count_ops()

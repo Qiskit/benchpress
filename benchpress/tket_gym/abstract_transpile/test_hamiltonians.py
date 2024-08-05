@@ -14,7 +14,7 @@
 import pytest
 
 from benchpress.tket_gym.utils.tket_backend_utils import TketFlexibleBackend
-from benchpress.utilities.io import output_circuit_properties
+from benchpress.utilities.io import input_circuit_properties, output_circuit_properties
 from benchpress.utilities.io.hamiltonians import generate_hamiltonian_circuit
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.config import Configuration
@@ -37,6 +37,7 @@ class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
         circuit = generate_hamiltonian_circuit(
             circ_and_topo[0].pop("ham_hamlib_hamiltonian"), benchmark
         )
+        input_circuit_properties(circuit, backend)
         backend = TketFlexibleBackend(circuit.n_qubits, circ_and_topo[1])
         TWO_Q_GATE = backend.two_q_gate_type
 

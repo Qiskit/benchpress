@@ -20,7 +20,9 @@ from benchpress.bqskit_gym.circuits import (
     trivial_bvlike_circuit,
 )
 from benchpress.config import Configuration
-from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properties
+from benchpress.utilities.io import (qasm_circuit_loader,
+                                     input_circuit_properties,
+                                     output_circuit_properties)
 from benchpress.utilities.validation import circuit_validator
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
@@ -78,6 +80,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_circSU2_89_transpile(self, benchmark):
         """Compile 89Q circSU2 circuit against target backend"""
         circuit = bqskit_circSU2(89, 3)
+        input_circuit_properties(circuit, benchmark)
         compiler = Compiler()
 
         @benchmark
@@ -97,6 +100,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_circSU2_100_transpile(self, benchmark):
         """Compile 100Q circSU2 circuit against target backend"""
         circuit = bqskit_circSU2(100, 3)
+        input_circuit_properties(circuit, benchmark)
         compiler = Compiler()
 
         @benchmark
@@ -116,6 +120,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
     def test_BV_100_transpile(self, benchmark):
         """Compile 100Q BV circuit against target backend"""
         circuit = bqskit_bv_all_ones(100)
+        input_circuit_properties(circuit, benchmark)
         compiler = Compiler()
 
         @benchmark
@@ -182,6 +187,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         into a single X and Z gate on a target device
         """
         circuit = trivial_bvlike_circuit(100)
+        input_circuit_properties(circuit, benchmark)
         compiler = Compiler()
 
         @benchmark
