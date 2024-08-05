@@ -17,7 +17,7 @@ from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
-from benchpress.utilities.io import output_circuit_properties
+from benchpress.utilities.io import input_circuit_properties, output_circuit_properties
 from benchpress.utilities.io.hamiltonians import generate_hamiltonian_circuit
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceHamlibHamiltonians
@@ -52,6 +52,7 @@ class TestWorkoutDeviceHamlibHamiltonians(WorkoutDeviceHamlibHamiltonians):
         circuit = generate_hamiltonian_circuit(
             hamiltonian_info.pop("ham_hamlib_hamiltonian"), benchmark
         )
+        input_circuit_properties(circuit, benchmark)
 
         @benchmark
         def result():

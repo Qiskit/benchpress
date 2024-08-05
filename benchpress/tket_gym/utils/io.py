@@ -56,6 +56,10 @@ def tket_hamiltonian_circuit(sparse_op, label=None, evo_time=1):
     return gen_term_sequence_circuit(tket_op, qc)
 
 
+def tket_input_circuit_properties(circuit, benchmark):
+    benchmark.extra_info["input_num_qubits"] = circuit.n_qubits
+
+
 def tket_output_circuit_properties(circuit, two_qubit_gate, benchmark):
     ops = {}
     for command in circuit.get_commands():
