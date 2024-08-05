@@ -19,12 +19,16 @@ from benchpress.config import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
+<<<<<<< HEAD
 from benchpress.cirq_gym.circuits import (
     cirq_QV,
     multi_control_circuit,
     dtc_unitary,
     cirq_circSU2,
 )
+=======
+from benchpress.cirq_gym.circuits import cirq_QV, cirq_QFT, multi_control_circuit, dtc_unitary, prepare_and_select_oracle
+>>>>>>> myfork/main
 
 SEED = 12345
 
@@ -67,6 +71,36 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         output_circuit_properties(result, "ZZPowGate", benchmark)
         assert True
 
+    def test_QFT_build(self, benchmark):
+        """Measures an SDK's ability to build a 100Q
+        QFT circit from scratch.
+        """
+
+        @benchmark
+        def result():
+            out = cirq_QFT(100)
+            return out
+
+        assert result
+
+    def test_prep_select_build(self, benchmark):
+        """
+        """
+        # Define the number of qubits and target state
+        num_qubits = 100
+        target_state = '0' * num_qubits # the all zero state
+
+        # Create qubits
+        qubits = [cirq.LineQubit(i) for i in range(num_qubits)]
+
+        @benchmark
+        def result():    
+            # Prepare and select oracle
+            oracle_circuit = prepare_and_select_oracle(qubits, target_state)
+            return oracle_circuit
+
+        assert result
+        
     def test_multi_control_circuit(self, benchmark):
         """Measures an SDKs ability to build a circuit
         with a multi-controlled X-gate

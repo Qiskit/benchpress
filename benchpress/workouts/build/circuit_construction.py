@@ -20,6 +20,23 @@ class WorkoutCircuitConstruction:
     def test_QV100_build(self, benchmark):
         """Measures an SDKs ability to build a 100Q
         QV circuit from scratch.
+<<<<<<< HEAD
+=======
+        """
+        pass
+    
+    @pytest.mark.skip(reason="Not implimented")
+    def test_QFT_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        QFT circuit from scratch.
+        """
+        pass
+
+    @pytest.mark.skip(reason="Not implimented")
+    def test_prep_select_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        QFT circuit from scratch.
+>>>>>>> myfork/main
         """
         pass
 

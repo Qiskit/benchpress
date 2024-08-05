@@ -10,4 +10,8 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+<<<<<<< HEAD
 from .circuits import cirq_QV, multi_control_circuit, dtc_unitary, cirq_circSU2
+=======
+from .circuits import cirq_QV, cirq_QFT, multi_control_circuit, dtc_unitary, prepare_and_select_oracle
+>>>>>>> myfork/main

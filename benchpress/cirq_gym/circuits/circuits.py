@@ -16,6 +16,47 @@ import numpy as np
 import sympy
 import cirq
 
+import cirq
+import numpy as np
+
+def prepare_superposition(qubits):
+    circuit = cirq.Circuit()
+    for qubit in qubits:
+        circuit.append(cirq.H(qubit))
+    return circuit
+
+def select_oracle(qubits, target_state):
+    circuit = cirq.Circuit()
+    # Apply X gates to the qubits corresponding to 0 in the target state
+    for i, bit in enumerate(target_state):
+        if bit == '0':
+            circuit.append(cirq.X(qubits[i]))
+
+    # Apply a multi-controlled Z gate
+    circuit.append(cirq.Z(qubits[-1]).controlled_by(*qubits[:-1]))
+
+    # Apply X gates again to revert the qubits back to their original state
+    for i, bit in enumerate(target_state):
+        if bit == '0':
+            circuit.append(cirq.X(qubits[i]))
+    
+    return circuit
+
+def prepare_and_select_oracle(qubits, target_state):
+    prepare_circuit = prepare_superposition(qubits)
+    select_circuit = select_oracle(qubits, target_state)
+    return prepare_circuit + select_circuit
+
+def cirq_QFT(num_qubits):
+    qubits = cirq.LineQubit.range(num_qubits)
+    circuit = cirq.Circuit()
+    for i in range(num_qubits):
+        for j in range(i):
+            circuit.append(cirq.CZ(qubits[j], qubits[i]) ** (1/2**(i-j)))
+        circuit.append(cirq.H(qubits[i]))
+    for i in range(num_qubits // 2):
+        circuit.append(cirq.SWAP(qubits[i], qubits[num_qubits-i-1]))
+    return circuit
 
 def cirq_QV(num_qubits, depth, seed=None):
     """Generates a model circuit with the given number of qubits and depth.
