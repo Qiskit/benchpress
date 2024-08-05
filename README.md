@@ -1,7 +1,7 @@
 ![benchpress](https://media.github.ibm.com/user/152294/files/d93c265c-44c1-4a5d-82bd-494342ede900)
 
 
-# :construction: benchpress :construction:
+# benchpress
 Quantum software benchmarking
 
 ## Supported SDKs
@@ -56,7 +56,7 @@ which will save the file to the CWD in the `.benchmarks` folder
 Further details on using `pytest-benchmark` can be found here: https://pytest-benchmark.readthedocs.io/en/latest/usage.html
 
 
-## Running the memory tests
+## :construction: Running the memory tests :construction:
 
 Benchmarking the amount of memory a  test uses can be very costly in terms of time and memory.  Here we use the `pytest-memray` plugin.  Calling the memory bechmark looks like:
 
