@@ -37,7 +37,7 @@ class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
         circuit = generate_hamiltonian_circuit(
             circ_and_topo[0].pop("ham_hamlib_hamiltonian"), benchmark
         )
-        input_circuit_properties(circuit, backend)
+        input_circuit_properties(circuit, benchmark)
         backend = TketFlexibleBackend(circuit.n_qubits, circ_and_topo[1])
         TWO_Q_GATE = backend.two_q_gate_type
 
