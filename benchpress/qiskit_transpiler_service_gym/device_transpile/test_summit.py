@@ -33,6 +33,7 @@ TRANS_SERVICE = TranspilerService(
     qiskit_transpile_options={"basis_gates": BACKEND.operation_names},
     ai=True,
     optimization_level=OPTIMIZATION_LEVEL,
+    timeout=3600,
 )
 
 
