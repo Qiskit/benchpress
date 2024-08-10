@@ -67,3 +67,10 @@ class WorkoutDeviceTranspile100Q:
     def test_clifford_100_transpile(self, benchmark):
         """Transpile a Clifford 100 circuit against a target device"""
         pass
+
+    @pytest.mark.skip(reason="Not implimented")
+    def test_QCNN_100_transpile(self, benchmark):
+        """Transpile a Quantum Convolutional Neural Network (QCNN) 100 circuit
+        against a target device
+        """
+        pass

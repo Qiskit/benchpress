@@ -94,6 +94,30 @@ def trivial_bvlike_circuit(N):
         qc.cx(kk, N - 1)
     return qc
 
+def qcnn_circuit(N):
+    """A circuit to generate a Quantum Convolutional Neural Network
+
+    Parameters:
+        N (int): Number of qubits
+
+    Returns:
+        QuantumCircuit: Output circuit
+    """
+
+    qc=QuantumCircuit(N)
+    num_layers = int(np.ceil(np.log2(N)))
+    i_conv=0
+    for i_layer in range(num_layers):
+        for i_sub_layer in [0 , 2**i_layer]:            
+            for i_q1 in range(i_sub_layer, N, 2**(i_layer+1)):
+                i_q2=2**i_layer+i_q1
+                if i_q2<N:
+                    qc.rxx(np.random.rand(), i_q1, i_q2)
+                    qc.ry(np.random.rand(), i_q1)
+                    qc.ry(np.random.rand(), i_q2)
+                    i_conv+=1
+
+    return qc
 
 def random_clifford_circuit(num_qubits, seed=12345):
     """Generate a random clifford circuit

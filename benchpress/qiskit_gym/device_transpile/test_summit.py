@@ -1,6 +1,6 @@
 """Test summit benchmarks"""
 
-from qiskit import QuantumCircuit
+from qiskit import QuantumCircuit, transpile
 from qiskit.circuit.library import EfficientSU2
 from qiskit.transpiler.passes import StarPreRouting
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -14,6 +14,7 @@ from benchpress.qiskit_gym.circuits import bv_all_ones
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
 from benchpress.qiskit_gym.circuits import trivial_bvlike_circuit
+from benchpress.qiskit_gym.circuits import qcnn_circuit
 
 BACKEND = Configuration.backend()
 TWO_Q_GATE = BACKEND.two_q_gate_type
@@ -22,6 +23,22 @@ OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
 
 @benchpress_test_validation
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
+
+    def test_QCNN_100_transpile(self, benchmark):
+        """Compile 100Q QCNN circuit against target backend"""
+        circuit = qcnn_circuit(100)
+
+        pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
+        pm.init.append(StarPreRouting())
+        
+        @benchmark
+        def result():
+            trans_qc = pm.run(circuit)
+            return trans_qc
+
+        output_circuit_properties(result, TWO_Q_GATE, benchmark)
+        assert circuit_validator(result, BACKEND)
+        
     def test_QFT_100_transpile(self, benchmark):
         """Compile 100Q QFT circuit against target backend"""
 
