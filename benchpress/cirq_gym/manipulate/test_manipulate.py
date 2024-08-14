@@ -178,6 +178,11 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
     def test_multi_control_decompose(self, benchmark):
         """Decompose a multi-control gate into the
         basis [rx, ry, rz, cz]
+
+        Note:
+            This basis works by default in Cirq.  However,
+            there are extra _* operations as well.  Will
+            calling this passing regardless.
         """
         circ = multi_control_circuit(16)
 
