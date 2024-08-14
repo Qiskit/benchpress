@@ -82,10 +82,10 @@ class IBMTargetGateset(compilation_target_gateset.TwoQubitCompilationTargetGates
         """Initializes IBMTargetGateset"""
         super().__init__(
             ops.CZ,
-            ops.MeasurementGate,
             ops.XPowGate(exponent=0.5),
             ops.X,
             ops.Rz,
+            ops.MeasurementGate,
             ops.GlobalPhaseGate,
             *additional_gates,
             name="IBMTargetGateset",
