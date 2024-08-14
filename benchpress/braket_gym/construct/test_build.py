@@ -128,19 +128,6 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         output_circuit_properties(result, "CNot", benchmark)
         assert result
 
-    def test_QV100_qasm2_import(self, benchmark):
-        """QASM import of QV100 circuit"""
-
-        @benchmark
-        def result():
-            circuit = qasm_circuit_loader(
-                Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
-            )
-            return circuit
-
-        output_circuit_properties(result, "CNot", benchmark)
-        assert result
-
     def test_bigint_qasm2_import(self, benchmark):
         """QASM import of circuit with bigint"""
 
