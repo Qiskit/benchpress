@@ -20,8 +20,11 @@ from typing import Any, Dict, Sequence, Type, Union
 
 from benchpress.utilities.io import qasm_circuit_loader
 from benchpress.config import Configuration
+from benchpress.utilities.io import output_circuit_properties
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
+from benchpress.cirq_gym.circuits import multi_control_circuit
+
 
 
 CNOT_twirling_gates = [
@@ -169,5 +172,18 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             out = cirq.optimize_for_target_gateset(circ, gateset=IBMTargetGateset())
             return out
 
-        benchmark.extra_info["gate_count_2q"] = result.count_ops().get("cz", 0)
-        assert result.count_ops().get("cz", 0) == 15000
+        output_circuit_properties(result, "CXPowGate", benchmark)
+        assert result
+
+    def test_multi_control_decompose(self, benchmark):
+        """Decompose a multi-control gate into the
+        basis [rx, ry, rz, cz]
+        """
+        circ = multi_control_circuit(16)
+
+        @benchmark
+        def result():
+            out = cirq.optimize_for_target_gateset(circ)
+            return out
+        output_circuit_properties(result, "CZPowGate", benchmark)
+        assert result
