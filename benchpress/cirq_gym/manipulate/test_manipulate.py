@@ -192,3 +192,20 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             return out
         output_circuit_properties(result, "CZPowGate", benchmark)
         assert result
+
+    def test_random_clifford_decompose(self, benchmark):
+        """Decompose a random clifford into
+        basis [rz, sx, x, cz]
+        """
+        circuit = qasm_circuit_loader(
+            Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm",
+            benchmark)
+        
+        @benchmark
+        def result():
+            out = cirq.optimize_for_target_gateset(circuit, gateset=IBMTargetGateset())
+            return out
+
+        output_circuit_properties(result, "CZPowGate", benchmark)
+        assert result
+        
