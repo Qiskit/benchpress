@@ -12,8 +12,12 @@
 """Test circuit generation"""
 
 import numpy as np
-from braket.circuits import Circuit, FreeParameter
+from braket.circuits import Circuit, Gate, Instruction, FreeParameter
 from scipy import stats
+
+
+GATES_1Q = [Gate.X, Gate.Y, Gate.Z, Gate.S, Gate.H, Gate.S, Gate.Si]
+GATES_2Q = [Gate.CNot, Gate.CZ, Gate.Swap, Gate.CY]
 
 
 def braket_circSU2(width, num_reps=3):
@@ -103,3 +107,28 @@ def dtc_unitary(num_qubits, g=0.95, seed=None):
         h = rng.uniform(low=-np.pi, high=np.pi)
         qc.rz(i, h * np.pi)
     return qc
+
+
+def braket_random_clifford(num_qubits, num_gates=None, seed=None):
+    """Construct a random clifford circuit
+    Parameters:
+        num_qubits (int): Number of qubits
+        num_gates (int): Number of gates
+        seed (int): RNG seed, default=None
+    Returns:
+        Circuit: random Clifford circuit
+    """
+    GATES = GATES_1Q + GATES_2Q
+    RNG = np.random.default_rng(seed=seed)
+    out = Circuit()
+    num_gate_types = len(GATES)
+    total_gates = num_gates or 10 * num_qubits * num_qubits
+    for _ in range(total_gates):
+        gate = GATES[RNG.integers(num_gate_types)]
+        if gate in GATES_1Q:
+            qubit = RNG.integers(num_qubits)
+            out.add_instruction(Instruction(gate, qubit))
+        else:
+            qubits = RNG.choice(num_qubits, 2, replace=False)
+            out.add_instruction(Instruction(gate, qubits))
+    return out
