@@ -11,4 +11,4 @@
 # that they have been altered from the originals.
 
 
-from .circuits import braket_circSU2, braket_QV, dtc_unitary
+from .circuits import braket_circSU2, braket_QV, dtc_unitary, braket_random_clifford
