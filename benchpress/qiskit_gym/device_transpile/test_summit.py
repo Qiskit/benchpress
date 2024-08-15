@@ -1,8 +1,6 @@
 """Test summit benchmarks"""
 
-from qiskit import QuantumCircuit
 from qiskit.circuit.library import EfficientSU2
-from qiskit.transpiler.passes import StarPreRouting
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
@@ -30,7 +28,6 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         )
 
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
-        pm.init.append(StarPreRouting())
 
         @benchmark
         def result():
