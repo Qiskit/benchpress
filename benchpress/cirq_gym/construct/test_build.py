@@ -24,6 +24,7 @@ from benchpress.cirq_gym.circuits import (
     multi_control_circuit,
     dtc_unitary,
     cirq_circSU2,
+    cirq_random_clifford
 )
 
 SEED = 12345
@@ -151,3 +152,14 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         output_circuit_properties(result, "CXPowGate", benchmark)
         assert len(cirq.parameter_names(result)) == 0
+
+    def test_clifford_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        random Clifford circuit from scratch.
+        """
+        @benchmark
+        def result():
+            cirq_random_clifford(100, seed=SEED)
+            return True
+
+        assert result

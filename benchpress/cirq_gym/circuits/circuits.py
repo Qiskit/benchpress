@@ -17,6 +17,10 @@ import sympy
 import cirq
 
 
+GATES_1Q = [cirq.X, cirq.Y, cirq.Z, cirq.S, cirq.H, cirq.S**-1]
+GATES_2Q = [cirq.CNOT, cirq.CZ, cirq.SWAP, cirq.Y.controlled(1)]
+
+
 def cirq_QV(num_qubits, depth, seed=None):
     """Generates a model circuit with the given number of qubits and depth.
 
@@ -168,4 +172,30 @@ def cirq_circSU2(width, num_reps=3):
             counter += 1
         counter += width
         out.append([cirq.Moment(ops0), cirq.Moment(ops1)])
+    return out
+
+
+def cirq_random_clifford(num_qubits, num_gates=None, seed=None):
+    """Construct a random clifford circuit
+    Parameters:
+        num_qubits (int): Number of qubits
+        num_gates (int): Number of gates
+        seed (int): RNG seed, default=None
+    Returns:
+        Circuit: random Clifford circuit
+    """
+    GATES = GATES_1Q + GATES_2Q
+    RNG = np.random.default_rng(seed=seed)
+    out = cirq.Circuit()
+    qreg = cirq.LineQubit.range(num_qubits)
+    num_gate_types = len(GATES)
+    total_gates = num_gates or 10 * num_qubits * num_qubits
+    for _ in range(total_gates):
+        gate = GATES[RNG.integers(num_gate_types)]
+        if gate in GATES_1Q:
+            qubit = RNG.integers(num_qubits)
+            out.append(gate.on(qreg[qubit]))
+        else:
+            qubits = RNG.choice(num_qubits, 2, replace=False)
+            out.append(gate.on(qreg[qubits[0]], qreg[qubits[1]]))
     return out
