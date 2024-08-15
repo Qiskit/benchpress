@@ -120,7 +120,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             out_circuit = compile(
                 circ,
                 model=model,
-                optimization_level=args["bqskit_optimization_level"],
+                optimization_level=1,
                 max_synthesis_size=N,
                 compiler=Compiler(),
                 seed=0,
@@ -147,7 +147,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             out = compile(
                 input=circ,
                 model=model,
-                optimization_level=OPTIMIZATION_LEVEL,
+                optimization_level=1,
                 compiler=Compiler(),
                 seed=0,
             )
@@ -172,7 +172,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             out = compile(
                 input=circ,
                 model=model,
-                optimization_level=OPTIMIZATION_LEVEL,
+                optimization_level=1,
                 compiler=Compiler(),
                 seed=0,
             )
