@@ -14,12 +14,12 @@ import random
 
 from braket.circuits import Circuit, Gate, Instruction
 from braket.circuits.moments import Moments
+from qiskit import QuantumCircuit
+from qiskit_braket_provider.providers import to_braket
 
-from benchpress.config import Configuration
-from benchpress.utilities.io import qasm_circuit_loader
+from benchpress import Configuration
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.manipulate import WorkoutCircuitManipulate
-from benchpress.braket_gym.circuits import braket_QV
 
 
 CNOT_twirling_gates = [
@@ -73,12 +73,25 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         """Perform Pauli-twirling on a 100Q DTC
         circuit
         """
-        # Unlike other SDKs, the QASM importer is a bit flaky so build a new circuit
-        circuit = braket_QV(100, seed=12345)
+        # Unlike other SDKs, the QASM importer is a bit flaky so use provider
+        circ_location = Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
+        qc = QuantumCircuit.from_qasm_file(circ_location)
+        braket_qc = to_braket(qc)
 
         @benchmark
         def result():
-            out = cx_twirl(circuit)
+            out = cx_twirl(braket_qc)
             return out
 
-        assert result
+        count_ops = {}
+        for item in result.instructions:
+            name = item.operator.name
+            if name in count_ops:
+                count_ops[name] += 1
+            else:
+                count_ops[name] = 1
+
+        assert (
+            count_ops["X"] + count_ops["Y"] + count_ops["Z"] + count_ops["I"]
+            == 4 * 19800
+        )

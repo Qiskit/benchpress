@@ -13,8 +13,11 @@
 
 from benchpress.config import Configuration
 from benchpress.tket_gym.circuits import tket_bv_all_ones, tket_circSU2
-from benchpress.utilities.io import (qasm_circuit_loader, input_circuit_properties,
-                                     output_circuit_properties)
+from benchpress.utilities.io import (
+    qasm_circuit_loader,
+    input_circuit_properties,
+    output_circuit_properties,
+)
 from benchpress.utilities.validation import circuit_validator
 
 from benchpress.workouts.validation import benchpress_test_validation

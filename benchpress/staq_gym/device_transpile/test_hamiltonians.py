@@ -18,7 +18,6 @@ from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceHamlibHamiltonians
 
 
-
 def pytest_generate_tests(metafunc):
     directory = Configuration.get_hamiltonian_dir("hamlib")
     ham_records = json.load(open(directory + "100_representative.json", "r"))

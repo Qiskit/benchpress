@@ -17,8 +17,11 @@ from qiskit_transpiler_service.transpiler_service import TranspilerService
 
 from benchpress.config import Configuration
 from benchpress.qiskit_gym.circuits import bv_all_ones
-from benchpress.utilities.io import (qasm_circuit_loader, input_circuit_properties,
-                                     output_circuit_properties)
+from benchpress.utilities.io import (
+    qasm_circuit_loader,
+    input_circuit_properties,
+    output_circuit_properties,
+)
 from benchpress.utilities.validation import circuit_validator
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
@@ -71,6 +74,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 89Q circSU2 circuit against target backend"""
         circuit = EfficientSU2(89, reps=3, entanglement="circular")
         input_circuit_properties(circuit, benchmark)
+
         @benchmark
         def result():
             trans_qc = TRANS_SERVICE.run(circuit)
@@ -83,6 +87,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 100Q circSU2 circuit against target backend"""
         circuit = EfficientSU2(100, reps=3, entanglement="circular")
         input_circuit_properties(circuit, benchmark)
+
         @benchmark
         def result():
             trans_qc = TRANS_SERVICE.run(circuit)
@@ -95,6 +100,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """Compile 100Q BV circuit against target backend"""
         circuit = bv_all_ones(100)
         input_circuit_properties(circuit, benchmark)
+
         @benchmark
         def result():
             trans_qc = TRANS_SERVICE.run(circuit)
@@ -140,6 +146,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         """
         circuit = trivial_bvlike_circuit(100)
         input_circuit_properties(circuit, benchmark)
+
         @benchmark
         def result():
             trans_qc = TRANS_SERVICE.run(circuit)

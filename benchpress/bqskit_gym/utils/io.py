@@ -43,6 +43,7 @@ def bqskit_hamiltonian_circuit(sparse_op, label=None, evo_time=1):
         qiskit_hamiltonian_circuit(sparse_op, label, evo_time).decompose().decompose()
     )
 
+
 def bqskit_input_circuit_properties(circuit, benchmark):
     benchmark.extra_info["input_num_qubits"] = circuit.num_qudits
 
