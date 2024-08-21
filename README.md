@@ -1,6 +1,3 @@
-![benchpress](https://media.github.ibm.com/user/152294/files/d93c265c-44c1-4a5d-82bd-494342ede900)
-
-
 # benchpress
 Quantum software benchmarking
 
