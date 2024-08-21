@@ -17,6 +17,7 @@ from benchpress.workouts.abstract_transpile.hamlib_hamiltonians import (
     WorkoutAbstractHamiltonians,
 )
 
+
 @benchpress_test_validation
 class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
     pass

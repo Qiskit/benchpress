@@ -26,7 +26,6 @@ from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 from benchpress.cirq_gym.circuits import multi_control_circuit
 
 
-
 CNOT_twirling_gates = [
     (cirq.I, cirq.I, cirq.I, cirq.I),
     (cirq.I, cirq.X, cirq.I, cirq.X),
@@ -190,6 +189,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         def result():
             out = cirq.optimize_for_target_gateset(circ)
             return out
+
         output_circuit_properties(result, "CZPowGate", benchmark)
         assert result
 
@@ -198,9 +198,9 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         basis [rz, sx, x, cz]
         """
         circuit = qasm_circuit_loader(
-            Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm",
-            benchmark)
-        
+            Configuration.get_qasm_dir("clifford") + "clifford_20_12345.qasm", benchmark
+        )
+
         @benchmark
         def result():
             out = cirq.optimize_for_target_gateset(circuit, gateset=IBMTargetGateset())
@@ -208,4 +208,3 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
 
         output_circuit_properties(result, "CZPowGate", benchmark)
         assert result
-        

@@ -77,11 +77,12 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         circ_location = Configuration.get_qasm_dir("dtc") + "dtc_100_cx_12345.qasm"
         qc = QuantumCircuit.from_qasm_file(circ_location)
         braket_qc = to_braket(qc)
+
         @benchmark
         def result():
             out = cx_twirl(braket_qc)
             return out
-        
+
         count_ops = {}
         for item in result.instructions:
             name = item.operator.name
@@ -90,5 +91,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             else:
                 count_ops[name] = 1
 
-        assert count_ops['X'] + count_ops['Y'] \
-            + count_ops['Z'] + count_ops['I'] == 4*19800
+        assert (
+            count_ops["X"] + count_ops["Y"] + count_ops["Z"] + count_ops["I"]
+            == 4 * 19800
+        )

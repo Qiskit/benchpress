@@ -34,6 +34,7 @@ def braket_qasm_loader(qasm_file, benchmark):
     benchmark.extra_info["input_num_qubits"] = circuit.qubit_count
     return circuit
 
+
 def braket_input_circuit_properties(circuit, benchmark):
     """Get cirq output circuit statistics
 
@@ -42,6 +43,7 @@ def braket_input_circuit_properties(circuit, benchmark):
         benchmark : The benchmark object
     """
     benchmark.extra_info["input_num_qubits"] = circuit.qubit_count
+
 
 def braket_output_circuit_properties(circuit, two_qubit_gate, benchmark):
     """Get cirq output circuit statistics

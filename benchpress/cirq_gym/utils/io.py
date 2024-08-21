@@ -33,6 +33,7 @@ def cirq_qasm_loader(qasm_file, benchmark):
     benchmark.extra_info["input_num_qubits"] = cirq.num_qubits(circuit)
     return circuit
 
+
 def cirq_input_circuit_properties(circuit, benchmark):
     """Get cirq output circuit statistics
 

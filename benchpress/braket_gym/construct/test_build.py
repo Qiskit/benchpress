@@ -18,8 +18,12 @@ from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properti
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
-from benchpress.braket_gym.circuits import (braket_QV, braket_circSU2,
-                                            dtc_unitary, braket_random_clifford)
+from benchpress.braket_gym.circuits import (
+    braket_QV,
+    braket_circSU2,
+    dtc_unitary,
+    braket_random_clifford,
+)
 from braket.circuits import Circuit
 
 SEED = 12345
@@ -145,6 +149,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         """Measures an SDKs ability to build a 100Q
         random Clifford circuit from scratch.
         """
+
         @benchmark
         def result():
             braket_random_clifford(100, seed=SEED)

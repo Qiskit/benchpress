@@ -18,8 +18,11 @@ from qiskit import QuantumCircuit, qasm2
 from qiskit.circuit.library import EfficientSU2
 
 from benchpress.config import Configuration
-from benchpress.utilities.io import (qasm_circuit_loader, input_circuit_properties,
-                                     output_circuit_properties)
+from benchpress.utilities.io import (
+    qasm_circuit_loader,
+    input_circuit_properties,
+    output_circuit_properties,
+)
 from benchpress.utilities.validation import circuit_validator
 from benchpress.qiskit_gym.circuits import bv_all_ones, trivial_bvlike_circuit
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
@@ -72,6 +75,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         qasm_file = "qft_N100.qasm"
         input_qasm_file = Configuration.get_qasm_dir("qft") + qasm_file
         _ = qasm_circuit_loader(input_qasm_file, benchmark)
+
         @benchmark
         def result():
             out = subprocess.run(
@@ -93,6 +97,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         qasm_file = "qv_N100_12345.qasm"
         input_qasm_file = Configuration.get_qasm_dir("qv") + qasm_file
         _ = qasm_circuit_loader(input_qasm_file, benchmark)
+
         @benchmark
         def result():
             out = subprocess.run(
@@ -192,6 +197,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         qasm_file = "square_heisenberg_N100.qasm"
         input_qasm_file = Configuration.get_qasm_dir("square-heisenberg") + qasm_file
         _ = qasm_circuit_loader(input_qasm_file, benchmark)
+
         @benchmark
         def result():
             out = subprocess.run(
@@ -211,6 +217,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         qasm_file = "qaoa_barabasi_albert_N100_3reps.qasm"
         input_qasm_file = Configuration.get_qasm_dir("qaoa") + qasm_file
         _ = qasm_circuit_loader(input_qasm_file, benchmark)
+
         @benchmark
         def result():
             out = subprocess.run(
@@ -256,6 +263,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         qasm_file = "clifford_100_12345.qasm"
         input_qasm_file = Configuration.get_qasm_dir("clifford") + qasm_file
         _ = qasm_circuit_loader(input_qasm_file, benchmark)
+
         @benchmark
         def result():
             out = subprocess.run(
