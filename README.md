@@ -1,5 +1,7 @@
-# benchpress
+![Benchpress Image - © 2024 IBM. All Rights Reserved.](https://github.com/user-attachments/assets/67b82edb-52d6-47ac-a513-1b7129c20ea5)
+
 Quantum software benchmarking
+___
 
 ## Supported SDKs
 
