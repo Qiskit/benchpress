@@ -1,0 +1,3951 @@
+{
+    "machine_info": {
+        "node": "paul-linux",
+        "processor": "x86_64",
+        "machine": "x86_64",
+        "python_compiler": "GCC 12.3.0",
+        "python_implementation": "CPython",
+        "python_implementation_version": "3.12.4",
+        "python_version": "3.12.4",
+        "python_build": [
+            "main",
+            "Jun 17 2024 10:23:07"
+        ],
+        "release": "6.5.0-45-generic",
+        "system": "Linux",
+        "cpu": {
+            "python_version": "3.12.4.final.0 (64 bit)",
+            "cpuinfo_version": [
+                9,
+                0,
+                0
+            ],
+            "cpuinfo_version_string": "9.0.0",
+            "arch": "X86_64",
+            "bits": 64,
+            "count": 24,
+            "arch_string_raw": "x86_64",
+            "vendor_id_raw": "AuthenticAMD",
+            "brand_raw": "AMD Ryzen 9 7900 12-Core Processor",
+            "hz_advertised_friendly": "545.0000 MHz",
+            "hz_actual_friendly": "545.0000 MHz",
+            "hz_advertised": [
+                545000000,
+                0
+            ],
+            "hz_actual": [
+                545000000,
+                0
+            ],
+            "stepping": 2,
+            "model": 97,
+            "family": 25,
+            "flags": [
+                "3dnowprefetch",
+                "abm",
+                "adx",
+                "aes",
+                "amd_lbr_v2",
+                "aperfmperf",
+                "apic",
+                "arat",
+                "avic",
+                "avx",
+                "avx2",
+                "avx512_bf16",
+                "avx512_bitalg",
+                "avx512_vbmi2",
+                "avx512_vnni",
+                "avx512_vpopcntdq",
+                "avx512bitalg",
+                "avx512bw",
+                "avx512cd",
+                "avx512dq",
+                "avx512f",
+                "avx512ifma",
+                "avx512vbmi",
+                "avx512vbmi2",
+                "avx512vl",
+                "avx512vnni",
+                "avx512vpopcntdq",
+                "bmi1",
+                "bmi2",
+                "bpext",
+                "cat_l3",
+                "cdp_l3",
+                "clflush",
+                "clflushopt",
+                "clwb",
+                "clzero",
+                "cmov",
+                "cmp_legacy",
+                "constant_tsc",
+                "cpb",
+                "cppc",
+                "cpuid",
+                "cqm",
+                "cqm_llc",
+                "cqm_mbm_local",
+                "cqm_mbm_total",
+                "cqm_occup_llc",
+                "cr8_legacy",
+                "cx16",
+                "cx8",
+                "dbx",
+                "de",
+                "decodeassists",
+                "erms",
+                "extapic",
+                "extd_apicid",
+                "f16c",
+                "flush_l1d",
+                "flushbyasid",
+                "fma",
+                "fpu",
+                "fsgsbase",
+                "fsrm",
+                "fxsr",
+                "fxsr_opt",
+                "gfni",
+                "ht",
+                "hw_pstate",
+                "ibpb",
+                "ibrs",
+                "ibrs_enhanced",
+                "ibs",
+                "invpcid",
+                "irperf",
+                "lahf_lm",
+                "lbrv",
+                "lm",
+                "mba",
+                "mca",
+                "mce",
+                "misalignsse",
+                "mmx",
+                "mmxext",
+                "monitor",
+                "movbe",
+                "msr",
+                "mtrr",
+                "mwaitx",
+                "nonstop_tsc",
+                "nopl",
+                "npt",
+                "nrip_save",
+                "nx",
+                "ospke",
+                "osvw",
+                "osxsave",
+                "overflow_recov",
+                "pae",
+                "pat",
+                "pausefilter",
+                "pci_l2i",
+                "pclmulqdq",
+                "pdpe1gb",
+                "perfctr_core",
+                "perfctr_llc",
+                "perfctr_nb",
+                "perfmon_v2",
+                "pfthreshold",
+                "pge",
+                "pku",
+                "pni",
+                "popcnt",
+                "pqe",
+                "pqm",
+                "pse",
+                "pse36",
+                "rapl",
+                "rdpid",
+                "rdpru",
+                "rdrand",
+                "rdrnd",
+                "rdseed",
+                "rdt_a",
+                "rdtscp",
+                "rep_good",
+                "sep",
+                "sha",
+                "sha_ni",
+                "skinit",
+                "smap",
+                "smca",
+                "smep",
+                "ssbd",
+                "sse",
+                "sse2",
+                "sse4_1",
+                "sse4_2",
+                "sse4a",
+                "ssse3",
+                "stibp",
+                "succor",
+                "svm",
+                "svm_lock",
+                "syscall",
+                "tce",
+                "topoext",
+                "tsc",
+                "tsc_scale",
+                "umip",
+                "v_spec_ctrl",
+                "v_vmsave_vmload",
+                "vaes",
+                "vgif",
+                "vmcb_clean",
+                "vme",
+                "vmmcall",
+                "vnmi",
+                "vpclmulqdq",
+                "wbnoinvd",
+                "wdt",
+                "x2avic",
+                "xgetbv1",
+                "xsave",
+                "xsavec",
+                "xsaveerptr",
+                "xsaveopt",
+                "xsaves"
+            ],
+            "l3_cache_size": 1048576,
+            "l2_cache_size": 12582912,
+            "l1_data_cache_size": 393216,
+            "l1_instruction_cache_size": 393216,
+            "l2_cache_line_size": 1024,
+            "l2_cache_associativity": 6
+        }
+    },
+    "commit_info": {
+        "id": "914b69417df59f93ea42a0fc0515654536070ea6",
+        "time": "2024-08-05T10:36:06-04:00",
+        "author_time": "2024-08-05T10:36:06-04:00",
+        "dirty": false,
+        "project": "benchpress",
+        "branch": "main"
+    },
+    "benchmarks": [
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[mod5_4.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[mod5_4.qasm]",
+            "params": {
+                "filename": "mod5_4.qasm"
+            },
+            "param": "mod5_4.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0003573070280253887,
+                "input_num_qubits": 5,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 85,
+                    "u": 25
+                },
+                "output_gate_count_2q": 85,
+                "output_depth_2q": 78
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0051354640163481236,
+                "max": 0.0544426059932448,
+                "mean": 0.006256078513195882,
+                "stddev": 0.003893340163779725,
+                "rounds": 156,
+                "median": 0.0059316225233487785,
+                "iqr": 0.0003105124633293599,
+                "q1": 0.005782128020655364,
+                "q3": 0.006092640483984724,
+                "iqr_outliers": 11,
+                "stddev_outliers": 1,
+                "outliers": "1;11",
+                "ld15iqr": 0.005428040982224047,
+                "hd15iqr": 0.00656768202316016,
+                "ops": 159.84454125547023,
+                "total": 0.9759482480585575,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[tof_3.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[tof_3.qasm]",
+            "params": {
+                "filename": "tof_3.qasm"
+            },
+            "param": "tof_3.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00020621897419914603,
+                "input_num_qubits": 5,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 76,
+                    "u": 24
+                },
+                "output_gate_count_2q": 76,
+                "output_depth_2q": 46
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.005083244992420077,
+                "max": 0.011604455998167396,
+                "mean": 0.005875490170728881,
+                "stddev": 0.0005474936929826935,
+                "rounds": 160,
+                "median": 0.005807968991575763,
+                "iqr": 0.0003919275477528572,
+                "q1": 0.0056292944645974785,
+                "q3": 0.006021222012350336,
+                "iqr_outliers": 5,
+                "stddev_outliers": 11,
+                "outliers": "11;5",
+                "ld15iqr": 0.005083244992420077,
+                "hd15iqr": 0.0066216109553352,
+                "ops": 170.19856572680564,
+                "total": 0.940078427316621,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[rc_adder_6.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[rc_adder_6.qasm]",
+            "params": {
+                "filename": "rc_adder_6.qasm"
+            },
+            "param": "rc_adder_6.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.000310166971758008,
+                "input_num_qubits": 14,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 912,
+                    "u": 92
+                },
+                "output_gate_count_2q": 912,
+                "output_depth_2q": 260
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.01046295597916469,
+                "max": 0.06636926898499951,
+                "mean": 0.011794304631290619,
+                "stddev": 0.005897339438686919,
+                "rounds": 88,
+                "median": 0.011097266484284773,
+                "iqr": 0.0004207354795653373,
+                "q1": 0.01092128301388584,
+                "q3": 0.011342018493451178,
+                "iqr_outliers": 6,
+                "stddev_outliers": 1,
+                "outliers": "1;6",
+                "ld15iqr": 0.01046295597916469,
+                "hd15iqr": 0.012125212990213186,
+                "ops": 84.78668571498248,
+                "total": 1.0378988075535744,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[adder.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[adder.qasm]",
+            "params": {
+                "filename": "adder.qasm"
+            },
+            "param": "adder.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0005159259890206158,
+                "input_num_qubits": 10,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 1323,
+                    "u": 65,
+                    "measure": 5
+                },
+                "output_gate_count_2q": 1323,
+                "output_depth_2q": 544
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.010822163021657616,
+                "max": 0.013198492990341038,
+                "mean": 0.011441281241998292,
+                "stddev": 0.0004302138312039486,
+                "rounds": 86,
+                "median": 0.01139504901948385,
+                "iqr": 0.0004481439827941358,
+                "q1": 0.011153400992043316,
+                "q3": 0.011601544974837452,
+                "iqr_outliers": 5,
+                "stddev_outliers": 20,
+                "outliers": "20;5",
+                "ld15iqr": 0.010822163021657616,
+                "hd15iqr": 0.012349051015917212,
+                "ops": 87.40279858948242,
+                "total": 0.9839501868118532,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[qpt.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qpt.qasm]",
+            "params": {
+                "filename": "qpt.qasm"
+            },
+            "param": "qpt.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0004724959726445377,
+                "input_num_qubits": 1,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "barrier": 2,
+                    "u": 1,
+                    "measure": 1
+                },
+                "output_gate_count_2q": 0,
+                "output_depth_2q": 0
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0034671390312723815,
+                "max": 0.058670008031185716,
+                "mean": 0.004438535134001385,
+                "stddev": 0.003817088494553881,
+                "rounds": 205,
+                "median": 0.004153132962528616,
+                "iqr": 0.0003418432315811515,
+                "q1": 0.003976842024712823,
+                "q3": 0.004318685256293975,
+                "iqr_outliers": 7,
+                "stddev_outliers": 1,
+                "outliers": "1;7",
+                "ld15iqr": 0.0034671390312723815,
+                "hd15iqr": 0.004919504979625344,
+                "ops": 225.29955713079818,
+                "total": 0.909899702470284,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[tof_4.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[tof_4.qasm]",
+            "params": {
+                "filename": "tof_4.qasm"
+            },
+            "param": "tof_4.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00018286897102370858,
+                "input_num_qubits": 7,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 119,
+                    "u": 39
+                },
+                "output_gate_count_2q": 119,
+                "output_depth_2q": 83
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.005682868999429047,
+                "max": 0.008131746959406883,
+                "mean": 0.006399918545585152,
+                "stddev": 0.0004232976931933057,
+                "rounds": 142,
+                "median": 0.006307728472165763,
+                "iqr": 0.0005138959968462586,
+                "q1": 0.006116306001786143,
+                "q3": 0.006630201998632401,
+                "iqr_outliers": 4,
+                "stddev_outliers": 34,
+                "outliers": "34;4",
+                "ld15iqr": 0.005682868999429047,
+                "hd15iqr": 0.007768680981826037,
+                "ops": 156.25198865848515,
+                "total": 0.9087884334730916,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^7_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^7_mult.qasm]",
+            "params": {
+                "filename": "gf2^7_mult.qasm"
+            },
+            "param": "gf2^7_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0005162360030226409,
+                "input_num_qubits": 21,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 2235,
+                    "u": 306
+                },
+                "output_gate_count_2q": 2235,
+                "output_depth_2q": 900
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.030290001013781875,
+                "max": 0.08907532703597099,
+                "mean": 0.03385763164354308,
+                "stddev": 0.010284810717865396,
+                "rounds": 31,
+                "median": 0.031922644993755966,
+                "iqr": 0.001064381722244434,
+                "q1": 0.03138653753558174,
+                "q3": 0.03245091925782617,
+                "iqr_outliers": 2,
+                "stddev_outliers": 1,
+                "outliers": "1;2",
+                "ld15iqr": 0.030290001013781875,
+                "hd15iqr": 0.03471631096908823,
+                "ops": 29.535438583776664,
+                "total": 1.0495865809498355,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[W-state.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[W-state.qasm]",
+            "params": {
+                "filename": "W-state.qasm"
+            },
+            "param": "W-state.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00031780701829120517,
+                "input_num_qubits": 3,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 21,
+                    "cx": 21,
+                    "measure": 3
+                },
+                "output_gate_count_2q": 21,
+                "output_depth_2q": 21
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004812486993614584,
+                "max": 0.007343403995037079,
+                "mean": 0.005515746591198776,
+                "stddev": 0.0003949647500508495,
+                "rounds": 162,
+                "median": 0.005456531507661566,
+                "iqr": 0.0003415459650568664,
+                "q1": 0.005296514020301402,
+                "q3": 0.005638059985358268,
+                "iqr_outliers": 10,
+                "stddev_outliers": 30,
+                "outliers": "30;10",
+                "ld15iqr": 0.004812486993614584,
+                "hd15iqr": 0.006203185999765992,
+                "ops": 181.29911943301641,
+                "total": 0.8935509477742016,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[mod_mult_55.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[mod_mult_55.qasm]",
+            "params": {
+                "filename": "mod_mult_55.qasm"
+            },
+            "param": "mod_mult_55.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00041494600009173155,
+                "input_num_qubits": 9,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 324,
+                    "u": 65
+                },
+                "output_gate_count_2q": 324,
+                "output_depth_2q": 205
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.006851738027762622,
+                "max": 0.0705144620151259,
+                "mean": 0.00824547061199417,
+                "stddev": 0.005805831356820781,
+                "rounds": 118,
+                "median": 0.007635426998604089,
+                "iqr": 0.0005627460777759552,
+                "q1": 0.007368852966465056,
+                "q3": 0.007931599044241011,
+                "iqr_outliers": 5,
+                "stddev_outliers": 1,
+                "outliers": "1;5",
+                "ld15iqr": 0.006851738027762622,
+                "hd15iqr": 0.00922290701419115,
+                "ops": 121.27870525005116,
+                "total": 0.9729655322153121,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[qcla_adder_10.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qcla_adder_10.qasm]",
+            "params": {
+                "filename": "qcla_adder_10.qasm"
+            },
+            "param": "qcla_adder_10.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0005409449804574251,
+                "input_num_qubits": 36,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 1302,
+                    "u": 236
+                },
+                "output_gate_count_2q": 1302,
+                "output_depth_2q": 418
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.017947360000107437,
+                "max": 0.07551206700736657,
+                "mean": 0.02016852124313805,
+                "stddev": 0.008105066523846231,
+                "rounds": 49,
+                "median": 0.018911052029579878,
+                "iqr": 0.00048440348473377526,
+                "q1": 0.018615607245010324,
+                "q3": 0.0191000107297441,
+                "iqr_outliers": 6,
+                "stddev_outliers": 1,
+                "outliers": "1;6",
+                "ld15iqr": 0.017947360000107437,
+                "hd15iqr": 0.019928652967792004,
+                "ops": 49.58221715636345,
+                "total": 0.9882575409137644,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^5_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^5_mult.qasm]",
+            "params": {
+                "filename": "gf2^5_mult.qasm"
+            },
+            "param": "gf2^5_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00037210603477433324,
+                "input_num_qubits": 15,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 2617,
+                    "u": 163
+                },
+                "output_gate_count_2q": 2617,
+                "output_depth_2q": 753
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.01826975599396974,
+                "max": 0.021415248978883028,
+                "mean": 0.01925465541631531,
+                "stddev": 0.0005976941432690362,
+                "rounds": 51,
+                "median": 0.019145628961268812,
+                "iqr": 0.00044576752407010645,
+                "q1": 0.01895471176248975,
+                "q3": 0.019400479286559857,
+                "iqr_outliers": 5,
+                "stddev_outliers": 8,
+                "outliers": "8;5",
+                "ld15iqr": 0.01855775498552248,
+                "hd15iqr": 0.02075756498379633,
+                "ops": 51.935491878637116,
+                "total": 0.9819874262320809,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[qec.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qec.qasm]",
+            "params": {
+                "filename": "qec.qasm"
+            },
+            "param": "qec.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00032044696854427457,
+                "input_num_qubits": 5,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "measure": 5,
+                    "cx": 4,
+                    "x": 3,
+                    "u": 1,
+                    "barrier": 1
+                },
+                "output_gate_count_2q": 4,
+                "output_depth_2q": 4
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004697639960795641,
+                "max": 0.05551909701898694,
+                "mean": 0.005746296450639225,
+                "stddev": 0.00398908730262226,
+                "rounds": 159,
+                "median": 0.005367712990846485,
+                "iqr": 0.00036555371480062604,
+                "q1": 0.005226835506618954,
+                "q3": 0.00559238922141958,
+                "iqr_outliers": 6,
+                "stddev_outliers": 1,
+                "outliers": "1;6",
+                "ld15iqr": 0.004697639960795641,
+                "hd15iqr": 0.006208703969605267,
+                "ops": 174.02513228999152,
+                "total": 0.9136611356516369,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^4_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^4_mult.qasm]",
+            "params": {
+                "filename": "gf2^4_mult.qasm"
+            },
+            "param": "gf2^4_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0003203270025551319,
+                "input_num_qubits": 12,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 561,
+                    "u": 104
+                },
+                "output_gate_count_2q": 561,
+                "output_depth_2q": 310
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.009777831961400807,
+                "max": 0.011961793003138155,
+                "mean": 0.010528129507524972,
+                "stddev": 0.0004517556167166075,
+                "rounds": 94,
+                "median": 0.01042320200940594,
+                "iqr": 0.0005723240319639444,
+                "q1": 0.010186510975472629,
+                "q3": 0.010758835007436574,
+                "iqr_outliers": 4,
+                "stddev_outliers": 23,
+                "outliers": "23;4",
+                "ld15iqr": 0.009777831961400807,
+                "hd15iqr": 0.011656766990199685,
+                "ops": 94.98363401449905,
+                "total": 0.9896441737073474,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[hwb10.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb10.qasm]",
+            "params": {
+                "filename": "hwb10.qasm"
+            },
+            "param": "hwb10.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.07058681000489742,
+                "input_num_qubits": 16,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 217122,
+                    "u": 29729
+                },
+                "output_gate_count_2q": 217122,
+                "output_depth_2q": 140837
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.1750423930352554,
+                "max": 3.1750423930352554,
+                "mean": 3.1750423930352554,
+                "stddev": 0,
+                "rounds": 1,
+                "median": 3.1750423930352554,
+                "iqr": 0.0,
+                "q1": 3.1750423930352554,
+                "q3": 3.1750423930352554,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 3.1750423930352554,
+                "hd15iqr": 3.1750423930352554,
+                "ops": 0.31495642457990203,
+                "total": 3.1750423930352554,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^8_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^8_mult.qasm]",
+            "params": {
+                "filename": "gf2^8_mult.qasm"
+            },
+            "param": "gf2^8_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0007242430001497269,
+                "input_num_qubits": 24,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 3654,
+                    "u": 386
+                },
+                "output_gate_count_2q": 3654,
+                "output_depth_2q": 1511
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.050358129024971277,
+                "max": 0.05727871897397563,
+                "mean": 0.05280339434975758,
+                "stddev": 0.0015583600192266781,
+                "rounds": 20,
+                "median": 0.05270888452650979,
+                "iqr": 0.0017299834580626339,
+                "q1": 0.051720484014367685,
+                "q3": 0.05345046747243032,
+                "iqr_outliers": 1,
+                "stddev_outliers": 5,
+                "outliers": "5;1",
+                "ld15iqr": 0.050358129024971277,
+                "hd15iqr": 0.05727871897397563,
+                "ops": 18.9381764622219,
+                "total": 1.0560678869951516,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[inverseqft1.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[inverseqft1.qasm]",
+            "params": {
+                "filename": "inverseqft1.qasm"
+            },
+            "param": "inverseqft1.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0004500460345298052,
+                "input_num_qubits": 4,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u1": 11,
+                    "u": 8,
+                    "measure": 4,
+                    "barrier": 1
+                },
+                "output_gate_count_2q": 0,
+                "output_depth_2q": 0
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0037005460471846163,
+                "max": 0.0059879059554077685,
+                "mean": 0.004605887225215817,
+                "stddev": 0.0003364545542841199,
+                "rounds": 183,
+                "median": 0.0045817390200681984,
+                "iqr": 0.00035240923170931637,
+                "q1": 0.0044187452585902065,
+                "q3": 0.004771154490299523,
+                "iqr_outliers": 8,
+                "stddev_outliers": 42,
+                "outliers": "42;8",
+                "ld15iqr": 0.0039046049932949245,
+                "hd15iqr": 0.005420961999334395,
+                "ops": 217.1134357188138,
+                "total": 0.8428773622144945,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[csla_mux_3.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[csla_mux_3.qasm]",
+            "params": {
+                "filename": "csla_mux_3.qasm"
+            },
+            "param": "csla_mux_3.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00030114699620753527,
+                "input_num_qubits": 15,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 735,
+                    "u": 86
+                },
+                "output_gate_count_2q": 735,
+                "output_depth_2q": 359
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00900204002391547,
+                "max": 0.10625943099148571,
+                "mean": 0.010838004019031433,
+                "stddev": 0.009696872671911431,
+                "rounds": 99,
+                "median": 0.009799171995837241,
+                "iqr": 0.00044107621943112463,
+                "q1": 0.009582526792655699,
+                "q3": 0.010023603012086824,
+                "iqr_outliers": 6,
+                "stddev_outliers": 1,
+                "outliers": "1;6",
+                "ld15iqr": 0.00900204002391547,
+                "hd15iqr": 0.010945273039396852,
+                "ops": 92.26791190001494,
+                "total": 1.0729623978841119,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[ham15-high.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[ham15-high.qasm]",
+            "params": {
+                "filename": "ham15-high.qasm"
+            },
+            "param": "ham15-high.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0035179880214855075,
+                "input_num_qubits": 20,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 10228,
+                    "u": 2097
+                },
+                "output_gate_count_2q": 10228,
+                "output_depth_2q": 7107
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.1258332270081155,
+                "max": 0.19722628104500473,
+                "mean": 0.1359218258803594,
+                "stddev": 0.02480194756421932,
+                "rounds": 8,
+                "median": 0.12732486898312345,
+                "iqr": 0.002800041518639773,
+                "q1": 0.12601631949655712,
+                "q3": 0.1288163610151969,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.1258332270081155,
+                "hd15iqr": 0.19722628104500473,
+                "ops": 7.357170149260769,
+                "total": 1.0873746070428751,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[mod_adder_1024.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[mod_adder_1024.qasm]",
+            "params": {
+                "filename": "mod_adder_1024.qasm"
+            },
+            "param": "mod_adder_1024.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.002985842991620302,
+                "input_num_qubits": 28,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 8025,
+                    "u": 1817
+                },
+                "output_gate_count_2q": 8025,
+                "output_depth_2q": 5472
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.12011958798393607,
+                "max": 0.12631937098922208,
+                "mean": 0.1237346912190939,
+                "stddev": 0.0019279447372376633,
+                "rounds": 9,
+                "median": 0.12363550701411441,
+                "iqr": 0.0025118505727732554,
+                "q1": 0.1226996054610936,
+                "q3": 0.12521145603386685,
+                "iqr_outliers": 0,
+                "stddev_outliers": 3,
+                "outliers": "3;0",
+                "ld15iqr": 0.12011958798393607,
+                "hd15iqr": 0.12631937098922208,
+                "ops": 8.081807859602812,
+                "total": 1.113612220971845,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^6_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^6_mult.qasm]",
+            "params": {
+                "filename": "gf2^6_mult.qasm"
+            },
+            "param": "gf2^6_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.000490456004627049,
+                "input_num_qubits": 18,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 1565,
+                    "u": 223
+                },
+                "output_gate_count_2q": 1565,
+                "output_depth_2q": 669
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.02101672301068902,
+                "max": 0.025542162999045104,
+                "mean": 0.022198200025337025,
+                "stddev": 0.0008073423477890341,
+                "rounds": 45,
+                "median": 0.0220478720148094,
+                "iqr": 0.00040085319778881967,
+                "q1": 0.0218714010406984,
+                "q3": 0.02227225423848722,
+                "iqr_outliers": 10,
+                "stddev_outliers": 13,
+                "outliers": "13;10",
+                "ld15iqr": 0.021278251020703465,
+                "hd15iqr": 0.023070003953762352,
+                "ops": 45.04869759073259,
+                "total": 0.9989190011401661,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[vbe_adder_3.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[vbe_adder_3.qasm]",
+            "params": {
+                "filename": "vbe_adder_3.qasm"
+            },
+            "param": "vbe_adder_3.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0002783869858831167,
+                "input_num_qubits": 10,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 388,
+                    "u": 47
+                },
+                "output_gate_count_2q": 388,
+                "output_depth_2q": 167
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.006950056995265186,
+                "max": 0.00975704297889024,
+                "mean": 0.007810766911828531,
+                "stddev": 0.0005260476090849293,
+                "rounds": 114,
+                "median": 0.007663471013074741,
+                "iqr": 0.0007602220284752548,
+                "q1": 0.0074217349756509066,
+                "q3": 0.008181957004126161,
+                "iqr_outliers": 2,
+                "stddev_outliers": 33,
+                "outliers": "33;2",
+                "ld15iqr": 0.006950056995265186,
+                "hd15iqr": 0.009566964989062399,
+                "ops": 128.02840121699344,
+                "total": 0.8904274279484525,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[qft.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qft.qasm]",
+            "params": {
+                "filename": "qft.qasm"
+            },
+            "param": "qft.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0003436370170675218,
+                "input_num_qubits": 4,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 24,
+                    "cx": 24,
+                    "measure": 4,
+                    "barrier": 1
+                },
+                "output_gate_count_2q": 24,
+                "output_depth_2q": 24
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004890985961537808,
+                "max": 0.06116422498598695,
+                "mean": 0.006136574832196454,
+                "stddev": 0.004864473959357637,
+                "rounds": 131,
+                "median": 0.005613570043351501,
+                "iqr": 0.0005615717673208565,
+                "q1": 0.005429237469797954,
+                "q3": 0.00599080923711881,
+                "iqr_outliers": 3,
+                "stddev_outliers": 1,
+                "outliers": "1;3",
+                "ld15iqr": 0.004890985961537808,
+                "hd15iqr": 0.006836438027676195,
+                "ops": 162.9573544436142,
+                "total": 0.8038913030177355,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[qft_4.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qft_4.qasm]",
+            "params": {
+                "filename": "qft_4.qasm"
+            },
+            "param": "qft_4.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00043569598346948624,
+                "input_num_qubits": 5,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 132,
+                    "cx": 112
+                },
+                "output_gate_count_2q": 112,
+                "output_depth_2q": 109
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0071592460153624415,
+                "max": 0.07665568497031927,
+                "mean": 0.008632053984544325,
+                "stddev": 0.006305382437782038,
+                "rounds": 119,
+                "median": 0.007985729025676847,
+                "iqr": 0.0005076030065538362,
+                "q1": 0.0077408012439263985,
+                "q3": 0.008248404250480235,
+                "iqr_outliers": 8,
+                "stddev_outliers": 1,
+                "outliers": "1;8",
+                "ld15iqr": 0.0071592460153624415,
+                "hd15iqr": 0.00911524798721075,
+                "ops": 115.84728290514607,
+                "total": 1.0272144241607748,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^10_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^10_mult.qasm]",
+            "params": {
+                "filename": "gf2^10_mult.qasm"
+            },
+            "param": "gf2^10_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0008409519796259701,
+                "input_num_qubits": 30,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 5076,
+                    "u": 593
+                },
+                "output_gate_count_2q": 5076,
+                "output_depth_2q": 1743
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.1053189699887298,
+                "max": 0.11316575796809047,
+                "mean": 0.1093834693019744,
+                "stddev": 0.0023306331741073803,
+                "rounds": 10,
+                "median": 0.10940329849836417,
+                "iqr": 0.003522058017551899,
+                "q1": 0.10758117999648675,
+                "q3": 0.11110323801403865,
+                "iqr_outliers": 0,
+                "stddev_outliers": 3,
+                "outliers": "3;0",
+                "ld15iqr": 0.1053189699887298,
+                "hd15iqr": 0.11316575796809047,
+                "ops": 9.14214923316525,
+                "total": 1.093834693019744,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[adder_8.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[adder_8.qasm]",
+            "params": {
+                "filename": "adder_8.qasm"
+            },
+            "param": "adder_8.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0008634320111013949,
+                "input_num_qubits": 24,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 3001,
+                    "u": 378
+                },
+                "output_gate_count_2q": 3001,
+                "output_depth_2q": 961
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.03464624099433422,
+                "max": 0.09863896999740973,
+                "mean": 0.03904634672933473,
+                "stddev": 0.01225648653277092,
+                "rounds": 26,
+                "median": 0.03599463347927667,
+                "iqr": 0.0021796999499201775,
+                "q1": 0.03560323204146698,
+                "q3": 0.03778293199138716,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.03464624099433422,
+                "hd15iqr": 0.09863896999740973,
+                "ops": 25.61059058692219,
+                "total": 1.015205014962703,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[barenco_tof_10.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[barenco_tof_10.qasm]",
+            "params": {
+                "filename": "barenco_tof_10.qasm"
+            },
+            "param": "barenco_tof_10.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0004518060013651848,
+                "input_num_qubits": 19,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 883,
+                    "u": 196
+                },
+                "output_gate_count_2q": 883,
+                "output_depth_2q": 505
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.012338750995695591,
+                "max": 0.01619708602083847,
+                "mean": 0.013551039951601746,
+                "stddev": 0.0008714291802066434,
+                "rounds": 74,
+                "median": 0.01321923651266843,
+                "iqr": 0.0011788899428211153,
+                "q1": 0.012881164031568915,
+                "q3": 0.01406005397439003,
+                "iqr_outliers": 3,
+                "stddev_outliers": 17,
+                "outliers": "17;3",
+                "ld15iqr": 0.012338750995695591,
+                "hd15iqr": 0.015986118000000715,
+                "ops": 73.79507429478127,
+                "total": 1.0027769564185292,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[tof_10.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[tof_10.qasm]",
+            "params": {
+                "filename": "tof_10.qasm"
+            },
+            "param": "tof_10.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00033051701029762626,
+                "input_num_qubits": 19,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 689,
+                    "u": 129
+                },
+                "output_gate_count_2q": 689,
+                "output_depth_2q": 413
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.009502973989583552,
+                "max": 0.08479066303698346,
+                "mean": 0.011328229883484081,
+                "stddev": 0.007588068410508019,
+                "rounds": 97,
+                "median": 0.010244248958770186,
+                "iqr": 0.0010654444922693074,
+                "q1": 0.009983656520489603,
+                "q3": 0.01104910101275891,
+                "iqr_outliers": 6,
+                "stddev_outliers": 1,
+                "outliers": "1;6",
+                "ld15iqr": 0.009502973989583552,
+                "hd15iqr": 0.012760548037476838,
+                "ops": 88.2750447585764,
+                "total": 1.098838298697956,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[teleportv2.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[teleportv2.qasm]",
+            "params": {
+                "filename": "teleportv2.qasm"
+            },
+            "param": "teleportv2.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.000339536985848099,
+                "input_num_qubits": 3,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 3,
+                    "measure": 3,
+                    "cx": 2,
+                    "barrier": 1,
+                    "z": 1,
+                    "x": 1,
+                    "y": 1
+                },
+                "output_gate_count_2q": 2,
+                "output_depth_2q": 2
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004731657973024994,
+                "max": 0.008019038010388613,
+                "mean": 0.005548822770360857,
+                "stddev": 0.0006669070434568424,
+                "rounds": 125,
+                "median": 0.005323902005329728,
+                "iqr": 0.0010422990017104894,
+                "q1": 0.0050486477121012285,
+                "q3": 0.006090946713811718,
+                "iqr_outliers": 2,
+                "stddev_outliers": 44,
+                "outliers": "44;2",
+                "ld15iqr": 0.004731657973024994,
+                "hd15iqr": 0.007815601013135165,
+                "ops": 180.2184069279558,
+                "total": 0.6936028462951072,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[barenco_tof_3.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[barenco_tof_3.qasm]",
+            "params": {
+                "filename": "barenco_tof_3.qasm"
+            },
+            "param": "barenco_tof_3.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0014175180112943053,
+                "input_num_qubits": 5,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 106,
+                    "u": 28
+                },
+                "output_gate_count_2q": 106,
+                "output_depth_2q": 73
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.00537537201307714,
+                "max": 0.08230695500969887,
+                "mean": 0.006906639949748196,
+                "stddev": 0.006142542156168368,
+                "rounds": 154,
+                "median": 0.0062359840085264295,
+                "iqr": 0.0007548340363427997,
+                "q1": 0.0059832059778273106,
+                "q3": 0.00673804001417011,
+                "iqr_outliers": 6,
+                "stddev_outliers": 1,
+                "outliers": "1;6",
+                "ld15iqr": 0.00537537201307714,
+                "hd15iqr": 0.007993648003321141,
+                "ops": 144.78820486891868,
+                "total": 1.0636225522612222,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[hwb12.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb12.qasm]",
+            "params": {
+                "filename": "hwb12.qasm"
+            },
+            "param": "hwb12.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.33378719800384715,
+                "input_num_qubits": 20,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 1129152,
+                    "u": 163456
+                },
+                "output_gate_count_2q": 1129152,
+                "output_depth_2q": 711583
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 28.247779533965513,
+                "max": 28.247779533965513,
+                "mean": 28.247779533965513,
+                "stddev": 0,
+                "rounds": 1,
+                "median": 28.247779533965513,
+                "iqr": 0.0,
+                "q1": 28.247779533965513,
+                "q3": 28.247779533965513,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 28.247779533965513,
+                "hd15iqr": 28.247779533965513,
+                "ops": 0.035401012628181495,
+                "total": 28.247779533965513,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[csum_mux_9.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[csum_mux_9.qasm]",
+            "params": {
+                "filename": "csum_mux_9.qasm"
+            },
+            "param": "csum_mux_9.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0006348149618133903,
+                "input_num_qubits": 30,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 969,
+                    "u": 168
+                },
+                "output_gate_count_2q": 969,
+                "output_depth_2q": 459
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.013421458017546684,
+                "max": 0.015568240021821111,
+                "mean": 0.013967256085353269,
+                "stddev": 0.0003527409638212145,
+                "rounds": 69,
+                "median": 0.01395286398474127,
+                "iqr": 0.00027542145107872784,
+                "q1": 0.013782159527181648,
+                "q3": 0.014057580978260376,
+                "iqr_outliers": 4,
+                "stddev_outliers": 11,
+                "outliers": "11;4",
+                "ld15iqr": 0.013421458017546684,
+                "hd15iqr": 0.014514769020024687,
+                "ops": 71.59602386388889,
+                "total": 0.9637406698893756,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^9_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^9_mult.qasm]",
+            "params": {
+                "filename": "gf2^9_mult.qasm"
+            },
+            "param": "gf2^9_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0007990520098246634,
+                "input_num_qubits": 27,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 4052,
+                    "u": 493
+                },
+                "output_gate_count_2q": 4052,
+                "output_depth_2q": 1487
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.07130120601505041,
+                "max": 0.07333615800598636,
+                "mean": 0.07227781343889157,
+                "stddev": 0.0006276331594735553,
+                "rounds": 14,
+                "median": 0.07229875249322504,
+                "iqr": 0.0009995310683734715,
+                "q1": 0.07173038297332823,
+                "q3": 0.0727299140417017,
+                "iqr_outliers": 0,
+                "stddev_outliers": 5,
+                "outliers": "5;0",
+                "ld15iqr": 0.07130120601505041,
+                "hd15iqr": 0.07333615800598636,
+                "ops": 13.835504318977026,
+                "total": 1.011889388144482,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^32_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^32_mult.qasm]",
+            "params": {
+                "filename": "gf2^32_mult.qasm"
+            },
+            "param": "gf2^32_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.006687680026516318,
+                "input_num_qubits": 96,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 85819,
+                    "u": 5774
+                },
+                "output_gate_count_2q": 85819,
+                "output_depth_2q": 19701
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 30.7195909289876,
+                "max": 30.7195909289876,
+                "mean": 30.7195909289876,
+                "stddev": 0,
+                "rounds": 1,
+                "median": 30.7195909289876,
+                "iqr": 0.0,
+                "q1": 30.7195909289876,
+                "q3": 30.7195909289876,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 30.7195909289876,
+                "hd15iqr": 30.7195909289876,
+                "ops": 0.03255251680634785,
+                "total": 30.7195909289876,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[grover_5.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[grover_5.qasm]",
+            "params": {
+                "filename": "grover_5.qasm"
+            },
+            "param": "grover_5.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.000905251014046371,
+                "input_num_qubits": 9,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 1229,
+                    "u": 416
+                },
+                "output_gate_count_2q": 1229,
+                "output_depth_2q": 898
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.020537483971565962,
+                "max": 0.07807884097564965,
+                "mean": 0.022487637390440796,
+                "stddev": 0.008212815514623254,
+                "rounds": 48,
+                "median": 0.02119339251657948,
+                "iqr": 0.0008632474928162992,
+                "q1": 0.020874909998383373,
+                "q3": 0.021738157491199672,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 0.020537483971565962,
+                "hd15iqr": 0.07807884097564965,
+                "ops": 44.468877838855896,
+                "total": 1.0794065947411582,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[qcla_mod_7.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qcla_mod_7.qasm]",
+            "params": {
+                "filename": "qcla_mod_7.qasm"
+            },
+            "param": "qcla_mod_7.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0007555020274594426,
+                "input_num_qubits": 26,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 2700,
+                    "u": 392
+                },
+                "output_gate_count_2q": 2700,
+                "output_depth_2q": 760
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.03273983096005395,
+                "max": 0.0363742999616079,
+                "mean": 0.03389023852262956,
+                "stddev": 0.0008796787548721151,
+                "rounds": 30,
+                "median": 0.03363686997909099,
+                "iqr": 0.0009937119320966303,
+                "q1": 0.033383536036126316,
+                "q3": 0.034377247968222946,
+                "iqr_outliers": 1,
+                "stddev_outliers": 9,
+                "outliers": "9;1",
+                "ld15iqr": 0.03273983096005395,
+                "hd15iqr": 0.0363742999616079,
+                "ops": 29.507021596565895,
+                "total": 1.016707155678887,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[ham15-low.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[ham15-low.qasm]",
+            "params": {
+                "filename": "ham15-low.qasm"
+            },
+            "param": "ham15-low.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0006747939623892307,
+                "input_num_qubits": 17,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 2659,
+                    "u": 165
+                },
+                "output_gate_count_2q": 2659,
+                "output_depth_2q": 1705
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.02217970899073407,
+                "max": 0.09071668598335236,
+                "mean": 0.024654657481140783,
+                "stddev": 0.010331601820326181,
+                "rounds": 43,
+                "median": 0.023063928994815797,
+                "iqr": 0.00044517173955682665,
+                "q1": 0.022777640508138575,
+                "q3": 0.0232228122476954,
+                "iqr_outliers": 5,
+                "stddev_outliers": 1,
+                "outliers": "1;5",
+                "ld15iqr": 0.02217970899073407,
+                "hd15iqr": 0.02393675100756809,
+                "ops": 40.56028767647392,
+                "total": 1.0601502716890536,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[rb.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[rb.qasm]",
+            "params": {
+                "filename": "rb.qasm"
+            },
+            "param": "rb.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0002465680008754134,
+                "input_num_qubits": 2,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 9,
+                    "barrier": 4,
+                    "cx": 2,
+                    "measure": 2
+                },
+                "output_gate_count_2q": 2,
+                "output_depth_2q": 2
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0046016990090720356,
+                "max": 0.006584129994735122,
+                "mean": 0.005307024720598731,
+                "stddev": 0.00031637845813396433,
+                "rounds": 171,
+                "median": 0.005270291003398597,
+                "iqr": 0.0003032587264897302,
+                "q1": 0.00509409824735485,
+                "q3": 0.00539735697384458,
+                "iqr_outliers": 13,
+                "stddev_outliers": 39,
+                "outliers": "39;13",
+                "ld15iqr": 0.004831055004615337,
+                "hd15iqr": 0.005922296026255935,
+                "ops": 188.4294972508026,
+                "total": 0.907501227222383,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[gf2^16_mult.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^16_mult.qasm]",
+            "params": {
+                "filename": "gf2^16_mult.qasm"
+            },
+            "param": "gf2^16_mult.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.001958392036613077,
+                "input_num_qubits": 48,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 17175,
+                    "u": 1478
+                },
+                "output_gate_count_2q": 17175,
+                "output_depth_2q": 5097
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.8844653449486941,
+                "max": 0.9016171399853192,
+                "mean": 0.8930412424670067,
+                "stddev": 0.01212815057991939,
+                "rounds": 2,
+                "median": 0.8930412424670067,
+                "iqr": 0.017151795036625117,
+                "q1": 0.8844653449486941,
+                "q3": 0.9016171399853192,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 0.8844653449486941,
+                "hd15iqr": 0.9016171399853192,
+                "ops": 1.1197691130563265,
+                "total": 1.7860824849340133,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[hwb8.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb8.qasm]",
+            "params": {
+                "filename": "hwb8.qasm"
+            },
+            "param": "hwb8.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.012181709986180067,
+                "input_num_qubits": 12,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 38712,
+                    "u": 6092
+                },
+                "output_gate_count_2q": 38712,
+                "output_depth_2q": 26726
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.45860626903595403,
+                "max": 0.5072256559506059,
+                "mean": 0.47818949999054894,
+                "stddev": 0.025651111854232002,
+                "rounds": 3,
+                "median": 0.4687365749850869,
+                "iqr": 0.03646454018598888,
+                "q1": 0.46113884552323725,
+                "q3": 0.49760338570922613,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 0.45860626903595403,
+                "hd15iqr": 0.5072256559506059,
+                "ops": 2.091221158180521,
+                "total": 1.4345684999716468,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[barenco_tof_4.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[barenco_tof_4.qasm]",
+            "params": {
+                "filename": "barenco_tof_4.qasm"
+            },
+            "param": "barenco_tof_4.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0002926770248450339,
+                "input_num_qubits": 7,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 211,
+                    "u": 52
+                },
+                "output_gate_count_2q": 211,
+                "output_depth_2q": 141
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.006023323978297412,
+                "max": 0.07756022503599524,
+                "mean": 0.007432034692271419,
+                "stddev": 0.005998868341641857,
+                "rounds": 139,
+                "median": 0.006899747007992119,
+                "iqr": 0.0003501879546092823,
+                "q1": 0.006733473768690601,
+                "q3": 0.007083661723299883,
+                "iqr_outliers": 7,
+                "stddev_outliers": 1,
+                "outliers": "1;7",
+                "ld15iqr": 0.006290564022492617,
+                "hd15iqr": 0.007675140048377216,
+                "ops": 134.55265501382834,
+                "total": 1.0330528222257271,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[bigadder.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[bigadder.qasm]",
+            "params": {
+                "filename": "bigadder.qasm"
+            },
+            "param": "bigadder.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.00029746699146926403,
+                "input_num_qubits": 18,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 1479,
+                    "u": 128,
+                    "measure": 9
+                },
+                "output_gate_count_2q": 1479,
+                "output_depth_2q": 768
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.014736756042111665,
+                "max": 0.01860865199705586,
+                "mean": 0.015820998730810568,
+                "stddev": 0.000722124668723415,
+                "rounds": 63,
+                "median": 0.0157733159721829,
+                "iqr": 0.0007332287495955825,
+                "q1": 0.015334900250309147,
+                "q3": 0.01606812899990473,
+                "iqr_outliers": 4,
+                "stddev_outliers": 13,
+                "outliers": "13;4",
+                "ld15iqr": 0.014736756042111665,
+                "hd15iqr": 0.017214764025993645,
+                "ops": 63.20713483482888,
+                "total": 0.9967229200410657,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[barenco_tof_5.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[barenco_tof_5.qasm]",
+            "params": {
+                "filename": "barenco_tof_5.qasm"
+            },
+            "param": "barenco_tof_5.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0002950970083475113,
+                "input_num_qubits": 9,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 328,
+                    "u": 76
+                },
+                "output_gate_count_2q": 328,
+                "output_depth_2q": 208
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.007699670037254691,
+                "max": 0.07039972901111469,
+                "mean": 0.008761582464013283,
+                "stddev": 0.005916578282092085,
+                "rounds": 111,
+                "median": 0.00814849603921175,
+                "iqr": 0.00048560302820988,
+                "q1": 0.007893766232882626,
+                "q3": 0.008379369261092506,
+                "iqr_outliers": 8,
+                "stddev_outliers": 1,
+                "outliers": "1;8",
+                "ld15iqr": 0.007699670037254691,
+                "hd15iqr": 0.00914706604089588,
+                "ops": 114.13463311078003,
+                "total": 0.9725356535054743,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[mod_red_21.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[mod_red_21.qasm]",
+            "params": {
+                "filename": "mod_red_21.qasm"
+            },
+            "param": "mod_red_21.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.000356426986400038,
+                "input_num_qubits": 11,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 690,
+                    "u": 142
+                },
+                "output_gate_count_2q": 690,
+                "output_depth_2q": 420
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.010065958020277321,
+                "max": 0.06613387004472315,
+                "mean": 0.011523208339125492,
+                "stddev": 0.0058170617652226,
+                "rounds": 91,
+                "median": 0.010744112019892782,
+                "iqr": 0.0005099887639516965,
+                "q1": 0.010599617991829291,
+                "q3": 0.011109606755780987,
+                "iqr_outliers": 8,
+                "stddev_outliers": 1,
+                "outliers": "1;8",
+                "ld15iqr": 0.010065958020277321,
+                "hd15iqr": 0.011945631995331496,
+                "ops": 86.78138679525871,
+                "total": 1.0486119588604197,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[qcla_com_7.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qcla_com_7.qasm]",
+            "params": {
+                "filename": "qcla_com_7.qasm"
+            },
+            "param": "qcla_com_7.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0004561359528452158,
+                "input_num_qubits": 24,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 1163,
+                    "u": 183
+                },
+                "output_gate_count_2q": 1163,
+                "output_depth_2q": 385
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.016029163962230086,
+                "max": 0.018778199038933963,
+                "mean": 0.016849775533773936,
+                "stddev": 0.0006040570809899968,
+                "rounds": 60,
+                "median": 0.016752312483731657,
+                "iqr": 0.0004749159561470151,
+                "q1": 0.01652388452203013,
+                "q3": 0.016998800478177145,
+                "iqr_outliers": 5,
+                "stddev_outliers": 11,
+                "outliers": "11;5",
+                "ld15iqr": 0.016029163962230086,
+                "hd15iqr": 0.018426951952278614,
+                "ops": 59.34797160921138,
+                "total": 1.0109865320264362,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[hwb11.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb11.qasm]",
+            "params": {
+                "filename": "hwb11.qasm"
+            },
+            "param": "hwb11.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.16653816599864513,
+                "input_num_qubits": 15,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 560154,
+                    "u": 82245
+                },
+                "output_gate_count_2q": 560154,
+                "output_depth_2q": 367269
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 17.307046723959502,
+                "max": 17.307046723959502,
+                "mean": 17.307046723959502,
+                "stddev": 0,
+                "rounds": 1,
+                "median": 17.307046723959502,
+                "iqr": 0.0,
+                "q1": 17.307046723959502,
+                "q3": 17.307046723959502,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 17.307046723959502,
+                "hd15iqr": 17.307046723959502,
+                "ops": 0.05777993299201195,
+                "total": 17.307046723959502,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[teleport.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[teleport.qasm]",
+            "params": {
+                "filename": "teleport.qasm"
+            },
+            "param": "teleport.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0005379149806685746,
+                "input_num_qubits": 3,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 3,
+                    "measure": 3,
+                    "cx": 2,
+                    "barrier": 1,
+                    "z": 1,
+                    "x": 1
+                },
+                "output_gate_count_2q": 2,
+                "output_depth_2q": 2
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.004987165040802211,
+                "max": 0.014938663982320577,
+                "mean": 0.007364733533790253,
+                "stddev": 0.0016948643028962768,
+                "rounds": 159,
+                "median": 0.00810524495318532,
+                "iqr": 0.0030861712293699384,
+                "q1": 0.005547334032598883,
+                "q3": 0.008633505261968821,
+                "iqr_outliers": 1,
+                "stddev_outliers": 62,
+                "outliers": "62;1",
+                "ld15iqr": 0.004987165040802211,
+                "hd15iqr": 0.014938663982320577,
+                "ops": 135.7822377974551,
+                "total": 1.1709926318726502,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[inverseqft2.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[inverseqft2.qasm]",
+            "params": {
+                "filename": "inverseqft2.qasm"
+            },
+            "param": "inverseqft2.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0004450060077942908,
+                "input_num_qubits": 4,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 8,
+                    "u1": 6,
+                    "measure": 4,
+                    "barrier": 1
+                },
+                "output_gate_count_2q": 0,
+                "output_depth_2q": 0
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.0038641149876639247,
+                "max": 0.006671940966043621,
+                "mean": 0.004628114297257778,
+                "stddev": 0.0007831665689087171,
+                "rounds": 133,
+                "median": 0.0042525509488768876,
+                "iqr": 0.0006041869928594679,
+                "q1": 0.0041568897577235475,
+                "q3": 0.004761076750583015,
+                "iqr_outliers": 23,
+                "stddev_outliers": 27,
+                "outliers": "27;23",
+                "ld15iqr": 0.0038641149876639247,
+                "hd15iqr": 0.005675596999935806,
+                "ops": 216.07072249544782,
+                "total": 0.6155392015352845,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[ham15-med.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[ham15-med.qasm]",
+            "params": {
+                "filename": "ham15-med.qasm"
+            },
+            "param": "ham15-med.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0017825840041041374,
+                "input_num_qubits": 17,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 3476,
+                    "u": 506
+                },
+                "output_gate_count_2q": 3476,
+                "output_depth_2q": 2127
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.03715924097923562,
+                "max": 0.04112058394821361,
+                "mean": 0.038114987255539745,
+                "stddev": 0.0010053159877775877,
+                "rounds": 27,
+                "median": 0.03771467600017786,
+                "iqr": 0.0007263537554536015,
+                "q1": 0.037575189242488705,
+                "q3": 0.038301542997942306,
+                "iqr_outliers": 2,
+                "stddev_outliers": 3,
+                "outliers": "3;2",
+                "ld15iqr": 0.03715924097923562,
+                "hd15iqr": 0.04104254499543458,
+                "ops": 26.236398645382128,
+                "total": 1.0291046558995731,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[tof_5.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[tof_5.qasm]",
+            "params": {
+                "filename": "tof_5.qasm"
+            },
+            "param": "tof_5.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0002994770184159279,
+                "input_num_qubits": 9,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 246,
+                    "u": 54
+                },
+                "output_gate_count_2q": 246,
+                "output_depth_2q": 138
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.006282023969106376,
+                "max": 0.01836441201157868,
+                "mean": 0.008882954268267861,
+                "stddev": 0.0018355029869384035,
+                "rounds": 135,
+                "median": 0.008282474998850375,
+                "iqr": 0.0030368977604666725,
+                "q1": 0.007391374732833356,
+                "q3": 0.010428272493300028,
+                "iqr_outliers": 1,
+                "stddev_outliers": 42,
+                "outliers": "42;1",
+                "ld15iqr": 0.006282023969106376,
+                "hd15iqr": 0.01836441201157868,
+                "ops": 112.57516022256814,
+                "total": 1.1991988262161613,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_feynman_transpile[hwb6.qasm]",
+            "fullname": "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb6.qasm]",
+            "params": {
+                "filename": "hwb6.qasm"
+            },
+            "param": "hwb6.qasm",
+            "extra_info": {
+                "qasm_load_time": 0.0006790339830331504,
+                "input_num_qubits": 7,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 557,
+                    "u": 122
+                },
+                "output_gate_count_2q": 557,
+                "output_depth_2q": 402
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.009927670005708933,
+                "max": 0.016681587032508105,
+                "mean": 0.011865076111893072,
+                "stddev": 0.0014619300089433514,
+                "rounds": 76,
+                "median": 0.011533694982063025,
+                "iqr": 0.0009912110108416528,
+                "q1": 0.010948034992907196,
+                "q3": 0.011939246003748849,
+                "iqr_outliers": 10,
+                "stddev_outliers": 14,
+                "outliers": "14;10",
+                "ld15iqr": 0.009927670005708933,
+                "hd15iqr": 0.013767735043074936,
+                "ops": 84.28095956313678,
+                "total": 0.9017457845038734,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_QFT_100_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_QFT_100_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "qasm_load_time": 0.08107528899563476,
+                "input_num_qubits": 100,
+                "output_num_qubits": 0,
+                "output_circuit_operations": {},
+                "output_gate_count_2q": 0,
+                "output_depth_2q": 0
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.11774868401698768,
+                "max": 0.160249617008958,
+                "mean": 0.13462863085026452,
+                "stddev": 0.015619258495455533,
+                "rounds": 7,
+                "median": 0.1317575770081021,
+                "iqr": 0.024757184015470557,
+                "q1": 0.1203025669674389,
+                "q3": 0.14505975098290946,
+                "iqr_outliers": 0,
+                "stddev_outliers": 3,
+                "outliers": "3;0",
+                "ld15iqr": 0.11774868401698768,
+                "hd15iqr": 0.160249617008958,
+                "ops": 7.427840524592508,
+                "total": 0.9424004159518518,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_QV_100_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_QV_100_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "qasm_load_time": 1.0878153389785439,
+                "input_num_qubits": 100,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 460400,
+                    "cx": 175362
+                },
+                "output_gate_count_2q": 175362,
+                "output_depth_2q": 67869
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 169.00348207901698,
+                "max": 169.00348207901698,
+                "mean": 169.00348207901698,
+                "stddev": 0,
+                "rounds": 1,
+                "median": 169.00348207901698,
+                "iqr": 0.0,
+                "q1": 169.00348207901698,
+                "q3": 169.00348207901698,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 169.00348207901698,
+                "hd15iqr": 169.00348207901698,
+                "ops": 0.0059170378485601475,
+                "total": 169.00348207901698,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_circSU2_89_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_circSU2_89_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "input_num_qubits": 89,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 1830,
+                    "u": 1780
+                },
+                "output_gate_count_2q": 1830,
+                "output_depth_2q": 1830
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.8721385460230522,
+                "max": 0.8825532490154728,
+                "mean": 0.8773458975192625,
+                "stddev": 0.007364307109984466,
+                "rounds": 2,
+                "median": 0.8773458975192625,
+                "iqr": 0.010414702992420644,
+                "q1": 0.8721385460230522,
+                "q3": 0.8825532490154728,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 0.8721385460230522,
+                "hd15iqr": 0.8825532490154728,
+                "ops": 1.1398013062208963,
+                "total": 1.754691795038525,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_circSU2_100_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_circSU2_100_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "input_num_qubits": 100,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 2211,
+                    "u": 2000
+                },
+                "output_gate_count_2q": 2211,
+                "output_depth_2q": 2211
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.1930094109848142,
+                "max": 1.1930094109848142,
+                "mean": 1.1930094109848142,
+                "stddev": 0,
+                "rounds": 1,
+                "median": 1.1930094109848142,
+                "iqr": 0.0,
+                "q1": 1.1930094109848142,
+                "q3": 1.1930094109848142,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 1.1930094109848142,
+                "hd15iqr": 1.1930094109848142,
+                "ops": 0.8382163550365563,
+                "total": 1.1930094109848142,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_BV_100_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_BV_100_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "input_num_qubits": 100,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 6504,
+                    "u": 200,
+                    "measure": 99
+                },
+                "output_gate_count_2q": 6504,
+                "output_depth_2q": 582
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.03760387096554041,
+                "max": 0.04016730701550841,
+                "mean": 0.038213505649204865,
+                "stddev": 0.000612399743409646,
+                "rounds": 26,
+                "median": 0.038064727472374216,
+                "iqr": 0.00031956692691892385,
+                "q1": 0.03789603803306818,
+                "q3": 0.038215604959987104,
+                "iqr_outliers": 3,
+                "stddev_outliers": 3,
+                "outliers": "3;3",
+                "ld15iqr": 0.03760387096554041,
+                "hd15iqr": 0.03907321795122698,
+                "ops": 26.168758479786522,
+                "total": 0.9935511468793266,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_square_heisenberg_100_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_square_heisenberg_100_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "qasm_load_time": 0.36578314000507817,
+                "input_num_qubits": 100,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "u": 9040,
+                    "cx": 5025
+                },
+                "output_gate_count_2q": 5025,
+                "output_depth_2q": 3582
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.7284812669968233,
+                "max": 0.7576590760145336,
+                "mean": 0.7430701715056784,
+                "stddev": 0.02063182661658901,
+                "rounds": 2,
+                "median": 0.7430701715056784,
+                "iqr": 0.029177809017710388,
+                "q1": 0.7284812669968233,
+                "q3": 0.7576590760145336,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 0.7284812669968233,
+                "hd15iqr": 0.7576590760145336,
+                "ops": 1.3457679211826068,
+                "total": 1.486140343011357,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_QAOA_100_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_QAOA_100_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "qasm_load_time": 0.00591715396149084,
+                "input_num_qubits": 100,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 17442,
+                    "u": 2852
+                },
+                "output_gate_count_2q": 17442,
+                "output_depth_2q": 7070
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.28503073705360293,
+                "max": 0.29934004496317357,
+                "mean": 0.2903328485117527,
+                "stddev": 0.0065537624069901155,
+                "rounds": 4,
+                "median": 0.2884803060151171,
+                "iqr": 0.009679490962298587,
+                "q1": 0.2854931030306034,
+                "q3": 0.29517259399290197,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 0.28503073705360293,
+                "hd15iqr": 0.29934004496317357,
+                "ops": 3.444322628755251,
+                "total": 1.1613313940470107,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_BVlike_simplification_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_BVlike_simplification_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "input_num_qubits": 100,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 10872,
+                    "u": 2
+                },
+                "output_gate_count_2q": 10872,
+                "output_depth_2q": 1079
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.04404710198286921,
+                "max": 0.04844946099910885,
+                "mean": 0.04511948440763676,
+                "stddev": 0.0009242915895436001,
+                "rounds": 22,
+                "median": 0.044892994017573074,
+                "iqr": 0.0010203710407949984,
+                "q1": 0.04453402594663203,
+                "q3": 0.045554396987427026,
+                "iqr_outliers": 1,
+                "stddev_outliers": 2,
+                "outliers": "2;1",
+                "ld15iqr": 0.04404710198286921,
+                "hd15iqr": 0.04844946099910885,
+                "ops": 22.16337383125645,
+                "total": 0.9926286569680087,
+                "iterations": 1
+            }
+        },
+        {
+            "group": "Transpile - Device",
+            "name": "test_clifford_100_transpile",
+            "fullname": "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_clifford_100_transpile",
+            "params": null,
+            "param": null,
+            "extra_info": {
+                "qasm_load_time": 0.018993014004081488,
+                "input_num_qubits": 100,
+                "output_num_qubits": 133,
+                "output_circuit_operations": {
+                    "cx": 142891,
+                    "u": 4708
+                },
+                "output_gate_count_2q": 142891,
+                "output_depth_2q": 78472
+            },
+            "options": {
+                "disable_gc": false,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.6413031390402466,
+                "max": 2.6413031390402466,
+                "mean": 2.6413031390402466,
+                "stddev": 0,
+                "rounds": 1,
+                "median": 2.6413031390402466,
+                "iqr": 0.0,
+                "q1": 2.6413031390402466,
+                "q3": 2.6413031390402466,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 2.6413031390402466,
+                "hd15iqr": 2.6413031390402466,
+                "ops": 0.37860099631099653,
+                "total": 2.6413031390402466,
+                "iterations": 1
+            }
+        }
+    ],
+    "datetime": "2024-08-05T14:55:43.400829+00:00",
+    "version": "4.0.0",
+    "staq_info": {
+        "pystaq": "3.5",
+        "qiskit": "1.2.0rc1",
+        "qiskit_ibm_runtime": "0.25.0",
+        "staq": "3.5"
+    },
+    "total_duration": 1197.7671926021576,
+    "env_info": {
+        "numpy": "2.0.1",
+        "scipy": "1.14.0"
+    },
+    "test_status_counts": {
+        "passed": 59,
+        "failed": 0,
+        "xfailed": 0,
+        "skipped": 3
+    },
+    "test_dumps": {
+        "passed": {
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[mod5_4.qasm]": {
+                "duration": 2.01722930802498,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[mod5_4.qasm]": 1,
+                    "mod5_4.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[tof_3.qasm]": {
+                "duration": 0.9750237370026298,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[tof_3.qasm]": 1,
+                    "tof_3.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[rc_adder_6.qasm]": {
+                "duration": 1.1010695039876737,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[rc_adder_6.qasm]": 1,
+                    "rc_adder_6.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[adder.qasm]": {
+                "duration": 1.0581428750301711,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[adder.qasm]": 1,
+                    "adder.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qpt.qasm]": {
+                "duration": 0.9392898509977385,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[qpt.qasm]": 1,
+                    "qpt.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[tof_4.qasm]": {
+                "duration": 0.9478849049773999,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[tof_4.qasm]": 1,
+                    "tof_4.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^7_mult.qasm]": {
+                "duration": 1.2619721079827286,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^7_mult.qasm]": 1,
+                    "gf2^7_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[W-state.qasm]": {
+                "duration": 0.928977711009793,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[W-state.qasm]": 1,
+                    "W-state.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[mod_mult_55.qasm]": {
+                "duration": 1.029970770003274,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[mod_mult_55.qasm]": 1,
+                    "mod_mult_55.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qcla_adder_10.qasm]": {
+                "duration": 1.0882161729969084,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[qcla_adder_10.qasm]": 1,
+                    "qcla_adder_10.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^5_mult.qasm]": {
+                "duration": 1.0991937419748865,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^5_mult.qasm]": 1,
+                    "gf2^5_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qec.qasm]": {
+                "duration": 0.9478764499654062,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[qec.qasm]": 1,
+                    "qec.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^4_mult.qasm]": {
+                "duration": 1.0517863529967144,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^4_mult.qasm]": 1,
+                    "gf2^4_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb10.qasm]": {
+                "duration": 18.62761161196977,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[hwb10.qasm]": 1,
+                    "hwb10.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^8_mult.qasm]": {
+                "duration": 1.2978698519873433,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^8_mult.qasm]": 1,
+                    "gf2^8_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[inverseqft1.qasm]": {
+                "duration": 0.8783714229939505,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[inverseqft1.qasm]": 1,
+                    "inverseqft1.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[csla_mux_3.qasm]": {
+                "duration": 1.1371827439870685,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[csla_mux_3.qasm]": 1,
+                    "csla_mux_3.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[ham15-high.qasm]": {
+                "duration": 1.709496675990522,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[ham15-high.qasm]": 1,
+                    "ham15-high.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[mod_adder_1024.qasm]": {
+                "duration": 1.7652304149814881,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[mod_adder_1024.qasm]": 1,
+                    "mod_adder_1024.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^6_mult.qasm]": {
+                "duration": 1.1557743229786865,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^6_mult.qasm]": 1,
+                    "gf2^6_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[vbe_adder_3.qasm]": {
+                "duration": 0.941086670034565,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[vbe_adder_3.qasm]": 1,
+                    "vbe_adder_3.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qft.qasm]": {
+                "duration": 0.8461990949581377,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[qft.qasm]": 1,
+                    "qft.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qft_4.qasm]": {
+                "duration": 1.0756841469556093,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[qft_4.qasm]": 1,
+                    "qft_4.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^10_mult.qasm]": {
+                "duration": 1.5297691610176116,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^10_mult.qasm]": 1,
+                    "gf2^10_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[adder_8.qasm]": {
+                "duration": 1.1998597139609046,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[adder_8.qasm]": 1,
+                    "adder_8.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[barenco_tof_10.qasm]": {
+                "duration": 1.0796956879785284,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[barenco_tof_10.qasm]": 1,
+                    "barenco_tof_10.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[tof_10.qasm]": {
+                "duration": 1.1648694640025496,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[tof_10.qasm]": 1,
+                    "tof_10.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[teleportv2.qasm]": {
+                "duration": 0.734657906985376,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[teleportv2.qasm]": 1,
+                    "teleportv2.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[barenco_tof_3.qasm]": {
+                "duration": 1.1068081519915722,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[barenco_tof_3.qasm]": 1,
+                    "barenco_tof_3.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb12.qasm]": {
+                "duration": 139.90503140701912,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[hwb12.qasm]": 1,
+                    "hwb12.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[csum_mux_9.qasm]": {
+                "duration": 1.635690237977542,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[csum_mux_9.qasm]": 1,
+                    "csum_mux_9.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^9_mult.qasm]": {
+                "duration": 1.325978391978424,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^9_mult.qasm]": 1,
+                    "gf2^9_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^32_mult.qasm]": {
+                "duration": 133.31359878898365,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^32_mult.qasm]": 1,
+                    "gf2^32_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[grover_5.qasm]": {
+                "duration": 1.2040778319933452,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[grover_5.qasm]": 1,
+                    "grover_5.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qcla_mod_7.qasm]": {
+                "duration": 1.1990357270115055,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[qcla_mod_7.qasm]": 1,
+                    "qcla_mod_7.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[ham15-low.qasm]": {
+                "duration": 1.2049169130041264,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[ham15-low.qasm]": 1,
+                    "ham15-low.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[rb.qasm]": {
+                "duration": 0.9586299920338206,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[rb.qasm]": 1,
+                    "rb.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^16_mult.qasm]": {
+                "duration": 4.92803329997696,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[gf2^16_mult.qasm]": 1,
+                    "gf2^16_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb8.qasm]": {
+                "duration": 3.877597705984954,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[hwb8.qasm]": 1,
+                    "hwb8.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[barenco_tof_4.qasm]": {
+                "duration": 1.086355036997702,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[barenco_tof_4.qasm]": 1,
+                    "barenco_tof_4.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[bigadder.qasm]": {
+                "duration": 1.0965913319960237,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[bigadder.qasm]": 1,
+                    "bigadder.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[barenco_tof_5.qasm]": {
+                "duration": 1.0346897059935145,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[barenco_tof_5.qasm]": 1,
+                    "barenco_tof_5.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[mod_red_21.qasm]": {
+                "duration": 1.1261541540152393,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[mod_red_21.qasm]": 1,
+                    "mod_red_21.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[qcla_com_7.qasm]": {
+                "duration": 1.1132999190012924,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[qcla_com_7.qasm]": 1,
+                    "qcla_com_7.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb11.qasm]": {
+                "duration": 70.63404361903667,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[hwb11.qasm]": 1,
+                    "hwb11.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[teleport.qasm]": {
+                "duration": 1.2238350990228355,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[teleport.qasm]": 1,
+                    "teleport.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[inverseqft2.qasm]": {
+                "duration": 0.6822622930048965,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[inverseqft2.qasm]": 1,
+                    "inverseqft2.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[ham15-med.qasm]": {
+                "duration": 1.4119227809715085,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[ham15-med.qasm]": 1,
+                    "ham15-med.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[tof_5.qasm]": {
+                "duration": 1.2598350099870004,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[tof_5.qasm]": 1,
+                    "tof_5.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[hwb6.qasm]": {
+                "duration": 0.9852313859737478,
+                "exception": "None",
+                "keywords": {
+                    "test_feynman_transpile[hwb6.qasm]": 1,
+                    "hwb6.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_QFT_100_transpile": {
+                "duration": 1.4795801820000634,
+                "exception": "None",
+                "keywords": {
+                    "test_QFT_100_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_QV_100_transpile": {
+                "duration": 739.669188031985,
+                "exception": "None",
+                "keywords": {
+                    "test_QV_100_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_circSU2_89_transpile": {
+                "duration": 4.555450491956435,
+                "exception": "None",
+                "keywords": {
+                    "test_circSU2_89_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_circSU2_100_transpile": {
+                "duration": 5.084929122007452,
+                "exception": "None",
+                "keywords": {
+                    "test_circSU2_100_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_BV_100_transpile": {
+                "duration": 1.2472596369916573,
+                "exception": "None",
+                "keywords": {
+                    "test_BV_100_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_square_heisenberg_100_transpile": {
+                "duration": 4.409147645987105,
+                "exception": "None",
+                "keywords": {
+                    "test_square_heisenberg_100_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_QAOA_100_transpile": {
+                "duration": 2.3936218279995956,
+                "exception": "None",
+                "keywords": {
+                    "test_QAOA_100_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_BVlike_simplification_transpile": {
+                "duration": 1.314460993045941,
+                "exception": "None",
+                "keywords": {
+                    "test_BVlike_simplification_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_summit.py::TestWorkoutDeviceTranspile100Q::test_clifford_100_transpile": {
+                "duration": 13.801289708993863,
+                "exception": "None",
+                "keywords": {
+                    "test_clifford_100_transpile": 1,
+                    "TestWorkoutDeviceTranspile100Q": 1,
+                    "benchmark": 1,
+                    "test_summit.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            }
+        },
+        "failed": {},
+        "xfailed": {},
+        "skipped": {
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^128_mult.qasm]": {
+                "duration": 0.10129084798973054,
+                "exception": "('/home/paul/Desktop/Github/benchpress/benchpress/staq_gym/device_transpile/test_feynman.py', 86, 'Skipped: Circuit too large for given backend.')",
+                "keywords": {
+                    "test_feynman_transpile[gf2^128_mult.qasm]": 1,
+                    "gf2^128_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^64_mult.qasm]": {
+                "duration": 0.036242198024410754,
+                "exception": "('/home/paul/Desktop/Github/benchpress/benchpress/staq_gym/device_transpile/test_feynman.py', 86, 'Skipped: Circuit too large for given backend.')",
+                "keywords": {
+                    "test_feynman_transpile[gf2^64_mult.qasm]": 1,
+                    "gf2^64_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            },
+            "staq_gym/device_transpile/test_feynman.py::TestWorkoutDeviceFeynman::test_feynman_transpile[gf2^256_mult.qasm]": {
+                "duration": 0.4080584669718519,
+                "exception": "('/home/paul/Desktop/Github/benchpress/benchpress/staq_gym/device_transpile/test_feynman.py', 86, 'Skipped: Circuit too large for given backend.')",
+                "keywords": {
+                    "test_feynman_transpile[gf2^256_mult.qasm]": 1,
+                    "gf2^256_mult.qasm": 1,
+                    "TestWorkoutDeviceFeynman": 1,
+                    "benchmark": 1,
+                    "test_feynman.py": 1,
+                    "device_transpile": 1,
+                    "staq_gym": 1,
+                    "benchpress": 1,
+                    "": 1
+                }
+            }
+        }
+    }
+}
