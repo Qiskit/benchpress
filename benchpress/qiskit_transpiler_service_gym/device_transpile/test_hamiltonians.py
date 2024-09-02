@@ -14,7 +14,7 @@ import json
 import pytest
 from qiskit.quantum_info import SparsePauliOp
 
-from qiskit_transpiler_service.transpiler_service import TranspilerService
+from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
 from benchpress.config import Configuration
 from benchpress.utilities.io import input_circuit_properties, output_circuit_properties

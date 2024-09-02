@@ -13,7 +13,7 @@
 
 import pytest
 
-from qiskit_transpiler_service.transpiler_service import TranspilerService
+from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
 from benchpress.utilities.io import input_circuit_properties, output_circuit_properties
 from benchpress.utilities.io.hamiltonians import generate_hamiltonian_circuit
