@@ -23,7 +23,7 @@ def circuit_validator(circuit, backend):
         backend : Target backend
     """
     gym_name = Configuration.gym_name
-    if gym_name in ["qiskit", "qiskit-transpiler-service"]:
+    if gym_name in ["qiskit", "qiskit-ibm-transpiler"]:
         from benchpress.qiskit_gym.utils.validation import qiskit_circuit_validation
 
         qiskit_circuit_validation(circuit, backend)

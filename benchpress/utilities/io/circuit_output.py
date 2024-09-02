@@ -23,7 +23,7 @@ def output_circuit_properties(circuit, two_qubit_gate, benchmark):
 
     """
     gym_name = Configuration.gym_name
-    if gym_name in ["qiskit", "qiskit-transpiler-service"]:
+    if gym_name in ["qiskit", "qiskit-ibm-transpiler"]:
         from benchpress.qiskit_gym.utils.io import qiskit_output_circuit_properties
 
         qiskit_output_circuit_properties(circuit, two_qubit_gate, benchmark)

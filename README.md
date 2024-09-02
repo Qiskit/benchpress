@@ -11,7 +11,7 @@ Benchpress currently supports the following SDKs:
 - **Braket** (https://github.com/amazon-braket/amazon-braket-sdk-python)
 - **Cirq** (https://github.com/quantumlib/Cirq)
 - **Qiskit** (https://github.com/Qiskit/qiskit)
-- **Qiskit-Transpiler-Service** (https://github.com/Qiskit/qiskit-transpiler-service)
+- **Qiskit IBM transpiler** (https://github.com/Qiskit/qiskit-ibm-transpiler)
 - **Staq** (https://github.com/softwareQinc/staq)
 - **Tket** (https://github.com/CQCL/tket)
 
@@ -105,4 +105,3 @@ Benchpress makes use of files from the following open-source packages under term
 ## License
 
 [Apache License 2.0](LICENSE.txt)
-
