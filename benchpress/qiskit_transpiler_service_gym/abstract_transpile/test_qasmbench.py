@@ -13,7 +13,7 @@
 
 import pytest
 
-from qiskit_transpiler_service.transpiler_service import TranspilerService
+from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.config import Configuration

@@ -94,7 +94,7 @@ class BenchpressConfig:
             "qiskit",
             "tket",
             "bqskit",
-            "qiskit-transpiler-service",
+            "qiskit-ibm-transpiler",
             "staq",
         ]:
             backend = get_backend(

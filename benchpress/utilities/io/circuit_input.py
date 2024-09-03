@@ -22,7 +22,7 @@ def input_circuit_properties(circuit, benchmark):
 
     """
     gym_name = Configuration.gym_name
-    if gym_name in ["qiskit", "qiskit-transpiler-service"]:
+    if gym_name in ["qiskit", "qiskit-ibm-transpiler"]:
         from benchpress.qiskit_gym.utils.io import qiskit_input_circuit_properties
 
         qiskit_input_circuit_properties(circuit, benchmark)
