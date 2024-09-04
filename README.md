@@ -3,6 +3,14 @@
 Quantum software benchmarking
 ___
 
+## What is Benchpress?
+
+Benchpress is an open-source tool for benchmarking quantum software.
+
+The Benchpress open-source benchmarking suite comprises over 1,000 different tests. Although Benchpress is a package built by IBM, the tests themselves are standardized benchmarking tests designed by other members of the quantum community. For example, Benchpress compares SDKs’ abilities to generate [QASMBench circuits](https://github.com/pnnl/QASMBench), [Feynman circuits](https://github.com/meamy/feynman), and [Hamiltonian circuits](https://arxiv.org/pdf/2306.13126](https://portal.nersc.gov/cfs/m888/dcamps/hamlib/). It also includes tests designed to test a language's ability to transpiler circuits for specific hardware, including the heavy hex architecture of IBM quantum processors and other generic qubit layouts.
+
+If you find an issue with the testing or how we completed it, we encourage you to make a pull request.
+
 ## Supported SDKs
 
 Benchpress currently supports the following SDKs:
@@ -17,7 +25,7 @@ Benchpress currently supports the following SDKs:
 
 ## Testing resource requirements
 
-Running Benchpress is resource intensive.  Although the exact requirements depend on the SDK in question,a full execution of all the SDKs requires a system with 96+Gb of memory and, in some cases, will consume as many CPU resources as are available / assigned.  In addition, each suite of tests takes a non-negligible about of time, typically taking several hours or more to complete depending on the machine and timeout specified.
+Running Benchpress is resource intensive.  Although the exact requirements depend on the SDK in question, a full execution of all the SDKs requires a system with 96+Gb of memory and, in some cases, will consume as many CPU resources as are available / assigned.  In addition, each suite of tests takes a non-negligible about of time, typically several hours or more depending on the machine and timeout specified.
 
 ## Installation
 
@@ -57,7 +65,7 @@ Further details on using `pytest-benchmark` can be found here: https://pytest-be
 
 ## :construction: Running the memory tests :construction:
 
-Benchmarking the amount of memory a  test uses can be very costly in terms of time and memory.  Here we use the `pytest-memray` plugin.  Calling the memory bechmark looks like:
+Benchmarking the amount of memory a test uses can be very costly in terms of time and memory.  Here we use the `pytest-memray` plugin.  Calling the memory bechmark looks like:
 
 ```bash
 
