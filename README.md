@@ -84,7 +84,7 @@ The `pytest-memray` plugin will sometimes raise on building the histrogram inclu
 ```
 ## Testing details
 
-We have designed Benchpress in a manor to allow all tests to be executed on each SDK, regardless of whether that functionality is supported or not.  This is facilitated by the use of "workouts" that define abstract base classes that define each set of tests.  This design choice has the advantage of explicitly measuring the breadth of SDK functionality
+We have designed Benchpress in a manner to allow all tests to be executed on each SDK, regardless of whether that functionality is supported or not.  This is facilitated by the use of "workouts" that define abstract base classes that define each set of tests.  This design choice has the advantage of explicitly measuring the breadth of SDK functionality
 
 ### Test status description
 
