@@ -7,7 +7,7 @@ ___
 
 Benchpress is an open-source tool for benchmarking quantum software.
 
-The Benchpress open-source benchmarking suite comprises over 1,000 different tests. Although Benchpress is a package built by IBM, the tests themselves are standardized benchmarking tests designed by other members of the quantum community. For example, Benchpress compares SDKs’ abilities to generate [QASMBench circuits](https://github.com/pnnl/QASMBench), [Feynman circuits](https://github.com/meamy/feynman), and [Hamiltonian circuits](https://arxiv.org/pdf/2306.13126](https://portal.nersc.gov/cfs/m888/dcamps/hamlib/). It also includes tests designed to test a language's ability to transpiler circuits for specific hardware, including the heavy hex architecture of IBM quantum processors and other generic qubit layouts.
+The Benchpress open-source benchmarking suite comprises over 1,000 different tests. These are standardized benchmarking tests designed by other members of the quantum community. For example, Benchpress compares SDKs’ abilities to generate [QASMBench circuits](https://github.com/pnnl/QASMBench), [Feynman circuits](https://github.com/meamy/feynman), and [Hamiltonian circuits](https://arxiv.org/pdf/2306.13126](https://portal.nersc.gov/cfs/m888/dcamps/hamlib/). It also includes tests designed to test a language's ability to transpiler circuits for specific hardware, including the heavy hex architecture of IBM quantum processors and other generic qubit layouts.
 
 If you find an issue with the testing or how we completed it, we encourage you to make a pull request.
 
