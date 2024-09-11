@@ -14,7 +14,7 @@ from importlib.metadata import version
 import qiskit
 import qiskit_ibm_runtime
 
-AI_SERVICE_VERSION = version("qiskit_transpiler_service")
+AI_SERVICE_VERSION = version("qiskit_ibm_transpiler")
 
 
 def pytest_report_header(config):
@@ -22,7 +22,7 @@ def pytest_report_header(config):
     ret = [
         f"qiskit: {qiskit.__version__}",
         f"qiskit_ibm_runtime: {qiskit_ibm_runtime.__version__}",
-        f"qiskit_transpiler_service: {AI_SERVICE_VERSION}",
+        f"qiskit_ibm_transpiler: {AI_SERVICE_VERSION}",
     ]
     if hasattr(config.known_args_namespace, "timeout_skip_list"):
         ret.append(
@@ -36,5 +36,5 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
     output_json["qiskit_info"] = {
         "qiskit": str(qiskit.__version__),
         "qiskit_ibm_runtime": str(qiskit_ibm_runtime.__version__),
-        "qiskit_transpiler_service": AI_SERVICE_VERSION,
+        "qiskit_ibm_transpiler": AI_SERVICE_VERSION,
     }

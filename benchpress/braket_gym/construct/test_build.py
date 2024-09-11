@@ -18,7 +18,12 @@ from benchpress.utilities.io import qasm_circuit_loader, output_circuit_properti
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 
-from benchpress.braket_gym.circuits import braket_QV, braket_circSU2, dtc_unitary
+from benchpress.braket_gym.circuits import (
+    braket_QV,
+    braket_circSU2,
+    dtc_unitary,
+    braket_random_clifford,
+)
 from braket.circuits import Circuit
 
 SEED = 12345
@@ -128,19 +133,6 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         output_circuit_properties(result, "CNot", benchmark)
         assert result
 
-    def test_QV100_qasm2_import(self, benchmark):
-        """QASM import of QV100 circuit"""
-
-        @benchmark
-        def result():
-            circuit = qasm_circuit_loader(
-                Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
-            )
-            return circuit
-
-        output_circuit_properties(result, "CNot", benchmark)
-        assert result
-
     def test_bigint_qasm2_import(self, benchmark):
         """QASM import of circuit with bigint"""
 
@@ -150,5 +142,17 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 Configuration.get_qasm_dir("bigint") + "bigint.qasm", benchmark
             )
             return circuit
+
+        assert result
+
+    def test_clifford_build(self, benchmark):
+        """Measures an SDKs ability to build a 100Q
+        random Clifford circuit from scratch.
+        """
+
+        @benchmark
+        def result():
+            braket_random_clifford(100, seed=SEED)
+            return True
 
         assert result

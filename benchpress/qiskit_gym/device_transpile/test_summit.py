@@ -2,12 +2,14 @@
 
 from qiskit import QuantumCircuit
 from qiskit.circuit.library import EfficientSU2, QuantumVolume
-from qiskit.transpiler.passes import StarPreRouting
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
-from benchpress.utilities.io import (qasm_circuit_loader, input_circuit_properties,
-                                     output_circuit_properties)
+from benchpress.utilities.io import (
+    qasm_circuit_loader,
+    input_circuit_properties,
+    output_circuit_properties,
+)
 from benchpress.utilities.validation import circuit_validator
 from benchpress.qiskit_gym.circuits import bv_all_ones
 
@@ -30,7 +32,6 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         )
 
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
-        pm.init.append(StarPreRouting())
 
         @benchmark
         def result():

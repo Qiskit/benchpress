@@ -21,9 +21,11 @@ from benchpress.bqskit_gym.circuits import (
     bqskit_QV,
 )
 from benchpress.config import Configuration
-from benchpress.utilities.io import (qasm_circuit_loader,
-                                     input_circuit_properties,
-                                     output_circuit_properties)
+from benchpress.utilities.io import (
+    qasm_circuit_loader,
+    input_circuit_properties,
+    output_circuit_properties,
+)
 from benchpress.utilities.validation import circuit_validator
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q

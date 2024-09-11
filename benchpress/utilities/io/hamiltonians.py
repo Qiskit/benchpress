@@ -27,7 +27,7 @@ def generate_hamiltonian_circuit(sparse_op, benchmark):
         The circuit instance for the corresponding SDK
     """
     gym_name = Configuration.gym_name
-    if gym_name in ["qiskit", "qiskit-transpiler-service"]:
+    if gym_name in ["qiskit", "qiskit-ibm-transpiler"]:
         from benchpress.qiskit_gym.utils.io import qiskit_hamiltonian_circuit
 
         circuit = qiskit_hamiltonian_circuit(sparse_op)

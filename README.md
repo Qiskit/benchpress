@@ -1,8 +1,7 @@
-![benchpress](https://media.github.ibm.com/user/152294/files/d93c265c-44c1-4a5d-82bd-494342ede900)
+![Benchpress Image - © 2024 IBM. All Rights Reserved.](https://github.com/user-attachments/assets/67b82edb-52d6-47ac-a513-1b7129c20ea5)
 
-
-# benchpress
 Quantum software benchmarking
+___
 
 ## Supported SDKs
 
@@ -12,7 +11,7 @@ Benchpress currently supports the following SDKs:
 - **Braket** (https://github.com/amazon-braket/amazon-braket-sdk-python)
 - **Cirq** (https://github.com/quantumlib/Cirq)
 - **Qiskit** (https://github.com/Qiskit/qiskit)
-- **Qiskit-Transpiler-Service** (https://github.com/Qiskit/qiskit-transpiler-service)
+- **Qiskit IBM transpiler** (https://github.com/Qiskit/qiskit-ibm-transpiler)
 - **Staq** (https://github.com/softwareQinc/staq)
 - **Tket** (https://github.com/CQCL/tket)
 
@@ -77,7 +76,7 @@ The `pytest-memray` plugin will sometimes raise on building the histrogram inclu
 ```
 ## Testing details
 
-We have designed Benchpress in a manor to allow all tests to be executed on each SDK, regardless of whether that functionality is supported or not.  This is facilitated by the use of "workouts" that define abstract base classes that define each set of tests.  This design choice has the advantage of explicitly measuring the breadth of SDK functionality
+We have designed Benchpress in a manner to allow all tests to be executed on each SDK, regardless of whether that functionality is supported or not.  This is facilitated by the use of "workouts" that define abstract base classes that define each set of tests.  This design choice has the advantage of explicitly measuring the breadth of SDK functionality
 
 ### Test status description
 
@@ -106,4 +105,3 @@ Benchpress makes use of files from the following open-source packages under term
 ## License
 
 [Apache License 2.0](LICENSE.txt)
-

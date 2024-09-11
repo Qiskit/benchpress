@@ -9,6 +9,15 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
+"""Test Hamiltonians against abstract backend topologies"""
+from benchpress.workouts.validation import benchpress_test_validation
 
 
-from .circuits import braket_circSU2, braket_QV, dtc_unitary, braket_random_clifford
+from benchpress.workouts.abstract_transpile.hamlib_hamiltonians import (
+    WorkoutAbstractHamiltonians,
+)
+
+
+@benchpress_test_validation
+class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
+    pass
