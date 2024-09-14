@@ -18,6 +18,7 @@ from benchpress.bqskit_gym.circuits import (
     bqskit_bv_all_ones,
     bqskit_circSU2,
     trivial_bvlike_circuit,
+    bqskit_QV,
 )
 from benchpress.config import Configuration
 from benchpress.utilities.io import (
@@ -60,9 +61,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = qasm_circuit_loader(
-            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
-        )
+        circuit = bqskit_QV(100, 100, seed=12345)
         compiler = Compiler()
 
         @benchmark

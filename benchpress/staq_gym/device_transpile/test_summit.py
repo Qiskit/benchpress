@@ -91,27 +91,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         output_circuit_properties(result, "cx", benchmark)
         assert circuit_validator(result, QISKIT_BACKEND)
 
-    def test_QV_100_transpile(self, benchmark, staq_device):
+    def test_QV_100_transpile(self, _benchmark, _staq_device):
         """Compile 100Q QV circuit against target backend"""
-        device = staq_device(backend=BACKEND)
-        qasm_file = "qv_N100_12345.qasm"
-        input_qasm_file = Configuration.get_qasm_dir("qv") + qasm_file
-        _ = qasm_circuit_loader(input_qasm_file, benchmark)
-
-        @benchmark
-        def result():
-            out = subprocess.run(
-                RUN_ARGS_COMMON + ["-m", "--device", device, input_qasm_file],
-                capture_output=True,
-                text=True,
-            )
-
-            return QuantumCircuit.from_qasm_str(out.stdout)
-
-        # load output QASM as a QuantumCircuit to get statistics as
-        # staq does not have built-in utilities for such
-        output_circuit_properties(result, "cx", benchmark)
-        assert circuit_validator(result, QISKIT_BACKEND)
+        pytest.fail("staq lacks support for running QV as it doesn't support 2q unitary operators")
 
     def test_circSU2_89_transpile(self, benchmark, tmp_path_factory, staq_device):
         """Compile 89Q circSU2 circuit against target backend"""

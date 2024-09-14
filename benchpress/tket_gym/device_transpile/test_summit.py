@@ -22,7 +22,7 @@ from benchpress.utilities.validation import circuit_validator
 
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
-from benchpress.tket_gym.circuits import trivial_bvlike_circuit
+from benchpress.tket_gym.circuits import trivial_bvlike_circuit, tket_QV
 
 BACKEND = Configuration.backend()
 TWO_Q_GATE = BACKEND.two_q_gate_type
@@ -50,9 +50,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = qasm_circuit_loader(
-            Configuration.get_qasm_dir("qv") + "qv_N100_12345.qasm", benchmark
-        )
+        circuit = tket_QV(100, 100, seed=12345)
         pm = BACKEND.default_compilation_pass(optimisation_level=OPTIMIZATION_LEVEL)
 
         @benchmark
