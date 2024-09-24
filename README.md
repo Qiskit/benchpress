@@ -98,6 +98,9 @@ In Benchpress each test status has a well defined meaning:
 
 - **XFAIL** - The test fails in an irrecoverable manner, and is therefore tagged as failed rather than being executed. E.g. the test tries to use more memory than is available.
 
+### Test runtime
+
+Running the full suite of tests will easily take a week or more if executed in serial, e.g. so that memory bandwidth or multiprocessing usage does no skew results.  Users can always select a subset of tests to reduce this overall time.
 
 ## Open-source packages
 
