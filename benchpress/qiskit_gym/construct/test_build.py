@@ -2,8 +2,8 @@
 
 import numpy as np
 from qiskit import QuantumCircuit
-from qiskit.circuit.library import QuantumVolume
-from qiskit.circuit.library import EfficientSU2
+from qiskit.circuit.library import quantum_volume
+from qiskit.circuit.library import efficient_su2
 from qiskit.qasm2 import load
 
 from benchpress.config import Configuration
@@ -28,7 +28,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            out = QuantumVolume(100, 100, seed=SEED)
+            out = quantum_volume(100, 100, seed=SEED)
             return out
 
         assert result
@@ -90,7 +90,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            out = EfficientSU2(N, reps=4, entanglement="circular", flatten=True)
+            out = efficient_su2(N, reps=4, entanglement="circular", flatten=True)
             out._build()
             return out
 
@@ -102,7 +102,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         entanglement and 4 repetitions.
         """
         N = 100
-        qc = EfficientSU2(N, reps=4, entanglement="circular", flatten=True)
+        qc = efficient_su2(N, reps=4, entanglement="circular", flatten=True)
         assert qc.num_parameters == 1000
         params = np.linspace(0, 2 * np.pi, qc.num_parameters)
 

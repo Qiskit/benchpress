@@ -1,7 +1,7 @@
 """Test summit benchmarks"""
 
 from qiskit import QuantumCircuit
-from qiskit.circuit.library import EfficientSU2, QuantumVolume
+from qiskit.circuit.library import efficient_su2, quantum_volume
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from benchpress.config import Configuration
@@ -43,7 +43,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, benchmark):
         """Compile 10Q QV circuit against target backend"""
-        circuit = QuantumVolume(100, 100, seed=12345)
+        circuit = quantum_volume(100, 100, seed=12345)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
         @benchmark
@@ -56,7 +56,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_circSU2_89_transpile(self, benchmark):
         """Compile 89Q circSU2 circuit against target backend"""
-        circuit = EfficientSU2(89, reps=3, entanglement="circular")
+        circuit = efficient_su2(89, reps=3, entanglement="circular")
         input_circuit_properties(circuit, benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
@@ -70,7 +70,7 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_circSU2_100_transpile(self, benchmark):
         """Compile 100Q circSU2 circuit against target backend"""
-        circuit = EfficientSU2(100, reps=3, entanglement="circular")
+        circuit = efficient_su2(100, reps=3, entanglement="circular")
         input_circuit_properties(circuit, benchmark)
         pm = generate_preset_pass_manager(OPTIMIZATION_LEVEL, BACKEND)
 
