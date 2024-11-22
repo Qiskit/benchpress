@@ -91,7 +91,6 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         @benchmark
         def result():
             out = efficient_su2(N, reps=4, entanglement="circular")
-            out._build()
             return out
 
         assert result.num_parameters == 1000
