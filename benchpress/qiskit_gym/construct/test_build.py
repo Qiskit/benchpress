@@ -90,7 +90,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
 
         @benchmark
         def result():
-            out = efficient_su2(N, reps=4, entanglement="circular", flatten=True)
+            out = efficient_su2(N, reps=4, entanglement="circular")
             out._build()
             return out
 
@@ -102,7 +102,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
         entanglement and 4 repetitions.
         """
         N = 100
-        qc = efficient_su2(N, reps=4, entanglement="circular", flatten=True)
+        qc = efficient_su2(N, reps=4, entanglement="circular")
         assert qc.num_parameters == 1000
         params = np.linspace(0, 2 * np.pi, qc.num_parameters)
 
