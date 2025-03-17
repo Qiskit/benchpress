@@ -15,7 +15,7 @@ import scipy.optimize as opt
 import rustworkx as rx
 
 from qiskit.providers.fake_provider import GenericBackendV2
-from qiskit.providers.models.backendconfiguration import QasmBackendConfiguration
+from qiskit_ibm_runtime.models.backend_configuration import QasmBackendConfiguration
 from qiskit.transpiler import CouplingMap
 
 from ..graphs import tree_graph, torus_coupling_map
@@ -27,7 +27,7 @@ BASIS_GATES = Configuration.options["general"]["basis_gates"]
 class FlexibleBackend(GenericBackendV2):
     """A flexible size backend"""
 
-    def __init__(self, min_qubits, layout="square", basis_gates=None):
+    def __init__(self, min_qubits, layout="square", basis_gates=None, control_flow=False):
         """Create an instance of a backend supporting, at minimum,
         a target number of qubits over a given layout (topology).
 
@@ -39,6 +39,8 @@ class FlexibleBackend(GenericBackendV2):
             basis_gates (list): Supported basis gates.  If none
                                 supplied, defaults to the global
                                 default set
+            control_flow (bool): Whether to add control flow instruction
+                support to the target or not.
         """
         if basis_gates is None:
             basis_gates = BASIS_GATES
@@ -103,13 +105,14 @@ class FlexibleBackend(GenericBackendV2):
             open_pulse=False,
             simulator=True,  # needs to be True for Tket compatibility
         )
-
-        super().__init__(num_qubits, basis_gates=self._basis_gates, coupling_map=cmap)
+        self._control_flow = control_flow
+        super().__init__(num_qubits, basis_gates=self._basis_gates, coupling_map=cmap, control_flow=control_flow)
 
     def __repr__(self):
         out = f"<FlexibleBackend(num_qubits={self.target.num_qubits}, "
         out += f"layout='{self._layout}', "
-        out += f"basis_gates={self._basis_gates}>"
+        out += f"basis_gates={self._basis_gates}, "
+        out += f"control_flow={self._control_flow})>"
         return out
 
     @property

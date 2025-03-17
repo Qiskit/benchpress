@@ -43,7 +43,7 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
     @pytest.mark.parametrize("circ_and_topo", SMALL_CIRC_TOPO, ids=SMALL_NAMES)
     def test_QASMBench_small(self, benchmark, circ_and_topo):
         circuit = qasm_circuit_loader(circ_and_topo[0], benchmark)
-        backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1], control_flow=True)
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )
@@ -62,7 +62,7 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
     @pytest.mark.parametrize("circ_and_topo", MEDIUM_CIRC_TOPO, ids=MEDIUM_NAMES)
     def test_QASMBench_medium(self, benchmark, circ_and_topo):
         circuit = qasm_circuit_loader(circ_and_topo[0], benchmark)
-        backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1], control_flow=True)
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )
@@ -81,7 +81,7 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
     @pytest.mark.parametrize("circ_and_topo", LARGE_CIRC_TOPO, ids=LARGE_NAMES)
     def test_QASMBench_large(self, benchmark, circ_and_topo):
         circuit = qasm_circuit_loader(circ_and_topo[0], benchmark)
-        backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1], control_flow=True)
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
         )

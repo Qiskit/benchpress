@@ -40,7 +40,7 @@ class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
             circ_and_topo[0].pop("ham_hamlib_hamiltonian"), benchmark
         )
         input_circuit_properties(circuit, benchmark)
-        backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1])
+        backend = FlexibleBackend(circuit.num_qubits, circ_and_topo[1], control_flow=True)
         TWO_Q_GATE = backend.two_q_gate_type
         pm = generate_preset_pass_manager(
             optimization_level=OPTIMIZATION_LEVEL, backend=backend
