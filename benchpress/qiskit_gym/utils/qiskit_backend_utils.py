@@ -18,8 +18,8 @@ try:
 except ImportError:
     import qiskit.providers.fake_provider.backends as fake_backends
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit.providers.models.backendconfiguration import QasmBackendConfiguration
-from qiskit.providers.models.backendproperties import BackendProperties
+from qiskit_ibm_runtime.models.backend_configuration import QasmBackendConfiguration
+from qiskit_ibm_runtime.models.backend_properties import BackendProperties
 
 from benchpress.config import POSSIBLE_2Q_GATES
 
