@@ -11,6 +11,11 @@ The Benchpress open-source benchmarking suite comprises over 1,000 different tes
 
 If you find an issue with the testing or how we completed it, we encourage you to make a pull request.
 
+## Citing Benchpress
+
+ > [Benchmarking the performance of quantum computing software for quantum circuit creation, manipulation and compilation](https://doi.org/10.1038/s43588-025-00792-y),
+Paul D. Nation, Abdullah Ash Saki, Sebastian Brandhofer, Luciano Bello, Shelly Garion, Matthew Treinish & Ali Javadi-Abhari, Nat. Comput. Sci. (2025).
+
 ## Supported SDKs
 
 Benchpress currently supports the following SDKs:
