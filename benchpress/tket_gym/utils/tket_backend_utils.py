@@ -17,8 +17,8 @@ from pytket.backends import CircuitStatus
 from pytket.circuit import OpType
 from pytket.extensions.qiskit.backends.ibm import IBMQBackend, _get_primitive_gates
 from pytket.extensions.qiskit.qiskit_convert import _tk_gate_set
-from qiskit.providers.models.backendconfiguration import QasmBackendConfiguration
-from qiskit.providers.models.backendproperties import BackendProperties
+from qiskit_ibm_runtime.models.backend_configuration import QasmBackendConfiguration
+from qiskit_ibm_runtime.models.backend_properties import BackendProperties
 
 from benchpress.config import POSSIBLE_2Q_GATES
 from benchpress.utilities.backends import FlexibleBackend
