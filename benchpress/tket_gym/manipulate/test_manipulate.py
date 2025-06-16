@@ -21,7 +21,7 @@ from pytket.qasm import circuit_from_qasm
 from pytket.tailoring import PauliFrameRandomisation
 from pytket.predicates import CompilationUnit
 from pytket.passes import DecomposeMultiQubitsCX, DecomposeBoxes
-from pytket.passes import SequencePass, auto_rebase_pass
+from pytket.passes import SequencePass, AutoRebase
 from pytket.transform import Transform
 
 
@@ -58,7 +58,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             [
                 DecomposeBoxes(),
                 DecomposeMultiQubitsCX(),
-                auto_rebase_pass({OpType.Rx, OpType.Ry, OpType.Rz, OpType.CZ}),
+                AutoRebase({OpType.Rx, OpType.Ry, OpType.Rz, OpType.CZ}),
             ]
         )
         circ = multi_control_circuit(16)
@@ -82,7 +82,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             [
                 DecomposeBoxes(),
                 DecomposeMultiQubitsCX(),
-                auto_rebase_pass({OpType.SX, OpType.X, OpType.Rz, OpType.CZ}),
+                AutoRebase({OpType.SX, OpType.X, OpType.Rz, OpType.CZ}),
             ]
         )
         circ = qasm_circuit_loader(
@@ -108,7 +108,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
             [
                 DecomposeBoxes(),
                 DecomposeMultiQubitsCX(),
-                auto_rebase_pass({OpType.SX, OpType.X, OpType.Rz, OpType.CZ}),
+                AutoRebase({OpType.SX, OpType.X, OpType.Rz, OpType.CZ}),
             ]
         )
         circ = circuit_from_qasm(
