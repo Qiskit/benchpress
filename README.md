@@ -118,6 +118,11 @@ Benchpress makes use of files from the following open-source packages under term
 - [HamLib](https://portal.nersc.gov/cfs/m888/dcamps/hamlib/)
 
 
+## Previous results
+
+Results obtained by running Benchpress over multiple versions of SDKs can be found in the [previous results](https://github.com/Qiskit/benchpress/tree/previous_results) branch.
+
+
 ## License
 
 [Apache License 2.0](LICENSE.txt)
