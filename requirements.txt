@@ -1,4 +1,0 @@
-pytest
-pytest-memray
-wrapt_timeout_decorator
-packaging>=20

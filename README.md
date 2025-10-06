@@ -11,111 +11,27 @@ The Benchpress open-source benchmarking suite comprises over 1,000 different tes
 
 If you find an issue with the testing or how we completed it, we encourage you to make a pull request.
 
+
 ## Citing Benchpress
 
  > [Benchmarking the performance of quantum computing software for quantum circuit creation, manipulation and compilation](https://doi.org/10.1038/s43588-025-00792-y),
 Paul D. Nation, Abdullah Ash Saki, Sebastian Brandhofer, Luciano Bello, Shelly Garion, Matthew Treinish & Ali Javadi-Abhari, Nat. Comput. Sci. (2025).
 
-## Supported SDKs
 
-Benchpress currently supports the following SDKs:
+## Previous results
 
-- **BQSKit** (https://github.com/BQSKit/bqskit)
-- **Braket** (https://github.com/amazon-braket/amazon-braket-sdk-python)
-- **Cirq** (https://github.com/quantumlib/Cirq)
-- **Qiskit** (https://github.com/Qiskit/qiskit)
-- **Qiskit IBM transpiler** (https://github.com/Qiskit/qiskit-ibm-transpiler)
-- **Staq** (https://github.com/softwareQinc/staq)
-- **Tket** (https://github.com/CQCL/tket)
+This branch contains a collection of Benchpress results for [Tket](https://github.com/CQCL/tket).  For consistency, all results are produced on the same desktop machine running a 12-core AMD 7900 processor with 128Gb of memory and a Linux OS.
 
-## Testing resource requirements
+### Qiskit results
 
-Running Benchpress is resource intensive.  Although the exact requirements depend on the SDK in question, a full execution of all the SDKs requires a system with 96+Gb of memory and, in some cases, will consume as many CPU resources as are available / assigned.  In addition, each suite of tests takes a non-negligible about of time, typically several hours or more depending on the machine and timeout specified.
-
-## Installation
-
-Benchpress itself requires no installation.  However running it requires the tools in `requirements.txt`.  In addition, running each of the frameworks has its own dependencies in the corresponding `*-requirements.txt` file
-
-### [pre-running] Create a skiplist
-
-With the parameter `--timeout-skip-list=<SECs>`, a  *skiplist* (a list of tests to skip, given they take too long) is created.
-For example, the following line runs the tests in `benchpress/tket_gym/construct` with a 1 hour timeout:
-
-```bash
-python -m pytest  --timeout-skip-list=3600 benchpress/tket_gym/construct
-```
-
-This will create a `skipfile.txt` file.
-The mere existence of this file skips the tests listed there in the following executions.
-No modifier needed.
-
-## Running the benchmark tests
-
-To run the benchmarks in the default configuration from inside the environment in which you want to perform the tests run:
-
-```bash
-python -m pytest benchpress/*_gym
-```
-where `*` is one of the frameworks that you want to test, and which matches the environment you are in.
-
-To run the benchmarks and save to JSON one can do:
-
-```bash
-python -m pytest --benchmark-save=SAVED_NAME  benchpress/*_gym
-```
-which will save the file to the CWD in the `.benchmarks` folder
-
-Further details on using `pytest-benchmark` can be found here: https://pytest-benchmark.readthedocs.io/en/latest/usage.html
+This branch contains a collection of Benchpress results for [Qiskit](https://github.com/Qiskit/qiskit).
 
 
-## :construction: Running the memory tests :construction:
+### Tket results
 
-Benchmarking the amount of memory a test uses can be very costly in terms of time and memory.  Here we use the `pytest-memray` plugin.  Calling the memory bechmark looks like:
+Due to the lengthy run times, results are split over multiple files.  Results for the construction and manipulation of circuits are not included as the primary focus point is on the transpilation results.
 
-```bash
-
-python -m pytest --memray --trace-python-allocators --native --most-allocations=100 --benchmark-disable benchpress/*_gym
-```
-
-Here `--memray` turns on the memory profiler, `--trace-python-allocators` tracks all the memoryu allocations from Python, `--native` track C/C++/Rust memory, `--most-allocations=N` shows only the top `N` tests in terms of memory consuption, and finally `--benchmark-disable` turns off the timing benchmarks.
-
-### Histogram issues
-
-The `pytest-memray` plugin will sometimes raise on building the histrogram included in the report by default.  Currently the only way around this error, which does not affect the tests, is to manually comment out L322 and L323 from the `plugin.py` file:
-
-```python
-#histogram_txt = cli_hist(sizes, bins=min(len(sizes), N_HISTOGRAM_BINS))
-#writeln(f"\t 📊 Histogram of allocation sizes: |{histogram_txt}|")
-```
-## Testing details
-
-We have designed Benchpress in a manner to allow all tests to be executed on each SDK, regardless of whether that functionality is supported or not.  This is facilitated by the use of "workouts" that define abstract base classes that define each set of tests.  This design choice has the advantage of explicitly measuring the breadth of SDK functionality
-
-### Test status description
-
-In Benchpress each test status has a well defined meaning:
-
-- **PASSED** - Indicates that the SDK has the functionality required to run the test, and doing so completed without error, and within the desired time-limit.
-
-- **SKIPPED** - The SDK does not have the required functionality to execute the test.  This is the default for all tests defined in the workouts.
-
-- **FAILED** - The SDK has the necessary functionality, but the test failed or the test did not complete within the set time-limit.
-
-- **XFAIL** - The test fails in an irrecoverable manner, and is therefore tagged as failed rather than being executed. E.g. the test tries to use more memory than is available.
-
-### Test runtime
-
-Running the full suite of tests will easily take a week or more if executed in serial, e.g. so that memory bandwidth or multiprocessing usage does no skew results.  Users can always select a subset of tests to reduce this overall time.
-
-## Open-source packages
-
-Benchpress makes use of files from the following open-source packages under terms of their licenses. License files are included in the corresponding directories.
-
-- [Feynman](https://github.com/meamy/feynman)
-
-- [QasmBench](https://github.com/pnnl/QASMBench)
-
-- [HamLib](https://portal.nersc.gov/cfs/m888/dcamps/hamlib/)
+Note that, due to memory leaks in Tket, not all versions can be successfully executed via Benchpress.  E.g. see https://github.com/Qiskit/benchpress/issues/108
 
 
 ## License
