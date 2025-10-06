@@ -20,7 +20,7 @@ Paul D. Nation, Abdullah Ash Saki, Sebastian Brandhofer, Luciano Bello, Shelly G
 
 ## Previous results
 
-This branch contains a collection of Benchpress results for [Tket](https://github.com/CQCL/tket).  For consistency, all results are produced on the same desktop machine running a 12-core AMD 7900 processor with 128Gb of memory and a Linux OS.
+This branch contains a collection of Benchpress results.  For consistency, all results are produced on the same desktop machine running a 12-core AMD 7900 processor with 128Gb of memory and a Linux OS.
 
 ### Qiskit results
 
