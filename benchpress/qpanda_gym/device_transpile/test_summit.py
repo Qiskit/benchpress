@@ -1,4 +1,5 @@
 """Test summit benchmarks"""
+
 from pyqpanda3.transpilation import *
 import pytest
 from benchpress.config import Configuration
@@ -11,12 +12,18 @@ from benchpress.utilities.validation import circuit_validator
 
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.device_transpile import WorkoutDeviceTranspile100Q
-from benchpress.qpanda_gym.circuits import qpanda_bv_all_ones, qpanda_circSU2, trivial_bvlike_circuit, qpanda_QV
+from benchpress.qpanda_gym.circuits import (
+    qpanda_bv_all_ones,
+    qpanda_circSU2,
+    trivial_bvlike_circuit,
+    qpanda_QV,
+)
 
 BACKEND = Configuration.backend()
 TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["qpanda"]["optimization_level"]
-basic_gates = ['X1','RZ','CZ']
+basic_gates = ["X1", "RZ", "CZ"]
+
 
 @benchpress_test_validation
 class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
@@ -32,13 +39,12 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         pm = Transpiler()
         topo = BACKEND.configuration().coupling_map
 
-
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
     def test_QV_100_transpile(self, benchmark):
@@ -51,10 +57,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
     def test_circSU2_89_transpile(self, benchmark):
@@ -65,12 +71,13 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
             pytest.skip("Circuit too large for given backend.")
         pm = Transpiler()
         topo = BACKEND.configuration().coupling_map
+
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
     def test_circSU2_100_transpile(self, benchmark):
@@ -84,10 +91,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
     def test_BV_100_transpile(self, benchmark):
@@ -101,10 +108,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
     def test_square_heisenberg_100_transpile(self, benchmark):
@@ -119,13 +126,12 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         pm = Transpiler()
         topo = BACKEND.configuration().coupling_map
 
-
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
     def test_QAOA_100_transpile(self, benchmark):
@@ -139,13 +145,12 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
         pm = Transpiler()
         topo = BACKEND.configuration().coupling_map
 
-
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
     def test_BVlike_simplification_transpile(self, benchmark):
@@ -161,10 +166,10 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
     def test_clifford_100_transpile(self, benchmark):
@@ -181,8 +186,8 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)

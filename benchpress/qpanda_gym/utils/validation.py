@@ -12,6 +12,7 @@
 """Basic circuit validation"""
 import pyqpanda3 as pq3
 
+
 def qpanda_circuit_validation(circuit, backend):
     """Validate that input circuit matches gate set
     and topology of target backend
@@ -31,12 +32,14 @@ def qpanda_circuit_validation(circuit, backend):
 
         arch_map[u].append(v)
         arch_map[v].append(u)
-    #return pq3.transpilation.check_mapping(ops,arch_map)
+    # return pq3.transpilation.check_mapping(ops,arch_map)
     for op in ops:
         qubits = op.qubits()
         if len(qubits) > 1:
             if qubits[1] in arch_map[qubits[0]]:
                 continue
             else:
-                raise Exception(f"2Q gate {op.name()}edge {qubits} not in backend topology")
+                raise Exception(
+                    f"2Q gate {op.name()}edge {qubits} not in backend topology"
+                )
     return True

@@ -20,7 +20,7 @@ def qpanda_QV(num_qubits, depth=None, seed=12345):
     """
     if depth is None:
         depth = num_qubits
-    return QProg(QV(num_qubits,depth,seed))
+    return QProg(QV(num_qubits, depth, seed))
 
 
 def qpanda_circSU2(width, num_reps=3):
@@ -64,25 +64,27 @@ def qpanda_circSU2_vqc(width, num_reps):
     from pyqpanda3.vqcircuit import VQCircuit
     import pyqpanda3.vqcircuit as VQC
     from pyqpanda3.core import CNOT
+
     """Efficient SU2 circuit with circular entanglement
     and using Ry and Rz 1Q-gates'
     """
     vqc = VQCircuit()
-    vqc.set_Param([2,width,num_reps],["tmp","qbit","rep"])
+    vqc.set_Param([2, width, num_reps], ["tmp", "qbit", "rep"])
 
     for qubit in range(0, width):
-        vqc << RY(qubit, vqc.Param([0,qubit,0]))
-        vqc << RZ(qubit, vqc.Param([1,qubit,0]))
+        vqc << RY(qubit, vqc.Param([0, qubit, 0]))
+        vqc << RZ(qubit, vqc.Param([1, qubit, 0]))
 
-    for rep in range(num_reps-1):
-        vqc << CNOT(width-1,0)
+    for rep in range(num_reps - 1):
+        vqc << CNOT(width - 1, 0)
         for qubit in range(width - 1):
             vqc << CNOT(qubit, qubit + 1)
 
         for qubit in range(width):
-            vqc << RY(qubit, vqc.Param([0,qubit,rep+1]))
-            vqc << RZ(qubit, vqc.Param([1,qubit,rep+1]))
+            vqc << RY(qubit, vqc.Param([0, qubit, rep + 1]))
+            vqc << RZ(qubit, vqc.Param([1, qubit, rep + 1]))
     return vqc
+
 
 def dtc_unitary(num_qubits, g=0.95, seed=12345):
     rng = np.random.default_rng(seed=seed)
@@ -210,7 +212,7 @@ def qpanda_random_clifford(num_qubits, num_gates=None, seed=None):
     return QProg(out)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     num_qubit = 10
     qpanda_random_clifford(num_qubit)
     qpanda_QV(num_qubit, num_qubit)
@@ -219,4 +221,4 @@ if __name__ == '__main__':
     multi_control_circuit(num_qubit)
     dtc_unitary(num_qubit)
     qpanda_circSU2(num_qubit)
-    qpanda_circSU2_vqc(num_qubit,1)
+    qpanda_circSU2_vqc(num_qubit, 1)

@@ -11,6 +11,7 @@
 # that they have been altered from the originals.
 import pyqpanda3
 
+
 def pytest_report_header(config):
     """Add some info about packages and backend to the pytest CLI header"""
     ret = [

@@ -22,7 +22,8 @@ from benchpress.utilities.validation import circuit_validator
 BACKEND = Configuration.backend()
 TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["qpanda"]["optimization_level"]
-basic_gates = ['X1','RZ','CZ']
+basic_gates = ["X1", "RZ", "CZ"]
+
 
 def pytest_generate_tests(metafunc):
     directory = Configuration.get_qasm_dir("feynman")
@@ -47,8 +48,8 @@ class TestWorkoutDeviceFeynman(WorkoutDeviceFeynman):
 
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)

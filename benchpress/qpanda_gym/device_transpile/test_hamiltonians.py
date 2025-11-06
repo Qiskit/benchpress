@@ -15,7 +15,7 @@ import pytest
 from qiskit.quantum_info import SparsePauliOp
 import sys
 from pyqpanda3.transpilation import *
-import pyqpanda3 as pq3 
+import pyqpanda3 as pq3
 from benchpress.config import Configuration
 from benchpress.utilities.io import input_circuit_properties, output_circuit_properties
 from benchpress.utilities.io.hamiltonians import generate_hamiltonian_circuit
@@ -26,7 +26,8 @@ from benchpress.utilities.validation import circuit_validator
 BACKEND = Configuration.backend()
 TWO_Q_GATE = BACKEND.two_q_gate_type
 OPTIMIZATION_LEVEL = Configuration.options["qpanda"]["optimization_level"]
-basic_gates = ['X1','RZ','CZ']
+basic_gates = ["X1", "RZ", "CZ"]
+
 
 def pytest_generate_tests(metafunc):
     directory = Configuration.get_hamiltonian_dir("hamlib")
@@ -38,7 +39,6 @@ def pytest_generate_tests(metafunc):
     metafunc.parametrize(
         "hamiltonian_info", ham_records, ids=lambda x: "ham_" + x["ham_instance"][1:-1]
     )
-    
 
 
 @benchpress_test_validation
@@ -60,9 +60,9 @@ class TestWorkoutDeviceHamlibHamiltonians(WorkoutDeviceHamlibHamiltonians):
 
         @benchmark
         def result():
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
         benchmark.extra_info.update(hamiltonian_info)
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)

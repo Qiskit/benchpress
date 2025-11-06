@@ -51,7 +51,8 @@ from benchpress.workouts.abstract_transpile import (
 )
 
 OPTIMIZATION_LEVEL = Configuration.options["qpanda"]["optimization_level"]
-basic_gates = ['X1','RZ','CZ']
+basic_gates = ["X1", "RZ", "CZ"]
+
 
 @benchpress_test_validation
 class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
@@ -65,10 +66,10 @@ class TestWorkoutAbstractQasmBenchSmall(WorkoutAbstractQasmBenchSmall):
         @benchmark
         def result():
             # Need to make a copy as the compilation is done in-place
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
 
@@ -84,10 +85,10 @@ class TestWorkoutAbstractQasmBenchMedium(WorkoutAbstractQasmBenchMedium):
         @benchmark
         def result():
             # Need to make a copy as the compilation is done in-place
-            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL,basic_gates)
+            aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)
 
 
@@ -106,5 +107,5 @@ class TestWorkoutAbstractQasmBenchLarge(WorkoutAbstractQasmBenchLarge):
             aft_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
             return aft_prog
 
-        output_circuit_properties(result, '2Q_GATE', benchmark)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
         assert circuit_validator(result, topo)

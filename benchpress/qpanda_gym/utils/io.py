@@ -15,6 +15,7 @@ from qiskit.circuit.library import PauliEvolutionGate
 from time import perf_counter
 from pyqpanda3.intermediate_compiler import *
 
+
 def qpanda_qasm_loader(qasm_file, benchmark):
     start = perf_counter()
     prog = convert_qasm_file_to_qprog(qasm_file)
@@ -43,11 +44,12 @@ def qpanda_input_circuit_properties(circuit, benchmark):
 def qpanda_output_circuit_properties(circuit, two_qubit_gate, benchmark):
     benchmark.extra_info["output_num_qubits"] = len(circuit.qubits())
     benchmark.extra_info["output_circuit_operations"] = circuit.count_ops(False)
-    if two_qubit_gate == '2Q_GATE':
-        benchmark.extra_info["output_gate_count_2q"] = len(circuit.gate_operations(True))
+    if two_qubit_gate == "2Q_GATE":
+        benchmark.extra_info["output_gate_count_2q"] = len(
+            circuit.gate_operations(True)
+        )
     else:
         benchmark.extra_info["output_gate_count_2q"] = circuit.count_ops(False).get(
             two_qubit_gate, 0
         )
     benchmark.extra_info["output_depth_2q"] = circuit.depth(True)
-

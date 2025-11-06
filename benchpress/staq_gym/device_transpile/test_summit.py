@@ -93,7 +93,9 @@ class TestWorkoutDeviceTranspile100Q(WorkoutDeviceTranspile100Q):
 
     def test_QV_100_transpile(self, _benchmark, _staq_device):
         """Compile 100Q QV circuit against target backend"""
-        pytest.fail("staq lacks support for running QV as it doesn't support 2q unitary operators")
+        pytest.fail(
+            "staq lacks support for running QV as it doesn't support 2q unitary operators"
+        )
 
     def test_circSU2_89_transpile(self, benchmark, tmp_path_factory, staq_device):
         """Compile 89Q circSU2 circuit against target backend"""

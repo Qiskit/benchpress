@@ -1,4 +1,5 @@
 """Test circuit manipulation"""
+
 import numpy as np
 
 from benchpress.config import Configuration
@@ -9,7 +10,9 @@ from benchpress.workouts.manipulate import WorkoutCircuitManipulate
 import pyqpanda3.transpilation as pq
 from pyqpanda3.core import *
 
-basic_gates = ['X1','RZ','CZ']
+basic_gates = ["X1", "RZ", "CZ"]
+
+
 @benchpress_test_validation
 class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
     def test_DTC100_twirling(self, benchmark):
@@ -22,15 +25,15 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
 
         @benchmark
         def result():
-            twirled_circuit = direct_twirl(circuit,'CNOT',12345)
+            twirled_circuit = direct_twirl(circuit, "CNOT", 12345)
             return twirled_circuit
 
         assert result
-        assert 4 * circuit.count_ops(False).get('CNOT') == (
-                result.count_ops(False).get('X')
-                + result.count_ops(False).get('Y')
-                + result.count_ops(False).get('Z')
-                + result.count_ops(False).get('I')
+        assert 4 * circuit.count_ops(False).get("CNOT") == (
+            result.count_ops(False).get("X")
+            + result.count_ops(False).get("Y")
+            + result.count_ops(False).get("Z")
+            + result.count_ops(False).get("I")
         )
 
     def test_multi_control_decompose(self, benchmark):
@@ -45,7 +48,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
         @benchmark
         def result():
             # translate.property_set = PropertySet()
-            out = pq.decompose(circ,basic_gates)
+            out = pq.decompose(circ, basic_gates)
             return out
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops(True).get("CZ", 0)
@@ -61,7 +64,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
 
         @benchmark
         def result():
-            out = pq.decompose(circ,basic_gates)
+            out = pq.decompose(circ, basic_gates)
             return out
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops(True).get("CZ", 0)
@@ -78,7 +81,7 @@ class TestWorkoutCircuitManipulate(WorkoutCircuitManipulate):
 
         @benchmark
         def result():
-            out = pq.decompose(cliff_circ,basic_gates)
+            out = pq.decompose(cliff_circ, basic_gates)
             return out
 
         benchmark.extra_info["gate_count_2q"] = result.count_ops(True).get("CZ", 0)

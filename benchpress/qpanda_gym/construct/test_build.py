@@ -27,7 +27,8 @@ from benchpress.utilities.io import output_circuit_properties
 from benchpress.workouts.validation import benchpress_test_validation
 from benchpress.workouts.build import WorkoutCircuitConstruction
 import pyqpanda3.core as pq_core
-from pyqpanda3.intermediate_compiler import * 
+from pyqpanda3.intermediate_compiler import *
+
 SEED = 12345
 
 
@@ -43,7 +44,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = qpanda_QV(100, 100, seed=SEED)
             return out
 
-        output_circuit_properties(result, 'Oracle', benchmark)
+        output_circuit_properties(result, "Oracle", benchmark)
         assert result
 
     def test_DTC100_set_build(self, benchmark):
@@ -65,7 +66,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
                 circs.append(qc)
             return circs[-1]
 
-        output_circuit_properties(result, 'RZZ', benchmark)
+        output_circuit_properties(result, "RZZ", benchmark)
         assert result
 
     def test_clifford_build(self, benchmark):
@@ -106,7 +107,7 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             out = qpanda_circSU2(N, 4)
             return out
 
-        output_circuit_properties(result, 'CNOT', benchmark)
+        output_circuit_properties(result, "CNOT", benchmark)
         assert result
 
     def test_param_circSU2_100_bind(self, benchmark):
@@ -126,11 +127,13 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             width = N
             num_resp = 5
             qcircuit_num = 1
-            params = np.random.uniform(-3.1415926, 3.1415926, size=[qcircuit_num, tmp, width, num_resp])
+            params = np.random.uniform(
+                -3.1415926, 3.1415926, size=[qcircuit_num, tmp, width, num_resp]
+            )
             vqres = qc(params)
             return vqres.at([0])
 
-        output_circuit_properties(result, 'CNOT', benchmark)
+        output_circuit_properties(result, "CNOT", benchmark)
         assert result
 
     def test_QV100_qasm2_import(self, benchmark):
@@ -144,8 +147,8 @@ class TestWorkoutCircuitConstruction(WorkoutCircuitConstruction):
             )
             return out
 
-        output_circuit_properties(result, 'CNOT', benchmark)
-        assert result.count_ops(False).get('CNOT') == 15000
+        output_circuit_properties(result, "CNOT", benchmark)
+        assert result.count_ops(False).get("CNOT") == 15000
 
     def test_bigint_qasm2_import(self, benchmark):
         """QASM import circuit with bigint"""

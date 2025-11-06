@@ -96,7 +96,7 @@ class BenchpressConfig:
             "bqskit",
             "qiskit-ibm-transpiler",
             "staq",
-            "qpanda"
+            "qpanda",
         ]:
             backend = get_backend(
                 backend_name=self.options["general"]["backend_name"],
