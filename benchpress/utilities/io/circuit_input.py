@@ -51,5 +51,9 @@ def input_circuit_properties(circuit, benchmark):
         from benchpress.cirq_gym.utils.io import cirq_input_circuit_properties
 
         cirq_input_circuit_properties(circuit, benchmark)
+    elif gym_name == "qpanda":
+        from benchpress.qpanda_gym.utils.io import qpanda_input_circuit_properties
+
+        qpanda_input_circuit_properties(circuit, benchmark)
     else:
         raise Exception(f"Unsupported gym name {gym_name}")

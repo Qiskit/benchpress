@@ -14,7 +14,7 @@ import time
 import numpy
 import scipy
 import pytest
-import packaging
+from packaging.version import parse
 
 
 def pytest_benchmark_update_json(config, benchmarks, output_json):
@@ -25,7 +25,7 @@ def pytest_benchmark_update_json(config, benchmarks, output_json):
     # is recorded at. There does not seem to be a public api for it on
     # the terminal reporter so this lets us support both 8.4.0 or older
     # versions
-    pytest_version = packaging.version.parse(pytest.__version__)
+    pytest_version = parse(pytest.__version__)
     if pytest_version.release >= (8, 4, 0):
         output_json["total_duration"] = time.time() - reporter._session_start.time
     else:
