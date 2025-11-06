@@ -27,7 +27,9 @@ BASIS_GATES = Configuration.options["general"]["basis_gates"]
 class FlexibleBackend(GenericBackendV2):
     """A flexible size backend"""
 
-    def __init__(self, min_qubits, layout="square", basis_gates=None, control_flow=False):
+    def __init__(
+        self, min_qubits, layout="square", basis_gates=None, control_flow=False
+    ):
         """Create an instance of a backend supporting, at minimum,
         a target number of qubits over a given layout (topology).
 
@@ -106,7 +108,12 @@ class FlexibleBackend(GenericBackendV2):
             simulator=True,  # needs to be True for Tket compatibility
         )
         self._control_flow = control_flow
-        super().__init__(num_qubits, basis_gates=self._basis_gates, coupling_map=cmap, control_flow=control_flow)
+        super().__init__(
+            num_qubits,
+            basis_gates=self._basis_gates,
+            coupling_map=cmap,
+            control_flow=control_flow,
+        )
 
     def __repr__(self):
         out = f"<FlexibleBackend(num_qubits={self.target.num_qubits}, "

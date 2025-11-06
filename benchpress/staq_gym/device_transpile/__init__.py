@@ -1,2 +1,1 @@
-"""Module for full transpilation circuits against a target device
-"""
+"""Module for full transpilation circuits against a target device"""

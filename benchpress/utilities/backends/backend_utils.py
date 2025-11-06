@@ -34,6 +34,12 @@ def get_backend(backend_name: str, gym_name: str):
         )
 
         return get_staq_bench_backend(backend_name)
+    elif gym_name == "qpanda":
+        from benchpress.qpanda_gym.utils.qpanda_backend_utils import (
+            get_qpanda_bench_backend,
+        )
+
+        return get_qpanda_bench_backend(backend_name)
     else:
         raise NotImplementedError(
             f"Backend support not implemented for {gym_name} bench."

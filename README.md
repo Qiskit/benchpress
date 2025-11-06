@@ -13,7 +13,7 @@ If you find an issue with the testing or how we completed it, we encourage you t
 
 ## Citing Benchpress
 
- > [Benchmarking the performance of quantum computing software for quantum circuit creation, manipulation and compilation](https://doi.org/10.1038/s43588-025-00792-y),
+ > [Benchmarking the performance of quantum computing software for quantum circuit creation, manipulation, and compilation](https://doi.org/10.1038/s43588-025-00792-y),
 Paul D. Nation, Abdullah Ash Saki, Sebastian Brandhofer, Luciano Bello, Shelly Garion, Matthew Treinish & Ali Javadi-Abhari, Nat. Comput. Sci. (2025).
 
 ## Supported SDKs
@@ -25,6 +25,7 @@ Benchpress currently supports the following SDKs:
 - **Cirq** (https://github.com/quantumlib/Cirq)
 - **Qiskit** (https://github.com/Qiskit/qiskit)
 - **Qiskit IBM transpiler** (https://github.com/Qiskit/qiskit-ibm-transpiler)
+- **pyqpanda3** (https://pypi.org/project/pyqpanda3/)
 - **Staq** (https://github.com/softwareQinc/staq)
 - **Tket** (https://github.com/CQCL/tket)
 

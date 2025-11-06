@@ -10,5 +10,4 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-"""Module for full transpilation circuits against a target device
-"""
+"""Module for full transpilation circuits against a target device"""

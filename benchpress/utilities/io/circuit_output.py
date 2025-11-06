@@ -52,5 +52,10 @@ def output_circuit_properties(circuit, two_qubit_gate, benchmark):
         from benchpress.cirq_gym.utils.io import cirq_output_circuit_properties
 
         cirq_output_circuit_properties(circuit, two_qubit_gate, benchmark)
+
+    elif gym_name == "qpanda":
+        from benchpress.qpanda_gym.utils.io import qpanda_output_circuit_properties
+
+        qpanda_output_circuit_properties(circuit, two_qubit_gate, benchmark)
     else:
         raise Exception(f"Unsupported gym name {gym_name}")

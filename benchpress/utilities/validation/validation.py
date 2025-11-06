@@ -40,6 +40,11 @@ def circuit_validator(circuit, backend):
         from benchpress.staq_gym.utils.validation import staq_circuit_validation
 
         staq_circuit_validation(circuit, backend)
+
+    elif gym_name in ["qpanda"]:
+        from benchpress.qpanda_gym.utils.validation import qpanda_circuit_validation
+
+        qpanda_circuit_validation(circuit, backend)
     else:
         raise ValueError(f"Unknown gym name {gym_name}")
     return True

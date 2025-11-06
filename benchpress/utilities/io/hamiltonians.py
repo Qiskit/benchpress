@@ -39,6 +39,11 @@ def generate_hamiltonian_circuit(sparse_op, benchmark):
         from benchpress.bqskit_gym.utils.io import bqskit_hamiltonian_circuit
 
         circuit = bqskit_hamiltonian_circuit(sparse_op)
+
+    elif gym_name == "qpanda":
+        from benchpress.qpanda_gym.utils.io import qpanda_hamiltonian_circuit
+
+        circuit = qpanda_hamiltonian_circuit(sparse_op)
     else:
         raise ValueError(f"Unknown gym name {gym_name}")
     return circuit

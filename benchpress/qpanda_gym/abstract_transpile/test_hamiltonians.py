@@ -12,9 +12,7 @@
 """Test Hamiltonians against abstract backend topologies"""
 
 import pytest
-
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-
+from pyqpanda3.transpilation import *
 from benchpress.utilities.io import input_circuit_properties, output_circuit_properties
 from benchpress.utilities.io.hamiltonians import generate_hamiltonian_circuit
 from benchpress.workouts.validation import benchpress_test_validation
@@ -29,30 +27,27 @@ from benchpress.workouts.abstract_transpile.hamlib_hamiltonians import (
     WorkoutAbstractHamiltonians,
 )
 
-OPTIMIZATION_LEVEL = Configuration.options["qiskit"]["optimization_level"]
+OPTIMIZATION_LEVEL = Configuration.options["qpanda"]["optimization_level"]
+basic_gates = ["X1", "RZ", "CZ"]
 
 
 @benchpress_test_validation
 class TestWorkoutAbstractHamiltonians(WorkoutAbstractHamiltonians):
     @pytest.mark.parametrize("circ_and_topo", HAM_TOPO, ids=HAM_TOPO_NAMES)
     def test_hamiltonians(self, benchmark, circ_and_topo):
-        circuit = generate_hamiltonian_circuit(
+        prog = generate_hamiltonian_circuit(
             circ_and_topo[0].pop("ham_hamlib_hamiltonian"), benchmark
         )
-        input_circuit_properties(circuit, benchmark)
-        backend = FlexibleBackend(
-            circuit.num_qubits, circ_and_topo[1], control_flow=True
-        )
-        TWO_Q_GATE = backend.two_q_gate_type
-        pm = generate_preset_pass_manager(
-            optimization_level=OPTIMIZATION_LEVEL, backend=backend
-        )
+        input_circuit_properties(prog, benchmark)
+        backend = FlexibleBackend(len(prog.qubits()), layout=circ_and_topo[1])
+        topo = backend.configuration().coupling_map
+        pm = Transpiler()
 
         @benchmark
         def result():
-            trans_qc = pm.run(circuit)
-            return trans_qc
+            atf_prog = pm.transpile(prog, topo, {}, OPTIMIZATION_LEVEL, basic_gates)
+            return atf_prog
 
         benchmark.extra_info.update(circ_and_topo[0])
-        output_circuit_properties(result, TWO_Q_GATE, benchmark)
-        assert circuit_validator(result, backend)
+        output_circuit_properties(result, "2Q_GATE", benchmark)
+        assert circuit_validator(result, topo)
