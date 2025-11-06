@@ -25,6 +25,7 @@ Benchpress currently supports the following SDKs:
 - **Cirq** (https://github.com/quantumlib/Cirq)
 - **Qiskit** (https://github.com/Qiskit/qiskit)
 - **Qiskit IBM transpiler** (https://github.com/Qiskit/qiskit-ibm-transpiler)
+- **pyqpanda3** (https://pypi.org/project/pyqpanda3/)
 - **Staq** (https://github.com/softwareQinc/staq)
 - **Tket** (https://github.com/CQCL/tket)
 
