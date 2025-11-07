@@ -24,7 +24,7 @@ This branch contains a collection of Benchpress results.  For consistency, all r
 
 ### Qiskit results
 
-This branch contains a collection of Benchpress results for [Qiskit](https://github.com/Qiskit/qiskit).
+Contains a collection of Benchpress results for [Qiskit](https://github.com/Qiskit/qiskit).
 
 
 ### Tket results
@@ -32,6 +32,11 @@ This branch contains a collection of Benchpress results for [Qiskit](https://git
 Due to the lengthy run times, results are split over multiple files.  Results for the construction and manipulation of circuits are not included as the primary focus point is on the transpilation results.
 
 Note that, due to memory leaks in Tket, not all versions can be successfully executed via Benchpress.  E.g. see https://github.com/Qiskit/benchpress/issues/108
+
+
+### QPanda results
+
+Contains a collection of Benchpress results for [pyqpanda3](https://pypi.org/project/pyqpanda3/).
 
 
 ## License
