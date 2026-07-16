@@ -21,7 +21,7 @@ from bqskit.qis.unitary.unitarymatrix import UnitaryMatrix
 from benchpress.config import POSSIBLE_2Q_GATES
 from benchpress.utilities.backends.flexible_backend import FlexibleBackend
 from benchpress.qiskit_gym.utils.qiskit_backend_utils import (
-    STR_TO_IBM_FAKE_BACKEND,
+    get_ibm_fake_backend,
     extend_ibm_fake_backend,
     get_qiskit_bench_backend,
 )
@@ -114,10 +114,11 @@ def get_bqskit_bench_backend(backend_name: str):
     Returns:
         A backend (Model) of `MachineModel` object compatible with BQSKIT.
     """
-    if "fake" in backend_name:
-        ibm_fake_backend = STR_TO_IBM_FAKE_BACKEND[backend_name]()
+    lowered_name = backend_name.lower()
+    if "fake" in lowered_name:
+        ibm_fake_backend = get_ibm_fake_backend(backend_name)
         backend = extend_ibm_fake_backend(ibm_fake_backend)
-    elif "ibm" in backend_name:
+    elif "ibm" in lowered_name:
         backend = get_qiskit_bench_backend(backend_name)
     else:
         raise ValueError(f"Backend name {backend_name} not recognized.")

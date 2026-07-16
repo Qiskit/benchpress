@@ -22,7 +22,7 @@ from qiskit_ibm_runtime.models.backend_properties import BackendProperties
 
 from benchpress.config import POSSIBLE_2Q_GATES
 from benchpress.utilities.backends import FlexibleBackend
-from benchpress.qiskit_gym.utils.qiskit_backend_utils import STR_TO_IBM_FAKE_BACKEND
+from benchpress.qiskit_gym.utils.qiskit_backend_utils import get_ibm_fake_backend
 
 
 POSSIBLE_TKET_GATES = [
@@ -161,11 +161,12 @@ def get_tket_bench_backend(backend_name: str):
         A backend of either custom `TketFakeIBMQBackend` or tKet's built-in
         `IBMQBackend` object compatible with tKet.
     """
-    if "fake" in backend_name:
-        ibm_fake_backend = STR_TO_IBM_FAKE_BACKEND[backend_name]()
+    lowered_name = backend_name.lower()
+    if "fake" in lowered_name:
+        ibm_fake_backend = get_ibm_fake_backend(backend_name)
         extended_ibm_fake_backend = _extend_ibm_fake_backend(ibm_fake_backend)
         backend = TketFakeIBMQBackend(extended_ibm_fake_backend)
-    elif "ibm" in backend_name:
+    elif "ibm" in lowered_name:
         backend = IBMQBackend(backend_name)
     else:
         raise ValueError(f"Backend name {backend_name} not recognized.")
