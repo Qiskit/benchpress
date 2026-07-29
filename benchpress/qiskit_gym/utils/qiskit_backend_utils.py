@@ -14,71 +14,79 @@ import os
 
 # This is here because the import path differs between Qiskit 1.0 and earlier versions
 try:
-    import qiskit_ibm_runtime.fake_provider.backends as fake_backends
+    import qiskit_ibm_runtime.fake_provider as fake_provider
+    from qiskit_ibm_runtime.fake_provider.fake_backend import FakeBackendV2
 except ImportError:
-    import qiskit.providers.fake_provider.backends as fake_backends
+    import qiskit.providers.fake_provider as fake_provider
+    from qiskit.providers.fake_provider.fake_backend import FakeBackendV2
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime.models.backend_configuration import QasmBackendConfiguration
 from qiskit_ibm_runtime.models.backend_properties import BackendProperties
 
 from benchpress.config import POSSIBLE_2Q_GATES
 
-STR_TO_IBM_FAKE_BACKEND = {
-    # BackendV2 Backends
-    "fake_almaden_v2": fake_backends.FakeAlmadenV2,
-    "fake_armonk_v2": fake_backends.FakeArmonkV2,
-    "fake_athens_v2": fake_backends.FakeAthensV2,
-    "fake_auckland": fake_backends.FakeAuckland,
-    "fake_belem_v2": fake_backends.FakeBelemV2,
-    "fake_boeblingen_v2": fake_backends.FakeBoeblingenV2,
-    "fake_bogota_v2": fake_backends.FakeBogotaV2,
-    "fake_brooklyn_v2": fake_backends.FakeBrooklynV2,
-    "fake_burlington_v2": fake_backends.FakeBurlingtonV2,
-    "fake_cairo_v2": fake_backends.FakeCairoV2,
-    "fake_cambridge_v2": fake_backends.FakeCambridgeV2,
-    "fake_casablanca_v2": fake_backends.FakeCasablancaV2,
-    "fake_essex_v2": fake_backends.FakeEssexV2,
-    "fake_geneva_v2": fake_backends.FakeGeneva,
-    "fake_guadalupe_v2": fake_backends.FakeGuadalupeV2,
-    "fake_hanoi_v2": fake_backends.FakeHanoiV2,
-    "fake_jakarta_v2": fake_backends.FakeJakartaV2,
-    "fake_hohannesburg_v2": fake_backends.FakeJohannesburgV2,
-    "fake_kolkata_v2": fake_backends.FakeKolkataV2,
-    "fake_lagos_v2": fake_backends.FakeLagosV2,
-    "fake_lima_v2": fake_backends.FakeLimaV2,
-    "fake_london_v2": fake_backends.FakeLondonV2,
-    "fake_manhattan_v2": fake_backends.FakeManhattanV2,
-    "fake_manila_v2": fake_backends.FakeManilaV2,
-    "fake_melbourne_v2": fake_backends.FakeMelbourneV2,
-    "fake_montreal_v2": fake_backends.FakeMontrealV2,
-    "fake_mumbai_v2": fake_backends.FakeMumbaiV2,
-    "fake_nairobi_v2": fake_backends.FakeNairobiV2,
-    "fake_oslo_v2": fake_backends.FakeOslo,
-    "fake_ourense_v2": fake_backends.FakeOurenseV2,
-    "fake_paris_v2": fake_backends.FakeParisV2,
-    "fake_perth": fake_backends.FakePerth,
-    "fake_prague": fake_backends.FakePrague,
-    "fake_poughkeepsie_v2": fake_backends.FakePoughkeepsieV2,
-    "fake_quito_v2": fake_backends.FakeQuitoV2,
-    "fake_rochester_v2": fake_backends.FakeRochesterV2,
-    "fake_rome_v2": fake_backends.FakeRomeV2,
-    "fake_santiago_v2": fake_backends.FakeSantiagoV2,
-    "fake_sherbrooke": fake_backends.FakeSherbrooke,
-    "fake_singapore_v2": fake_backends.FakeSingaporeV2,
-    "fake_sydney_v2": fake_backends.FakeSydneyV2,
-    "fake_torino": fake_backends.FakeTorino,
-    "fake_toronto_v2": fake_backends.FakeTorontoV2,
-    "fake_valencia_v2": fake_backends.FakeValenciaV2,
-    "fake_vigo_v2": fake_backends.FakeVigoV2,
-    "fake_washington_v2": fake_backends.FakeWashingtonV2,
-    "fake_yorktown_v2": fake_backends.FakeYorktownV2,
-}
+
+def _regularize_fake_backend_name(name):
+    """Regularize a fake-backend name so different spellings map to the same key.
+
+    Lower-cases the string and strips underscores so that, e.g., both
+    ``"fake_almaden_v2"`` and ``"FakeAlmadenV2"`` resolve to the same backend,
+    and ``"fake_torino"`` and ``"FakeTorino"`` (which has no ``V2`` variant)
+    both point to ``FakeTorino``.
+    """
+    return name.lower().replace("_", "")
+
+
+def _discover_fake_backends():
+    """Discover every fake backend provided by ``qiskit_ibm_runtime.fake_provider``.
+
+    Rather than hardcoding a dictionary that must be updated whenever
+    a new fake backend is added to ``qiskit_ibm_runtime``, this collects every
+    `FakeBackendV2` subclass at import time in a dictionary.
+    The key is the regularized fake backend name, and the value is a FakeBackend object.
+    """
+    backends = {}
+    for name in dir(fake_provider):
+        obj = getattr(fake_provider, name)
+        if (
+            isinstance(obj, type)
+            and issubclass(obj, FakeBackendV2)
+            and obj is not FakeBackendV2
+        ):
+            backends[_regularize_fake_backend_name(name)] = obj
+    return backends
+
+
+_FAKE_BACKENDS = _discover_fake_backends()
+
+
+def get_ibm_fake_backend(backend_name):
+    """Return a fresh fake-backend instance for ``backend_name``.
+
+    The name is regularized so it becomes case- and underscore-insensitive. A backend can be
+    requested using either its snake_case name (e.g., ``"fake_almaden_v2"``,
+    ``"fake_torino"``) or its class name (``"FakeAlmadenV2"``, ``"FakeTorino"``).
+
+    Raises:
+        KeyError: if no fake backend matches ``backend_name``.
+    """
+    key = _regularize_fake_backend_name(backend_name)
+    try:
+        backend_cls = _FAKE_BACKENDS[key]
+    except KeyError:
+        raise KeyError(
+            f"Fake backend {backend_name!r} not found in "
+            f"{fake_provider.__name__}. Available backends: "
+            f"{sorted(b.__name__ for b in _FAKE_BACKENDS.values())}"
+        )
+    return backend_cls()
 
 
 def get_qiskit_bench_backend(backend_name):
-    if "fake" in backend_name:
-        backend = STR_TO_IBM_FAKE_BACKEND[backend_name]()
-    elif "ibm" in backend_name:
+    lowered_name = backend_name.lower()
+    if "fake" in lowered_name:
+        backend = get_ibm_fake_backend(backend_name)
+    elif "ibm" in lowered_name:
         service = QiskitRuntimeService()
         backend = service.get_backend(backend_name)
     else:
