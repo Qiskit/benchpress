@@ -68,26 +68,6 @@ which will save the file to the CWD in the `.benchmarks` folder
 
 Further details on using `pytest-benchmark` can be found here: https://pytest-benchmark.readthedocs.io/en/latest/usage.html
 
-
-## :construction: Running the memory tests :construction:
-
-Benchmarking the amount of memory a test uses can be very costly in terms of time and memory.  Here we use the `pytest-memray` plugin.  Calling the memory bechmark looks like:
-
-```bash
-
-python -m pytest --memray --trace-python-allocators --native --most-allocations=100 --benchmark-disable benchpress/*_gym
-```
-
-Here `--memray` turns on the memory profiler, `--trace-python-allocators` tracks all the memoryu allocations from Python, `--native` track C/C++/Rust memory, `--most-allocations=N` shows only the top `N` tests in terms of memory consuption, and finally `--benchmark-disable` turns off the timing benchmarks.
-
-### Histogram issues
-
-The `pytest-memray` plugin will sometimes raise on building the histrogram included in the report by default.  Currently the only way around this error, which does not affect the tests, is to manually comment out L322 and L323 from the `plugin.py` file:
-
-```python
-#histogram_txt = cli_hist(sizes, bins=min(len(sizes), N_HISTOGRAM_BINS))
-#writeln(f"\t 📊 Histogram of allocation sizes: |{histogram_txt}|")
-```
 ## Testing details
 
 We have designed Benchpress in a manner to allow all tests to be executed on each SDK, regardless of whether that functionality is supported or not.  This is facilitated by the use of "workouts" that define abstract base classes that define each set of tests.  This design choice has the advantage of explicitly measuring the breadth of SDK functionality
